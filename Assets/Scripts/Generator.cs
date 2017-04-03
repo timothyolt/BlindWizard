@@ -8,6 +8,7 @@ public class Generator : MonoBehaviour {
 
 	//Prefabs
 	public GameObject empty, tileCube, shimmer, enemy, wallVertical, wallHorizontal;
+    PlayerMovement player;
 
 
 	//Arrays that store waypoint coordinates
@@ -15,29 +16,37 @@ public class Generator : MonoBehaviour {
 	public GameObject[,] sixxSixArray = new GameObject[7,7];
 	public GameObject[,] eightxEightArray = new GameObject[9,9];
 
+   //public WizardLevel[] levels;
+    public List<WizardLevel> levels = new List<WizardLevel>();
+
 	void Start () 
 	{
-	    var level1 = new WizardLevel(1, tileCube, wallHorizontal, shimmer, enemy);
-	    var level2 = new WizardLevel(2, tileCube, wallHorizontal, shimmer, enemy);
-		WorkTheMagic();
-	}
-	
+        player = GameObject.Find("Player").GetComponent<PlayerMovement>();
+        levels.Add(new WizardLevel(1, tileCube, wallHorizontal, shimmer, enemy));
+        levels.Add(new WizardLevel(2, tileCube, wallHorizontal, shimmer, enemy));
+	    levels.Add(new WizardLevel(3, tileCube, wallHorizontal, shimmer, enemy));
+        levels.Add(new WizardLevel(4, tileCube, wallHorizontal, shimmer, enemy));
+    }
 
 	void Update () 
 	{
-		
 	}
 
-	//Works the magic.
-	void WorkTheMagic()
+	/// <summary>
+    /// Works more magic than you've ever worked in your whole life.
+    /// </summary>
+	public void WorkTheMagic()
 	{
-//	    BuildFloor(4);
-//		SixxSix();
-//		EightxEight();
-//		PlaceWalls();
-//		PlaceShimmers();
-//		PlaceEnemies();
-	}
+        levels[player.level - 1] = null;
+        levels.Add(new WizardLevel(player.level+4, tileCube, wallHorizontal, shimmer, enemy));
+
+        //	    BuildFloor(4);
+        //		SixxSix();
+        //		EightxEight();
+        //		PlaceWalls();
+        //		PlaceShimmers();
+        //		PlaceEnemies();
+    }
 
 
 	void PlaceWalls()
