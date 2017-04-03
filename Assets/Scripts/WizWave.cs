@@ -24,8 +24,8 @@ public class WizWave : MonoBehaviour
     private float _chaseRate;
 
     private void Update ()
-	{
-	    if (_spotlight == null) return;
+    {
+        if (_spotlight == null) return;
 	    if (_time < _distance)
 	    {
 	        _spotlight.spotAngle = _angle;
