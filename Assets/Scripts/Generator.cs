@@ -17,7 +17,8 @@ public class Generator : MonoBehaviour {
 
 	void Start () 
 	{
-	    var level = new WizardLevel(1, tileCube, wallHorizontal, shimmer, enemy);
+	    var level1 = new WizardLevel(1, tileCube, wallHorizontal, shimmer, enemy);
+	    var level2 = new WizardLevel(2, tileCube, wallHorizontal, shimmer, enemy);
 		WorkTheMagic();
 	}
 	

@@ -5,9 +5,9 @@ using Random = UnityEngine.Random;
 
 public class WizardLevel
 {
-    private static readonly Vector3 WallNsOffset = new Vector3(0, 1, -0.5f);
+    private static readonly Vector3 WallNsOffset = new Vector3(0, 0.5f, -0.5f);
     private static readonly Quaternion WallNsRotation = Quaternion.AngleAxis(90, Vector3.up);
-    private static readonly Vector3 WallEwOffset = new Vector3(-0.5f, 1, 0);
+    private static readonly Vector3 WallEwOffset = new Vector3(-0.5f, 0.5f, 0);
     private static readonly Quaternion WallEwRotation = Quaternion.identity;
 
     public int Level { get; }
