@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Generator : MonoBehaviour {
 
@@ -15,6 +17,7 @@ public class Generator : MonoBehaviour {
 
 	void Start () 
 	{
+	    var level = new WizardLevel(1, tileCube, wallHorizontal, shimmer, enemy);
 		WorkTheMagic();
 	}
 	
@@ -27,12 +30,12 @@ public class Generator : MonoBehaviour {
 	//Works the magic.
 	void WorkTheMagic()
 	{
-		FourxFour();
-		SixxSix();
-		EightxEight();
-		PlaceWalls();
-		PlaceShimmers();
-		PlaceEnemies();
+//	    BuildFloor(4);
+//		SixxSix();
+//		EightxEight();
+//		PlaceWalls();
+//		PlaceShimmers();
+//		PlaceEnemies();
 	}
 
 
@@ -167,37 +170,25 @@ public class Generator : MonoBehaviour {
 		}
 	}
 
-	//A 4x4 grid maker.
-	void FourxFour()
-	{
-		bool hasMadePit = false;
+    private static double ComplexProbabillity(double at, double desired, double spread = 1)
+        => Math.Pow(Math.Pow(10, Math.Log10(desired) / (at * spread)), spread);
 
-		for (int x = 0; x < 5; x++)
-		{
-			for (int z = 0; z < 5; z++)
-			{
-				GameObject newPoint = Instantiate(empty);
-				empty.transform.position = new Vector3 (x, 1, z);
-				GameObject newTile = Instantiate(tileCube);
-				newTile.transform.position = new Vector3(x, 0, z);
-
-				fourxFourArray[x,z] = newPoint;
-
-				if (hasMadePit == false)
-				{
-					int tester = Random.Range (0,10);
-					if (tester == 5){
-						Destroy(newTile);
-						hasMadePit = true;
-					}
-				}
-				if (hasMadePit == false && x == 4 && z == 4) {
-					Destroy(newTile);
-					hasMadePit = true;
-				}
-			}
-		}
-	}
+    private static void FloorEach(GameObject[,] floor, Func<int, int, bool> inner, Func<int, bool> outer,
+        Action<int, int> action)
+    {
+        var count = 1;
+        do
+        {
+            int x;
+            int z;
+            do
+            {
+                x = Random.Range(0, floor.GetLength(0));
+                z = Random.Range(0, floor.GetLength(1));
+            } while (inner(x, z));
+            action(x, z);
+        } while (outer(count++));
+    }
 
 	//A 6x6 grid maker.
 	void SixxSix()
