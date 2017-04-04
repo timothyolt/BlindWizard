@@ -170,13 +170,13 @@ public class DemoInputManager : MonoBehaviour {
 
 #if !UNITY_EDITOR  // Running on an Android device.
   private static bool IsDeviceDaydreamReady() {
-    // Check API level.
+    // Check API Level.
     using (var version = new AndroidJavaClass(PACKAGE_BUILD_VERSION)) {
       if (version.GetStatic<int>(FIELD_SDK_INT) < ANDROID_MIN_DAYDREAM_API) {
         return false;
       }
     }
-    // API level > 24, check whether the device is Daydream-ready..
+    // API Level > 24, check whether the device is Daydream-ready..
     AndroidJavaObject androidActivity = null;
     try {
       using (AndroidJavaObject unityPlayer = new AndroidJavaClass(PACKAGE_UNITY_PLAYER)) {

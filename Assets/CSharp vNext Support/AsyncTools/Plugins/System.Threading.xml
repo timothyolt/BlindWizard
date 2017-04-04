@@ -76,14 +76,14 @@
         <member name="M:System.Collections.Concurrent.ConcurrentDictionary`2.#ctor">
             <summary>
             Initializes a new instance of the <see cref="T:System.Collections.Concurrent.ConcurrentDictionary`2"/>
-            class that is empty, has the default concurrency level, has the default initial capacity, and
+            class that is empty, has the default concurrency Level, has the default initial capacity, and
             uses the default comparer for the key type.
             </summary>
         </member>
         <member name="M:System.Collections.Concurrent.ConcurrentDictionary`2.#ctor(System.Int32,System.Int32)">
             <summary>
             Initializes a new instance of the <see cref="T:System.Collections.Concurrent.ConcurrentDictionary`2"/>
-            class that is empty, has the specified concurrency level and capacity, and uses the default
+            class that is empty, has the specified concurrency Level and capacity, and uses the default
             comparer for the key type.
             </summary>
             <param name="concurrencyLevel">The estimated number of threads that will update the
@@ -99,7 +99,7 @@
             <summary>
             Initializes a new instance of the <see cref="T:System.Collections.Concurrent.ConcurrentDictionary`2"/>
             class that contains elements copied from the specified <see cref="T:System.Collections.IEnumerable{KeyValuePair{TKey,TValue}}"/>, has the default concurrency
-            level, has the default initial capacity, and uses the default comparer for the key type.
+            Level, has the default initial capacity, and uses the default comparer for the key type.
             </summary>
             <param name="collection">The <see cref="T:System.Collections.IEnumerable{KeyValuePair{TKey,TValue}}"/> whose elements are copied to
             the new
@@ -112,7 +112,7 @@
         <member name="M:System.Collections.Concurrent.ConcurrentDictionary`2.#ctor(System.Collections.Generic.IEqualityComparer{`0})">
             <summary>
             Initializes a new instance of the <see cref="T:System.Collections.Concurrent.ConcurrentDictionary`2"/>
-            class that is empty, has the specified concurrency level and capacity, and uses the specified
+            class that is empty, has the specified concurrency Level and capacity, and uses the specified
             <see cref="T:System.Collections.Generic.IEqualityComparer{TKey}"/>.
             </summary>
             <param name="comparer">The <see cref="T:System.Collections.Generic.IEqualityComparer{TKey}"/>
@@ -123,7 +123,7 @@
         <member name="M:System.Collections.Concurrent.ConcurrentDictionary`2.#ctor(System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{`0,`1}},System.Collections.Generic.IEqualityComparer{`0})">
             <summary>
             Initializes a new instance of the <see cref="T:System.Collections.Concurrent.ConcurrentDictionary`2"/>
-            class that contains elements copied from the specified <see cref="T:System.Collections.IEnumerable"/>, has the default concurrency level, has the default
+            class that contains elements copied from the specified <see cref="T:System.Collections.IEnumerable"/>, has the default concurrency Level, has the default
             initial capacity, and uses the specified
             <see cref="T:System.Collections.Generic.IEqualityComparer{TKey}"/>.
             </summary>
@@ -141,7 +141,7 @@
             <summary>
             Initializes a new instance of the <see cref="T:System.Collections.Concurrent.ConcurrentDictionary`2"/> 
             class that contains elements copied from the specified <see cref="T:System.Collections.IEnumerable"/>, 
-            has the specified concurrency level, has the specified initial capacity, and uses the specified 
+            has the specified concurrency Level, has the specified initial capacity, and uses the specified 
             <see cref="T:System.Collections.Generic.IEqualityComparer{TKey}"/>.
             </summary>
             <param name="concurrencyLevel">The estimated number of threads that will update the 
@@ -163,7 +163,7 @@
         <member name="M:System.Collections.Concurrent.ConcurrentDictionary`2.#ctor(System.Int32,System.Int32,System.Collections.Generic.IEqualityComparer{`0})">
             <summary>
             Initializes a new instance of the <see cref="T:System.Collections.Concurrent.ConcurrentDictionary`2"/>
-            class that is empty, has the specified concurrency level, has the specified initial capacity, and
+            class that is empty, has the specified concurrency Level, has the specified initial capacity, and
             uses the specified <see cref="T:System.Collections.Generic.IEqualityComparer{TKey}"/>.
             </summary>
             <param name="concurrencyLevel">The estimated number of threads that will update the
@@ -4184,7 +4184,7 @@
             spinning and true yielding.
             </para>
             <para>
-            <see cref="T:System.Threading.SpinWait"/> is a value type, which means that low-level code can utilize SpinWait without
+            <see cref="T:System.Threading.SpinWait"/> is a value type, which means that low-Level code can utilize SpinWait without
             fear of unnecessary allocation overheads. SpinWait is not generally useful for ordinary applications.
             In most cases, you should use the synchronization classes provided by the .NET Framework, such as
             <see cref="T:System.Threading.Monitor"/>. For most purposes where spin waiting is required, however,
@@ -4287,7 +4287,7 @@
             </summary>
             <remarks>
             <para>
-            Spin locks can be used for leaf-level locks where the object allocation implied by using a <see cref="T:System.Threading.Monitor"/>, in size or due to garbage collection pressure, is overly
+            Spin locks can be used for leaf-Level locks where the object allocation implied by using a <see cref="T:System.Threading.Monitor"/>, in size or due to garbage collection pressure, is overly
             expensive. Avoiding blocking is another reason that a spin lock can be useful, however if you expect
             any significant amount of blocking, you are probably best not using spin locks due to excessive
             spinning. Spinning can be beneficial when locks are fine grained and large in number (for example, a
@@ -12484,7 +12484,7 @@
         </member>
         <member name="P:System.Threading.Tasks.TaskScheduler.MaximumConcurrencyLevel">
             <summary>
-            Indicates the maximum concurrency level this 
+            Indicates the maximum concurrency Level this 
             <see cref="T:System.Threading.Tasks.TaskScheduler"/>  is able to support.
             </summary>
         </member>

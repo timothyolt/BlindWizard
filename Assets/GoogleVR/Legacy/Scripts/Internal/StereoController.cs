@@ -80,12 +80,12 @@ public class StereoController : MonoBehaviour {
            "better for performance to leave this option disabled whenever possible.")]
   public bool keepStereoUpdated = false;
 
-  /// Adjusts the level of stereopsis for this stereo rig.
+  /// Adjusts the Level of stereopsis for this stereo rig.
   /// @note This parameter is not the virtual size of the head -- use a scale
   /// on the head game object for that.  Instead, it is a control on eye vergence,
   /// or rather, how cross-eyed or not the stereo rig is.  Set to 0 to turn
   /// off stereo in this rig independently of any others.
-  [Tooltip("Set the stereo level for this camera.")]
+  [Tooltip("Set the stereo Level for this camera.")]
   [Range(0,1)]
   public float stereoMultiplier = 1.0f;
 
@@ -149,7 +149,7 @@ public class StereoController : MonoBehaviour {
   /// viewing distances (see GvrViewer.cs), or else adjust the stereo multiplier to
   /// compensate.  If the COI has a radius, then the near side is checked.  COI must
   /// be non-null for this setting to have any effect.
-  [Tooltip("Adjust stereo level when COI gets too close or too far.")]
+  [Tooltip("Adjust stereo Level when COI gets too close or too far.")]
   public bool checkStereoComfort = true;
 
   /// Smoothes the changes to the stereo camera FOV and position based on #centerOfInterest

@@ -166,7 +166,7 @@ public class GvrViewer : MonoBehaviour {
   private float neckModelScale = 0.0f;
 
 #if UNITY_EDITOR
-  /// Restores level head tilt in when playing in the Unity Editor after you
+  /// Restores Level head tilt in when playing in the Unity Editor after you
   /// release the Ctrl key.
   public bool autoUntiltHead = true;
 

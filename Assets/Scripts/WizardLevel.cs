@@ -33,105 +33,6 @@ public class WizardLevel
         PopulateEnemies(Width / 2, Width / 4d, 0.5f, 1, enemyPrefab);
     }
 
-    private void Wallify()
-    {
-        var path = new Stack<Vector2>();
-        var visited = new List<Vector2>();
-        var border = new List<Vector2>();
-        for (var i = 0; i < Width; i++)
-        {
-            border.Add(new Vector2(i, -1));
-            border.Add(new Vector2(i, Width));
-        }
-        for (var i = 0; i < Width; i++)
-        {
-            border.Add(new Vector2(-1, i));
-            border.Add(new Vector2(Width, i));
-        }
-
-        var start = new Vector2(Random.Range(0, Width),
-            Random.Range(0, Width));
-
-        var currentRoom = start;
-        while (visited.Count != Area)
-        {
-            // pick random n/s/e/w
-            // check to see if selection is in the path array
-            // if so, add it to Path, cut out the wall, set tileTested to new selection
-            // else, try again with new random direction
-
-            // dead end detection
-            if (visited.Concat(border).Intersect(new[]
-                    {
-                        currentRoom + Vector2.up,
-                        currentRoom + Vector2.down,
-                        currentRoom + Vector2.right,
-                        currentRoom + Vector2.left
-                    })
-                    .Count() == 4)
-            {
-                // Debug.Log(path.ToArray().Aggregate("", (current, t) => current + ' ' + t.ToString()));
-                path.Pop();
-                currentRoom = path.Peek();
-                continue;
-            }
-
-            // select random direction
-            Vector2 nsew;
-            switch (Random.Range(0, 4))
-            {
-                case 0:
-                    nsew = Vector2.up;
-                    break;
-                case 1:
-                    nsew = Vector2.down;
-                    break;
-                case 2:
-                    nsew = Vector2.right;
-                    break;
-                case 3:
-                    nsew = Vector2.left;
-                    break;
-                default:
-                    throw new IndexOutOfRangeException("Only 4 cardinal directions allowed");
-            }
-
-            // check for used rooms
-            var roomTested = currentRoom + nsew;
-            if (visited.Concat(border).Contains(roomTested)) continue;
-
-            // break wall
-            currentRoom = roomTested;
-            path.Push(roomTested);
-            visited.Add(roomTested);
-            if (nsew == Vector2.up)
-            {
-                Object.Destroy(Rooms[(int) currentRoom.x, (int) currentRoom.y].WallNorth);
-                Rooms[(int) currentRoom.x, (int) currentRoom.y].WallNorth = null;
-                Rooms[(int) roomTested.x, (int) roomTested.y].WallSouth = null;
-            }
-            else if (nsew == Vector2.down)
-            {
-                Object.Destroy(Rooms[(int) currentRoom.x, (int) currentRoom.y].WallSouth);
-                Rooms[(int) currentRoom.x, (int) currentRoom.y].WallSouth = null;
-                Rooms[(int) roomTested.x, (int) roomTested.y].WallNorth = null;
-            }
-            else if (nsew == Vector2.right)
-            {
-                Object.Destroy(Rooms[(int) currentRoom.x, (int) currentRoom.y].WallEast);
-                Rooms[(int) currentRoom.x, (int) currentRoom.y].WallEast = null;
-                Rooms[(int) roomTested.x, (int) roomTested.y].WallWest = null;
-            }
-            else if (nsew == Vector2.left)
-            {
-                Object.Destroy(Rooms[(int) currentRoom.x, (int) currentRoom.y].WallWest);
-                Rooms[(int) currentRoom.x, (int) currentRoom.y].WallWest = null;
-                Rooms[(int) roomTested.x, (int) roomTested.y].WallEast = null;
-            }
-            else throw new IndexOutOfRangeException("Only 4 cardinal directions allowed");
-        }
-    }
-
     private static double ComplexProbabillity(double at, double desired, double spread = 1)
         => Math.Pow(Math.Pow(10, Math.Log10(desired) / (at * spread)), spread);
 
@@ -213,6 +114,89 @@ public class WizardLevel
                 Object.Destroy(Rooms[x, z].Floor);
                 Rooms[x, z].Floor = null;
             });
+    }
+
+    private void Wallify()
+    {
+        var path = new Stack<Vector2>();
+        var visited = new List<Vector2>();
+        var border = new List<Vector2>();
+        for (var i = 0; i < Width; i++)
+        {
+            border.Add(new Vector2(i, -1));
+            border.Add(new Vector2(i, Width));
+        }
+        for (var i = 0; i < Width; i++)
+        {
+            border.Add(new Vector2(-1, i));
+            border.Add(new Vector2(Width, i));
+        }
+
+        var start = new Vector2(Random.Range(0, Width),
+            Random.Range(0, Width));
+
+        var currentRoom = start;
+        while (visited.Count != Area)
+        {
+            // pick random n/s/e/w
+            // check to see if selection is in the path array
+            // if so, add it to Path, cut out the wall, set tileTested to new selection
+            // else, try again with new random direction
+
+            // dead end detection
+            if (visited.Concat(border).Intersect(new[]
+                    {
+                        currentRoom + Vector2.up,
+                        currentRoom + Vector2.down,
+                        currentRoom + Vector2.right,
+                        currentRoom + Vector2.left
+                    })
+                    .Count() == 4)
+            {
+                // Debug.Log(path.ToArray().Aggregate("", (current, t) => current + ' ' + t.ToString()));
+                path.Pop();
+                currentRoom = path.Peek();
+                continue;
+            }
+
+            // select random direction
+            Vector2 nsew;
+            switch (Random.Range(0, 4))
+            {
+                case 0:
+                    nsew = Vector2.up;
+                    break;
+                case 1:
+                    nsew = Vector2.down;
+                    break;
+                case 2:
+                    nsew = Vector2.right;
+                    break;
+                case 3:
+                    nsew = Vector2.left;
+                    break;
+                default:
+                    throw new IndexOutOfRangeException("Only 4 cardinal directions allowed");
+            }
+
+            // check for used rooms
+            var roomTested = currentRoom + nsew;
+            if (visited.Concat(border).Contains(roomTested)) continue;
+
+            // break wall
+            currentRoom = roomTested;
+            path.Push(roomTested);
+            visited.Add(roomTested);
+            if (nsew == Vector2.up)
+                Object.Destroy(Rooms[(int) currentRoom.x, (int) currentRoom.y].WallNorth);
+            else if (nsew == Vector2.down)
+                Object.Destroy(Rooms[(int) currentRoom.x, (int) currentRoom.y].WallSouth);
+            else if (nsew == Vector2.right)
+                Object.Destroy(Rooms[(int) currentRoom.x, (int) currentRoom.y].WallEast);
+            else if (nsew == Vector2.left)
+                Object.Destroy(Rooms[(int) currentRoom.x, (int) currentRoom.y].WallWest);
+            else throw new IndexOutOfRangeException("Only 4 cardinal directions allowed");
+        }
     }
 
     private void PopulateShimmers(int max, double at, double desired, double spread, GameObject shimmerPrefab)
