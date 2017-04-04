@@ -12,7 +12,7 @@ public class Generator : MonoBehaviour {
 
     private void Start ()
 	{
-	    for (var i = 0; i < 5; i++)
+	    for (var i = 1; i < 25; i++)
 	        FinalLevels.Add(new WizardLevel(i, _floor, _wall, _shimmer, _enemy));
 	}
 

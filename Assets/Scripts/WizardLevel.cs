@@ -27,7 +27,7 @@ public class WizardLevel
         CreateContainers();
         CreateFloor(floorPrefab);
         CreateWalls(wallPrefab);
-        Pitify(Area / 4, Area / 8d, 0.5);
+        Pitify(Area / 16, Area / 32d, 0.25);
         Wallify();
         PopulateShimmers(Width / 2, Width / 4d, 0.5f, 1, shimmerPrefab);
         PopulateEnemies(Width / 2, Width / 4d, 0.5f, 1, enemyPrefab);
@@ -70,7 +70,7 @@ public class WizardLevel
                     })
                     .Count() == 4)
             {
-                Debug.Log(path.Aggregate("", (current, t) => current + (' ' + path.ElementAt(0).ToString())));
+                // Debug.Log(path.ToArray().Aggregate("", (current, t) => current + ' ' + t.ToString()));
                 path.Pop();
                 currentRoom = path.Peek();
                 continue;
