@@ -70,7 +70,9 @@ public class WizardLevel
                     })
                     .Count() == 4)
             {
+                Debug.Log(path.Aggregate("", (current, t) => current + (' ' + path.ElementAt(0).ToString())));
                 path.Pop();
+                currentRoom = path.Peek();
                 continue;
             }
 
