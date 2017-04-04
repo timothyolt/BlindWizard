@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
-    private bool north, south, east, west;
+    public bool north, south, east, west;
     public int playerx, playerz, level;
     Generator manager;
     // Use this for initialization
