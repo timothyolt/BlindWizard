@@ -1,47 +1,48 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Magic : MonoBehaviour {
-    PlayerMovement player;
-    Generator manager;
-    public GameObject fire;
-    public int health = 5;
+    private PlayerMovement _player;
+    private Generator _manager;
+    public GameObject Fire;
+    public int Health = 5;
     // Use this for initialization
-    void Start () {
-        manager = GameObject.Find("Manager").GetComponent<Generator>();
-        player = GameObject.Find("Player").GetComponent<PlayerMovement>();
+    private void Start () {
+        _manager = GameObject.Find("Manager").GetComponent<Generator>();
+        _player = GameObject.Find("Player").GetComponent<PlayerMovement>();
     }
 	
 	// Update is called once per frame
-	void Update () {
+    private void Update () {
 		
 	}
 
-    void blink()
+    void Blink()
     {
-        if(player.north && manager.levels[player.level].Rooms[player.playerx, player.playerz].WallNorth != null && manager.levels[player.level].Rooms[player.playerx, player.playerz+1].WallNorth != null)
+
+/*
+        if(_player.north && _manager.levels[_player.level].Rooms[_player.playerx, _player.playerz].WallNorth != null && _manager.levels[_player.level].Rooms[_player.playerx, _player.playerz+1].WallNorth != null)
         {
-            player.playerz += 2;
+            _player.playerz += 2;
         }
-        else if (player.east && manager.levels[player.level].Rooms[player.playerx, player.playerz].WallEast != null && manager.levels[player.level].Rooms[player.playerx+1, player.playerz].WallEast != null)
+        else if (_player.east && _manager.levels[_player.level].Rooms[_player.playerx, _player.playerz].WallEast != null && _manager.levels[_player.level].Rooms[_player.playerx+1, _player.playerz].WallEast != null)
         {
-            player.playerx += 2;
+            _player.playerx += 2;
         }
-        else if (player.west && manager.levels[player.level].Rooms[player.playerx, player.playerz].WallWest != null && manager.levels[player.level].Rooms[player.playerx-1, player.playerz].WallWest != null)
+        else if (_player.west && _manager.levels[_player.level].Rooms[_player.playerx, _player.playerz].WallWest != null && _manager.levels[_player.level].Rooms[_player.playerx-1, _player.playerz].WallWest != null)
         {
-            player.playerx -= 2;
+            _player.playerx -= 2;
         }
-        else if (player.south && manager.levels[player.level].Rooms[player.playerx, player.playerz].WallSouth != null && manager.levels[player.level].Rooms[player.playerx, player.playerz-1].WallSouth != null)
+        else if (_player.south && _manager.levels[_player.level].Rooms[_player.playerx, _player.playerz].WallSouth != null && _manager.levels[_player.level].Rooms[_player.playerx, _player.playerz-1].WallSouth != null)
         {
-            player.playerz -= 2;
+            _player.playerz -= 2;
         }
+*/
 
     }
 
     void heal()
     {
-        health++;
+        Health++;
     }
 
     void fireball()
