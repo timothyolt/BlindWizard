@@ -15,9 +15,13 @@ public class LevelLoader : MonoBehaviour {
 		
 	}
 
-    public void startGame()
+    public void StartGame()
     {
-        // SceneManager.loadscene(1);
-        Debug.Log("did a thing");
+		SceneManager.LoadScene("Main");
     }
+
+	public void QuitGame()
+	{
+		Application.Quit();
+	}
 }
