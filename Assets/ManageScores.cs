@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class ManageScores : MonoBehaviour {
     private Scoreholding scores;
@@ -38,8 +39,11 @@ public class ManageScores : MonoBehaviour {
             kills.text = "Scores not found!";
         }*/
     }
-
-    void Display()
+    /// <summary>
+    /// I'll let you guess what this does.
+    /// </summary>
+    public void ReturnToMain()
     {
+        //code for returning to main menu
     }
 }
