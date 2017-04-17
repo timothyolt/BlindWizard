@@ -91,7 +91,7 @@ public class PlayerMovement : MonoBehaviour
            _level++;
            PlayerX++;
            PlayerZ++;
-           _manager.Levels[_level - 1] = null;
+           _manager.Levels[_level - 1] = null; //This code ain't work lululul
            _manager.AddLevel(_level + 4);
         }
         #endregion
