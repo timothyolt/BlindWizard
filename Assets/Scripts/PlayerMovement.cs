@@ -83,11 +83,18 @@ public class PlayerMovement : MonoBehaviour
                 if (_manager.Levels[_level].Rooms[PlayerX, PlayerZ].WallWest == null)
                     PlayerX++;
             }
+            Score.Turnip();
+            if (_manager.Levels[_level].Rooms[PlayerX, PlayerZ].Shimmer != null)
+            {
+                Destroy(_manager.Levels[_level].Rooms[PlayerX, PlayerZ].Shimmer);
+                Score.ShimmersUp();
+            }
         }
         #endregion
         #region LevelMovement
         if(_manager.Levels[_level].Rooms[PlayerX, PlayerZ].Floor == null)
         {
+           Score.FloorUp();
            _level++;
            PlayerX++;
            PlayerZ++;
