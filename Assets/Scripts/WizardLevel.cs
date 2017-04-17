@@ -30,7 +30,7 @@ public class WizardLevel
         Pitify(Area / 16, Area / 32d, 0.25);
         Wallify();
         PopulateShimmers(Width / 2, Width / 4d, 0.5f, 1, shimmerPrefab);
-        PopulateEnemies(Width / 2, Width / 4d, 0.5f, 1, enemyPrefab);
+        // PopulateEnemies(Width / 2, Width / 4d, 0.5f, 1, enemyPrefab);
     }
 
     private static double ComplexProbabillity(double at, double desired, double spread = 1)
