@@ -18,7 +18,7 @@ public class WizardLevel
     public Room[,] Rooms;
 
     public WizardLevel(int level, GameObject floorPrefab,
-        GameObject wallPrefab, GameObject enemyPrefab, GameObject shimmerPrefab)
+        GameObject wallPrefab, GameObject shimmerPrefab, GameObject enemyPrefab)
     {
         Level = level;
         Width = level * 2 + 2;
