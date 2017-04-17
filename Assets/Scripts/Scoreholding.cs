@@ -1,24 +1,22 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Scoreholding : MonoBehaviour {
 
     public int blocks = 0, floors = 0, kills = 0, shimmers = 0, turns = 0;
 
-	void Start () {
+    private void Start () {
         DontDestroyOnLoad(transform.gameObject);
     }
-/// <summary>
-/// increases the number of blocks the player has traveled
-/// </summary>
+    /// <summary>
+    /// increases the number of blocks the player has traveled
+    /// </summary>
     public void BlockUp()
     {
         blocks++;
     }
-/// <summary>
-/// increases the number of floors the player has traveled
-/// </summary>
+    /// <summary>
+    /// increases the number of floors the player has traveled
+    /// </summary>
     public void floorUp()
     {
         floors++;

@@ -1,24 +1,20 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 public class ManageScores : MonoBehaviour {
     private Scoreholding scores;
     public Text kills, turns, shimmers, blocks, floors;
-	void Start () {
+
+    private void Start () {
         scores = GameObject.Find("Scoreholder").GetComponent<Scoreholding>();
     }
-	
-	void Update () {
 
-        
-        kills = GameObject.FindGameObjectWithTag("kills").GetComponent<Text>();
+    private void Update () {
+/*        kills = GameObject.FindGameObjectWithTag("kills").GetComponent<Text>();
         turns = GameObject.Find("turns").GetComponent<Text>();
         blocks = GameObject.FindGameObjectWithTag("blocks").GetComponent<Text>();
         floors = GameObject.Find("floors").GetComponent<Text>();
-        shimmers = GameObject.Find("shimmers").GetComponent<Text>();
+        shimmers = GameObject.Find("shimmers").GetComponent<Text>();*/
 
         kills.text = "Kills: ";
         turns.text = "Turns: ";
