@@ -2,39 +2,20 @@
 using UnityEngine.UI;
 
 public class ManageScores : MonoBehaviour {
-    private Scoreholding scores;
-    public Text kills, turns, shimmers, blocks, floors;
+    [SerializeField]
+    private Text _kills, _turns, _shimmers, _blocks, _floors;
 
     private void Start () {
-        scores = GameObject.Find("Scoreholder").GetComponent<Scoreholding>();
     }
 
     private void Update () {
-/*        kills = GameObject.FindGameObjectWithTag("kills").GetComponent<Text>();
-        turns = GameObject.Find("turns").GetComponent<Text>();
-        blocks = GameObject.FindGameObjectWithTag("blocks").GetComponent<Text>();
-        floors = GameObject.Find("floors").GetComponent<Text>();
-        shimmers = GameObject.Find("shimmers").GetComponent<Text>();*/
-
-        kills.text = "Kills: ";
-        turns.text = "Turns: ";
-        blocks.text = "Blocks: ";
-        floors.text = "floors: ";
-        shimmers.text = "shimmers: ";
-
-        /*if (scores != null)
-        {
-            kills.text = "Kills: " + scores.kills;
-            turns.text = "Turns: " + scores.turns;
-            blocks.text = "Blocks: " + scores.blocks;
-            floors.text = "floors: " + scores.floors;
-            shimmers.text = "shimmers: " + scores.shimmers;
-        }
-        else
-        {
-            kills.text = "Scores not found!";
-        }*/
+        _kills.text = "Kills: " + Score.Kills;
+        _turns.text = "Turns: " + Score.Turns;
+        _blocks.text = "Blocks: " + Score.Blocks;
+        _floors.text = "floors: " + Score.Floors;
+        _shimmers.text = "shimmers: " + Score.Shimmers;
     }
+
     /// <summary>
     /// I'll let you guess what this does.
     /// </summary>
