@@ -23,7 +23,7 @@ public class Generator : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
             SceneManager.LoadScene(0);
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) || GvrController.AppButtonDown)
             SceneManager.LoadScene(1);
     }
 }

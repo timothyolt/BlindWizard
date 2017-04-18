@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class ManageScores : MonoBehaviour {
@@ -14,13 +15,8 @@ public class ManageScores : MonoBehaviour {
         _blocks.text = "Blocks: " + Score.Blocks;
         _floors.text = "floors: " + Score.Floors;
         _shimmers.text = "shimmers: " + Score.Shimmers;
-    }
 
-    /// <summary>
-    /// I'll let you guess what this does.
-    /// </summary>
-    public void ReturnToMain()
-    {
-        //code for returning to main menu
+        if (GvrController.AppButtonDown)
+            SceneManager.LoadScene(0);
     }
 }

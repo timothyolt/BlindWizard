@@ -55,31 +55,25 @@ public class PlayerMovement : MonoBehaviour
 
         #region NESW movement
         transform.position = _manager.Levels[_level].Rooms[PlayerX, PlayerZ].Container.transform.position;
-        if (GvrController.AppButtonDown)
+        if (GvrController.ClickButtonDown)
         {
-            var room = _manager.Levels[_level].Rooms[PlayerX, PlayerZ];
-            Debug.Log($"Walls N:{room.WallNorth == null} S:{room.WallSouth == null} E:{room.WallEast == null} W:{room.WallWest == null}");
             if (_north)
             {
-                Debug.Log("App Button down north");
                 if (_manager.Levels[_level].Rooms[PlayerX,PlayerZ].WallNorth == null)
                     PlayerZ--;
             }
             else if (_south)
             {
-                Debug.Log("App Button down south");
                 if (_manager.Levels[_level].Rooms[PlayerX, PlayerZ].WallSouth == null)
                     PlayerZ++;
             }
             else if (_east)
             {
-                Debug.Log("App Button down east");
                 if (_manager.Levels[_level].Rooms[PlayerX, PlayerZ].WallEast == null)
                     PlayerX--;
             }
             else if (_west)
             {
-                Debug.Log("App Button down west");
                 if (_manager.Levels[_level].Rooms[PlayerX, PlayerZ].WallWest == null)
                     PlayerX++;
             }
