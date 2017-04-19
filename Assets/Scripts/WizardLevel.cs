@@ -132,11 +132,11 @@ public class WizardLevel
             border.Add(new Vector2(Width, i));
         }
 
-        var start = new Vector2(Random.Range(0, Width),
+        var currentRoom = new Vector2(Random.Range(0, Width),
             Random.Range(0, Width));
-
-        var currentRoom = start;
-        while (visited.Count != Area)
+        path.Push(currentRoom);
+        visited.Add(currentRoom);
+        while (path.Count > 0)
         {
             // pick random n/s/e/w
             // check to see if selection is in the path array
@@ -144,7 +144,7 @@ public class WizardLevel
             // else, try again with new random direction
 
             // dead end detection
-            if (visited.Concat(border).Intersect(new[]
+            if (Rooms[(int) currentRoom.x, (int) currentRoom.y].Floor == null || visited.Concat(border).Intersect(new[]
                     {
                         currentRoom + Vector2.up,
                         currentRoom + Vector2.down,
@@ -153,9 +153,9 @@ public class WizardLevel
                     })
                     .Count() == 4)
             {
-                // Debug.Log(path.ToArray().Aggregate("", (current, t) => current + ' ' + t.ToString()));
                 path.Pop();
-                currentRoom = path.Peek();
+                if (path.Count > 0)
+                    currentRoom = path.Peek();
                 continue;
             }
 
