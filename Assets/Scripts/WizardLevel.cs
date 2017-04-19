@@ -118,6 +118,8 @@ public class WizardLevel
 
     private void Wallify()
     {
+        Room Room(Vector2 id) => Rooms[(int) id.x, (int) id.y];
+
         var path = new Stack<Vector2>();
         var visited = new List<Vector2>();
         var border = new List<Vector2>();
@@ -132,34 +134,38 @@ public class WizardLevel
             border.Add(new Vector2(Width, i));
         }
 
-        path.Push(new Vector2(Random.Range(0, Width),
-            Random.Range(0, Width)));
-        visited.Add(path.Peek());
-
-        Room Room(Vector2 id) => Rooms[(int) id.x, (int) id.y];
+        // Find a non-pit starting point
+        while (true)
+        {
+            Debug.Log(Width);
+            var roomId = new Vector2(Random.Range(0, Width), Random.Range(0, Width));
+            if (Room(roomId).Floor == null)
+                continue;
+            path.Push(roomId);
+            visited.Add(roomId);
+            break;
+        }
+        // pick random n/s/e/w
+        // check to see if selection is in the path array
+        // if so, add it to Path, cut out the wall, set tileTested to new selection
+        // else, try again with new random direction
         while (path.Count > 0)
         {
             var roomId = path.Peek();
-            // pick random n/s/e/w
-            // check to see if selection is in the path array
-            // if so, add it to Path, cut out the wall, set tileTested to new selection
-            // else, try again with new random direction
-
             // pit detection
             if (Room(roomId).Floor == null)
             {
-                if (roomId.y + 1 < Rooms.GetLength(1) - 1)
+                if (roomId.y < Width - 1)
                     Object.Destroy(Room(roomId).WallSouth);
-                if (roomId.y - 1 > 0)
+                if (roomId.y > 0)
                     Object.Destroy(Room(roomId).WallNorth);
-                if (roomId.x + 1 < Rooms.GetLength(0) - 1)
+                if (roomId.x < Width - 1)
                     Object.Destroy(Room(roomId).WallWest);
-                if (roomId.x - 1 > 0)
+                if (roomId.x > 0)
                     Object.Destroy(Room(roomId).WallEast);
                 path.Pop();
                 continue;
             }
-
             // dead end detection
             if (visited.Concat(border).Intersect(new[]
                     {
@@ -173,7 +179,6 @@ public class WizardLevel
                 path.Pop();
                 continue;
             }
-
             // select random direction
             Vector2 nsew;
             switch (Random.Range(0, 4))
@@ -193,15 +198,12 @@ public class WizardLevel
                 default:
                     throw new IndexOutOfRangeException("Only 4 cardinal directions allowed");
             }
-
             roomId += nsew;
             // check for used rooms
             if (visited.Concat(border).Contains(roomId)) continue;
-
             // mark next room
             path.Push(roomId);
             visited.Add(roomId);
-
             // break wall
             if (nsew == Vector2.up)
                 Object.Destroy(Room(roomId).WallNorth);
