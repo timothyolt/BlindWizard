@@ -55,7 +55,7 @@ public class PlayerMovement : MonoBehaviour
 
         #region NESW movement
         transform.position = _manager.Levels[_level].Rooms[PlayerX, PlayerZ].Container.transform.position;
-        if (GvrController.ClickButtonDown)
+        if (GvrInputMask.ClickButtonDown)
         {
             if (_north)
             {
