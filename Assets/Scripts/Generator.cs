@@ -12,7 +12,8 @@ public class Generator : MonoBehaviour
 
     private void Start()
     {
-        for (var i = 1; i < 4; i++)
+        Score.Clear();
+        for (var i = 1; i <= 4; i++)
             AddLevel(i);
     }
 
@@ -21,7 +22,7 @@ public class Generator : MonoBehaviour
 
     private void Update()
     {
-    if (Input.GetKeyDown(KeyCode.Space))
-    SceneManager.LoadScene(0);
+        if (GvrInputMask.AppButtonDown)
+            SceneManager.LoadScene(1);
     }
 }

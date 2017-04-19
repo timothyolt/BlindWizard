@@ -18,7 +18,7 @@ public class WizardLevel
     public Room[,] Rooms;
 
     public WizardLevel(int level, GameObject floorPrefab,
-        GameObject wallPrefab, GameObject enemyPrefab, GameObject shimmerPrefab)
+        GameObject wallPrefab, GameObject shimmerPrefab, GameObject enemyPrefab)
     {
         Level = level;
         Width = level * 2 + 2;
@@ -30,7 +30,7 @@ public class WizardLevel
         Pitify(Area / 16, Area / 32d, 0.25);
         Wallify();
         PopulateShimmers(Width / 2, Width / 4d, 0.5f, 1, shimmerPrefab);
-        PopulateEnemies(Width / 2, Width / 4d, 0.5f, 1, enemyPrefab);
+        // PopulateEnemies(Width / 2, Width / 4d, 0.5f, 1, enemyPrefab);
     }
 
     private static double ComplexProbabillity(double at, double desired, double spread = 1)
@@ -132,30 +132,45 @@ public class WizardLevel
             border.Add(new Vector2(Width, i));
         }
 
-        var start = new Vector2(Random.Range(0, Width),
-            Random.Range(0, Width));
+        path.Push(new Vector2(Random.Range(0, Width),
+            Random.Range(0, Width)));
+        visited.Add(path.Peek());
 
-        var currentRoom = start;
-        while (visited.Count != Area)
+        Room Room(Vector2 id) => Rooms[(int) id.x, (int) id.y];
+        while (path.Count > 0)
         {
+            var roomId = path.Peek();
             // pick random n/s/e/w
             // check to see if selection is in the path array
             // if so, add it to Path, cut out the wall, set tileTested to new selection
             // else, try again with new random direction
 
+            // pit detection
+            if (Room(roomId).Floor == null)
+            {
+                if (roomId.y + 1 < Rooms.GetLength(1) - 1)
+                    Object.Destroy(Room(roomId).WallSouth);
+                if (roomId.y - 1 > 0)
+                    Object.Destroy(Room(roomId).WallNorth);
+                if (roomId.x + 1 < Rooms.GetLength(0) - 1)
+                    Object.Destroy(Room(roomId).WallWest);
+                if (roomId.x - 1 > 0)
+                    Object.Destroy(Room(roomId).WallEast);
+                path.Pop();
+                continue;
+            }
+
             // dead end detection
             if (visited.Concat(border).Intersect(new[]
                     {
-                        currentRoom + Vector2.up,
-                        currentRoom + Vector2.down,
-                        currentRoom + Vector2.right,
-                        currentRoom + Vector2.left
+                        roomId + Vector2.up,
+                        roomId + Vector2.down,
+                        roomId + Vector2.right,
+                        roomId + Vector2.left
                     })
                     .Count() == 4)
             {
-                // Debug.Log(path.ToArray().Aggregate("", (current, t) => current + ' ' + t.ToString()));
                 path.Pop();
-                currentRoom = path.Peek();
                 continue;
             }
 
@@ -179,22 +194,23 @@ public class WizardLevel
                     throw new IndexOutOfRangeException("Only 4 cardinal directions allowed");
             }
 
+            roomId += nsew;
             // check for used rooms
-            var roomTested = currentRoom + nsew;
-            if (visited.Concat(border).Contains(roomTested)) continue;
+            if (visited.Concat(border).Contains(roomId)) continue;
+
+            // mark next room
+            path.Push(roomId);
+            visited.Add(roomId);
 
             // break wall
-            currentRoom = roomTested;
-            path.Push(roomTested);
-            visited.Add(roomTested);
             if (nsew == Vector2.up)
-                Object.Destroy(Rooms[(int) currentRoom.x, (int) currentRoom.y].WallNorth);
+                Object.Destroy(Room(roomId).WallNorth);
             else if (nsew == Vector2.down)
-                Object.Destroy(Rooms[(int) currentRoom.x, (int) currentRoom.y].WallSouth);
+                Object.Destroy(Room(roomId).WallSouth);
             else if (nsew == Vector2.right)
-                Object.Destroy(Rooms[(int) currentRoom.x, (int) currentRoom.y].WallEast);
+                Object.Destroy(Room(roomId).WallEast);
             else if (nsew == Vector2.left)
-                Object.Destroy(Rooms[(int) currentRoom.x, (int) currentRoom.y].WallWest);
+                Object.Destroy(Room(roomId).WallWest);
             else throw new IndexOutOfRangeException("Only 4 cardinal directions allowed");
         }
     }
