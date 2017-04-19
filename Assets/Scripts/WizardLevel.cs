@@ -148,13 +148,13 @@ public class WizardLevel
             // pit detection
             if (Room(roomId).Floor == null)
             {
-                if (roomId.y + 1 < Rooms.GetLength(1))
+                if (roomId.y < Width - 1)
                     Object.Destroy(Room(roomId).WallSouth);
-                if (roomId.y - 1 > 0)
+                if (roomId.y > 0)
                     Object.Destroy(Room(roomId).WallNorth);
-                if (roomId.x + 1 < Rooms.GetLength(0))
+                if (roomId.x < Width - 1)
                     Object.Destroy(Room(roomId).WallWest);
-                if (roomId.x - 1 > 0)
+                if (roomId.x > 0)
                     Object.Destroy(Room(roomId).WallEast);
                 path.Pop();
                 continue;
