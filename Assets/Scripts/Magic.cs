@@ -2,12 +2,12 @@
 
 public class Magic : MonoBehaviour {
     private PlayerMovement _player;
-    private Generator _manager;
+    private Manager _manager;
     public GameObject Fire;
     public int Health = 5;
     // Use this for initialization
     private void Start () {
-        _manager = GameObject.Find("Manager").GetComponent<Generator>();
+        _manager = GameObject.Find("Manager").GetComponent<Manager>();
         _player = GameObject.Find("Player").GetComponent<PlayerMovement>();
     }
 	
