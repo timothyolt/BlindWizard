@@ -1,7 +1,24 @@
-﻿using UnityEngine;
+﻿using System.Net.Configuration;
+using UnityEngine;
 
 public class Room
 {
+    public Room()
+    {
+        HasWallNorth = true;
+        HasWallSouth = true;
+        HasWallEast = true;
+        HasWallWest = true;
+    }
+
+    public bool IsGenerated { get; set; }
+    public bool HasFloor { get; set; }
+    public bool HasWallNorth { get; set; }
+    public bool HasWallSouth { get; set; }
+    public bool HasWallEast { get; set; }
+    public bool HasWallWest { get; set; }
+    public bool HasEnemy { get; set; }
+    public bool HasShimmer { get; set; }
     /// <summary>
     /// GameObject that always exists within a room
     /// </summary>
