@@ -1,0 +1,314 @@
+HUNT THE WUMPUS(TM)
+Cartridge Instructions
+TI-99/4A 
+-----------------------------------------------------------------------
+
+Copyright © 1980 Texas Instruments Incorporated 
+Command Module program and data base contents copyright © 1980 
+Texas Instruments Incorporated.
+See important warranty information at back of book. 
+
+
+
+INTRODUCTION
+
+Deep within a maze of caverns and twisting tunnels lives a creature 
+known as the Wumpus. Protected by giant bats and pits of slime, the 
+Wumpus feeds on unwary visitors to its cavern.
+
+You are the daring hunter who tracks the Wumpus to its lair! Armed 
+with a single arrow, you explore the maze of caverns, searching for 
+clues to tell you where the Wumpus is hiding. Once you think you've 
+found the Wumpus, you fire your arrow into its cavern. But be careful!
+If you choose the wrong cavern, you will be the next victim of the 
+Wumpus.
+
+The Hunt the Wumpus Solid State SoftwareTM Command Module combines the
+excitement of a hunt with the fun of colorful graphics and lively 
+sound effects. With the module plugged into the console of your Texas 
+Instruments Home Computer, you can:
+
+
+*Play each game in a new, randomly generated maze
+
+*Choose a maze based on your own level of skill
+
+*Challenge your powers of deduction, memory, and concentration with 
+exciting options you can include in the hunt
+
+
+The module is also programmed with several convenient features. With a
+few simple keystrokes, you can view a map of the maze at the end of 
+each game, reselect options for a new game, or begin a new game with 
+the same options.
+
+
+
+GETTING STARTED
+
+Maze Difficulty
+
+After you select the module, the title sequence for HUNT THE WUMPUS 
+begins. At the end of the sequence, you are given a choice of three 
+levels of maze difficulty.
+
+This selection list lets you choose the complexity of the maze. As a 
+rule of thumb, the approximate number of caverns for each level of 
+maze difficulty is as follows: 
+
+EASY MAZE - about 32 caverns 
+HARD MAZE - about 24 caverns 
+PRO MAZE - about 16 caverns
+
+If you choose a level with fewer caverns, the caverns are connected 
+by long, twisting tunnels. This makes it harder for you to find the 
+location of the Wumpus and avoid the slime pits. Each curve of a 
+tunnel may be an important clue to unexplored areas of the maze, and
+you may have to take unavoidable risks to reach the Wumpus.
+
+To select maze difficulty press 1, 2, or 3. A small black Wumpus 
+symbol appears to the left of your choice.
+
+
+Option Selection
+
+Once you select the maze difficulty, a selection list appears with 
+four options.
+
+Your choice here decides how much of your exploration is "mapped out" 
+on the screen. The four following options are available:
+
+NORMAL - Here, the screen displays a map of all the territory you 
+explore as you move through the maze. You can always see the caverns 
+and tunnels that you've been through.
+
+BLINDFOLD - The Blindfold option tests your memory by erasing the map 
+behind you. Only the cavern or tunnel segment you are in appears on 
+the screen.
+
+EXPRESS - The Express option adds a new element of deduction and risk.
+As soon as you leave a cavern, you are instantly transported to the 
+cavern at the other end of the tunnel. The location of each cavern you
+enter appears on the map, but the tunnels do not. This makes exploring 
+more of a risk, since you can't tell where a tunnel leads until you 
+are already there. It also makes it difficult to retrace your steps, 
+because caverns have several openings, and you may not be sure which 
+one you came in. Watch your step!
+
+BLINDFOLD AND EXPRESS - This option combines the effects of Options 2 
+and 3 to create the game's ultimate challenge. Hunters beware!
+
+Press 1, 2, 3, or 4 to select an option. A black Wumpus symbol appears
+to the left of your choice.
+
+Note: During the middle of a game, if you decide that you would like 
+to change options, hold down the SHIFT key and press Z. The computer 
+returns to the Options list so that you can select a new option. If 
+you wish to change both the maze difficulty and the option during a 
+game, press SHIFT Z (BACK) twice and reselect as desired. In both 
+cases, the computer constructs a new maze, and a new game begins.
+
+
+
+AND ON TO THE HUNT!
+
+After you select an option, the computer constructs a hidden maze. The
+screen blanks, a bugle call sounds, and the hunt begins.
+
+The game starts in an empty cavern. The blinking figure of a hunter 
+appears in this cavern.
+
+
+Exploring The Maze
+
+You explore the maze by moving the hunter through openings in the maze.
+You can move up, down, left, or right by pressing the appropriate 
+arrow key on the console keyboard {[UP] (E), [DOWN] (X), [LEFT] (S), 
+or [RIGHT] (D)}. Although these are normally shift functions on the 
+computer, you don't have to press the SHIFT key to activate the arrow 
+keys in this game.
+
+You can also use the Wired Remote Controllers to move through the maze.
+Only one of the controllers can be used; the other is inoperative and 
+should be set aside. To use the controller, push the lever in the 
+direction you wish to move.
+
+The directions in which you can move depend on the openings in the 
+maze around the hunter. When inside a cavern, you may move in four 
+directions (any one of four tunnel openings). When inside a tunnel, 
+you can only move in two directions (either advance or retreat a step).
+If you move in a direction where there is no opening, the computer 
+sounds a low error tone, and your position in the maze does not change.
+With each correct move, the computer gives a high beep, and the hunter 
+moves in the direction you pressed. More than one move can be made in 
+a direction by holding down the arrow key (or controller lever).
+
+Adding to the excitement of the game is the computer's "wrap-around" 
+feature. If you move the hunter off the edge of the maze, it reappears 
+at the opposite side. The screen "wraps around" both horizontally and 
+vertically to connect all the tunnels and caverns, helping you imagine 
+that you are in a three-dimensional maze.
+
+In the HARD and PRO mazes, a tunnel sometimes "wraps around" the screen
+several times. A tunnel may "wrap" from one side of the screen to the 
+other, or from corner to corner. In the hardest mazes, a "wrap-around"
+tunnel may even form a loop that leads you around in circles. When 
+this happens, remember that you can always move in two directions. Just
+carefully retrace your steps to find your way out of the loop.
+
+SURPRISE! Sometimes a tunnel going out of a cavern loops back into the
+same cavern. If you move through a loop when playing with the express 
+option, a black looping symbol appears in the cavern, briefly replacing
+the figure of the hunter.
+
+
+Tracking Down The Wumpus
+
+The Wumpus makes its lair in one of the caverns in the maze. You know 
+you're getting near the Wumpus when you enter a cavern with bloodspots
+(shown on the screen as a large red dot in the cavern). These dots 
+appear in all caverns within two caverns of the Wumpus.
+
+In the example below, eight out of the twelve caverns explored by the 
+hunter (the figure in the upper right cavern) contain bloodspots (the 
+dots inside some of the caverns). The Wumpus is probably somewhere in 
+the middle of the eight spotted caverns.
+
+[IMAGE OF CAVERN WITH BLOODSPOTS]
+
+Here's a hunting tip: If you are in a spotted cavern that is connected
+to a clear cavern (no red dot), you can explore one cavern further 
+before you risk entering the Wumpus' cavern. (That's because all 
+caverns within two caverns of the Wumpus have a red dot.)
+
+The trick to finding the Wumpus is to determine which cavern is more 
+than two caverns away from all unspotted caverns. That cavern is the 
+Wumpus' lair. NEVER enter the Wumpus' lair, or else you lose the game.
+
+
+Caution! Slime Pit
+
+When you enter a cavern that has green walls instead of blue walls, 
+you are approaching a slime pit. Slime pits are vast pools of stagnant 
+water that fill a cavern. If you enter a slime pit cavern, you fall in
+and lose the game.
+
+Slime pits can usually be avoided, since all caverns within one cavern
+of a pit have green walls. But move carefully - there are two slime 
+pits in the maze, and sometimes they are right next to each other.
+
+The example below contains two slime pit warnings (shown as caverns 
+with black walls) in the lower left area of the maze. The warnings 
+indicate that the slime pit is probably located in the lower left 
+corner of the maze.
+
+[IMAGE OF CAVERN WITH SLIME PITS]
+
+Sometimes the Wumpus makes its lair in a slime pit. You'll know that 
+the Wumpus is located in or near a slime pit if you enter a cavern 
+with green walls and a red dot.
+
+
+Do Not Disturb The Bats
+
+Some of the caverns in the maze are inhabited by very large bats. The 
+first time you enter a cavern containing bats, a bat symbol appears in 
+the cavern. The bats know that you are there, but they ignore you for 
+now.
+
+If you later reenter a cavern with bats, you may disturb them. If you 
+do, they pick you up and carry you off to anywhere in the maze...a 
+tunnel, a slime pit, the Wumpus' lair, or even the cavern where your 
+flight began. Then they choose a new place to live.
+
+The bats may set you in either a mapped or unmapped area of the maze. 
+(Remember, if you selected the BLINDFOLD or BLINDFOLD AND EXPRESS 
+option, there is no map.) But if the bats drop you in a slime pit or 
+the Wumpus' lair, the game is over.
+
+The bats enjoy playing tricks on unwary hunters. Some of their more 
+fiendish tricks include placing you in a cavern where slime pits block 
+the way, or in a tunnel next to a slime pit or the Wumpus. In the 
+latter case, you have no warning of the danger, since tunnels do not 
+have red spots or green slime warning signals.
+
+[IMAGE OF CAVERN WITH BATS]
+
+Note that bats can be in a cavern with bloodspots and/or slime (green 
+walls). All of the symbols appear, but the bat symbol covers the 
+bottom half of the red dot. In the above example, the hunter has 
+"discovered" two caverns with bats. The cavern on the far right only
+contains bats, while the cavern in the upper left contains both bats 
+and a red dot.
+
+
+Once The Wumpus Is Located
+
+When you think you know where the Wumpus is, it's time to fire your 
+arrow. (You should be in a cavern or tunnel that connects to the 
+Wumpus' lair.) Press Q to indicate that you are ready to fire. The 
+hunter figure turns from yellow to blue. Then press an arrow key to 
+direct the arrow into the tunnel that you think leads to the Wumpus. 
+The arrow follows the tunnel to the next cavern.
+
+When using the Wired Remote Controllers, press the FIRE button to 
+indicate that you are ready to shoot. Then move the lever in the 
+direction you wish to fire the arrow.
+
+If the cavern you fire into is the Wumpus' lair, you win! If you are 
+wrong, the Wumpus hears the arrow and comes looking for you. You only 
+have one arrow, so if you miss you lose the game.
+
+Note: If you change your mind and decide not to shoot after you've 
+pressed Q (or the controller FIRE button), hold down the SHIFT key and
+press R. The hunter turns from blue back to yellow, and you can then 
+continue to explore the maze. Once the arrow has been fired, however, 
+pressing SHIFT R will have no effect.
+
+
+
+AT THE HUNT'S END
+
+The hunt is over when you fire your arrow, fall into a slime pit, or 
+enter the Wumpus' lair. If you win, the screen says GOT IT! and a 
+fanfare plays. If you fall into a slime pit, the screen shows the 
+hunter figure falling, followed by the word PIT. If the Wumpus wins, 
+you see its teeth close while a funeral march plays. Then the display 
+shows a message about the outcome of the hunt and a tally board of the 
+scores for this round of games:
+
+The tally board contains three scores:
+
+*The number of times you have "gotten" the Wumpus, next to the yellow 
+hunter symbol. 
+
+*The number of times the Wumpus "got" you, next to the red Wumpus 
+symbol.
+
+*The number of pits you have fallen into, next to the green pit symbol.
+
+
+The display also offers you these four options:
+
+1. Press Q (or the FIRE button on the Wired Remote Controller) to look
+at a complete map of the game that just ended. The map indicates the 
+location of the Wumpus' lair with a small red Wumpus symbol. Slime 
+pits are green and contain a solid green circle. The map also shows 
+the most recent location of the bats.
+
+(Note: In the more difficult mazes, there may be sections of the map 
+you can't reach. In such cases, the computer begins the hunt in a 
+section of the map containing the Wumpus)
+
+2. Press [UP] (or move the lever of the Wired Remote Controller 
+upwards) to start a new game immediately. A new maze is constructed on 
+the same level of difficulty as the previous one, and the same options
+are in effect.
+
+3. Hold down the SHIFT key and press Z (BACK) to choose a different 
+level of difficulty or new options. The computer returns to the Maze 
+Difficulty selection list.
+
+4. Hold down the SHIFT key and press Q (QUIT) to end this round of 
+games and erase all scores from the tally board. The computer returns 
+to the master title screen.
