@@ -47,8 +47,9 @@ public class VrView : MonoBehaviour
     private void Start ()
     {
         // TODO (timothyolt): settings override
-        Debug.Log("yoyoyo " + GvrIntent.GetData());
+        Debug.Log("yoyoyo " + VRDevice.model);
         Stereo = GvrIntent.IsLaunchedFromVr();
+        Debug.Log("yoyoyo " + VRDevice.model);
     }
 
     private void Update ()
