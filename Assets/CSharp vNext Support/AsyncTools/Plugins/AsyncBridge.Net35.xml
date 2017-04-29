@@ -1500,7 +1500,7 @@
         <member name="T:System.Runtime.TargetedPatchingOptOutAttribute">
             <summary>
             Indicates that the .NET Framework class library method to which this attribute is applied is unlikely to be affected by servicing releases, 
-            and therefore is eligible to be inlined across Native Image Generator (NGen) images.
+            and therefore is eligible to be inlined across Native Image Manager (NGen) images.
             </summary>
         </member>
         <member name="M:System.Runtime.TargetedPatchingOptOutAttribute.#ctor(System.String)">
@@ -1508,12 +1508,12 @@
             Infrastructure. Initializes a new instance of the <b>TargetedPatchingOptOutAttribute</b> class.
             </summary>
             <param name="reason">The reason why the method to which the <see cref="T:System.Runtime.TargetedPatchingOptOutAttribute"/> attribute is applied is 
-            considered to be eligible for inlining across Native Image Generator (NGen) images.</param>
+            considered to be eligible for inlining across Native Image Manager (NGen) images.</param>
         </member>
         <member name="P:System.Runtime.TargetedPatchingOptOutAttribute.Reason">
             <summary>
             Infrastructure. Gets the reason why the method to which this attribute is applied is considered to be eligible for inlining across 
-            Native Image Generator (NGen) images.
+            Native Image Manager (NGen) images.
             </summary>
         </member>
     </members>
