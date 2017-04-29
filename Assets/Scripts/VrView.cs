@@ -1,8 +1,11 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using Gvr.Internal;
+using UnityEngine;
 using UnityEngine.VR;
 
 public class VrView : MonoBehaviour
 {
+
     [SerializeField]
     private GameObject[] _googleVrObjects;
 
@@ -14,20 +17,29 @@ public class VrView : MonoBehaviour
         set
         {
             _stereo = value;
-            if (_stereo) {
-                VRSettings.LoadDeviceByName("daydream");
+            StartCoroutine(LoadVrDevice(_stereo ? "android" : "android"));
+        }
+    }
+
+    private IEnumerator LoadVrDevice(string platform)
+    {
+        switch (platform.ToLower())
+        {
+            case "android":
+                VRSettings.LoadDeviceByName(new [] {"daydream", "cardboard"});
+                yield return null;
                 VRSettings.enabled = true;
                 // Reset NoVr offset
                 transform.parent.localRotation = Quaternion.Euler(0, 0, 0);
-                transform.localPosition = new Vector3(0, 2, 0);
+                transform.localPosition = new Vector3(0, 1, 0);
                 // Enable any special GVR stuff
-                if (_googleVrObjects == null) return;
-                foreach (var googleVrObject in _googleVrObjects)
-                    googleVrObject?.SetActive(true);
-            }
-            else
-            {
+                if (_googleVrObjects != null)
+                    foreach (var googleVrObject in _googleVrObjects)
+                        googleVrObject?.SetActive(true);
+                break;
+            default:
                 VRSettings.LoadDeviceByName("None");
+                yield return null;
                 VRSettings.enabled = false;
                 Input.gyro.enabled = true;
                 Screen.autorotateToPortraitUpsideDown = false;
@@ -37,19 +49,19 @@ public class VrView : MonoBehaviour
                 transform.parent.localRotation = Quaternion.Euler(90, 0, 0);
                 transform.localPosition = new Vector3(0, 0, -1);
                 // Disable any special GVR stuff
-                if (_googleVrObjects == null) return;
-                foreach (var googleVrObject in _googleVrObjects)
-                    googleVrObject?.SetActive(false);
-            }
+                if (_googleVrObjects != null)
+                    foreach (var googleVrObject in _googleVrObjects)
+                        googleVrObject?.SetActive(false);
+                break;
         }
     }
 
     private void Start ()
     {
         // TODO (timothyolt): settings override
-        Debug.Log("yoyoyo " + VRDevice.model);
+        Debug.Log("yoyoyo " + GvrController.State);
         Stereo = GvrIntent.IsLaunchedFromVr();
-        Debug.Log("yoyoyo " + VRDevice.model);
+        Debug.Log("yoyoyo " + GvrController.State);
     }
 
     private void Update ()
