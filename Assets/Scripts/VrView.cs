@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using Gvr.Internal;
 using UnityEngine;
 using UnityEngine.VR;
 
@@ -17,7 +16,8 @@ public class VrView : MonoBehaviour
         set
         {
             _stereo = value;
-            StartCoroutine(LoadVrDevice(_stereo ? "android" : "android"));
+            // StartCoroutine(LoadVrDevice(_stereo ? "GoogleVR" : "none"));
+            StartCoroutine(LoadVrDevice("GoogleVr"));
         }
     }
 
@@ -25,7 +25,7 @@ public class VrView : MonoBehaviour
     {
         switch (platform.ToLower())
         {
-            case "android":
+            case "googlevr":
                 VRSettings.LoadDeviceByName(new [] {"daydream", "cardboard"});
                 yield return null;
                 VRSettings.enabled = true;
@@ -59,9 +59,7 @@ public class VrView : MonoBehaviour
     private void Start ()
     {
         // TODO (timothyolt): settings override
-        Debug.Log("yoyoyo " + GvrController.State);
         Stereo = GvrIntent.IsLaunchedFromVr();
-        Debug.Log("yoyoyo " + GvrController.State);
     }
 
     private void Update ()
