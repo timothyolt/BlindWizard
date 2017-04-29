@@ -5,7 +5,7 @@ public class PlayerMovement : MonoBehaviour
     public int PlayerX, PlayerZ;
     private int _level;
 
-    [SerializeField] private Generator _manager;
+    [SerializeField] private Manager _manager;
 
     [SerializeField] private GameObject _camera;
 
@@ -55,7 +55,7 @@ public class PlayerMovement : MonoBehaviour
 
         #region NESW movement
         transform.position = _manager.Levels[_level].Rooms[PlayerX, PlayerZ].Container.transform.position;
-        if (GvrInputMask.ClickButtonDown)
+        if (VrInputHelper.Secondary)
         {
             if (_north)
             {
