@@ -18,11 +18,15 @@ public class Generator : MonoBehaviour
     }
 
     public void AddLevel(int level)
-        => Levels.Add(new WizardLevel(level, _floorPrefab, _wallPrefab, _shimmerPrefab, _enemyPrefab));
+    {
+        var wizardLevel = new WizardLevel(level);
+        wizardLevel.Instantiate(_floorPrefab, _shimmerPrefab, _enemyPrefab, _wallPrefab);
+        Levels.Add(wizardLevel);
+    }
 
     private void Update()
     {
-        if (GvrInputMask.AppButtonDown)
+        if (VrInputHelper.Primary)
             SceneManager.LoadScene(1);
     }
 }

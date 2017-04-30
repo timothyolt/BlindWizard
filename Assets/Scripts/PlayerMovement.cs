@@ -5,7 +5,7 @@ public class PlayerMovement : MonoBehaviour
     public int PlayerX, PlayerZ;
     private int _level;
 
-    [SerializeField] private Manager _manager;
+    [SerializeField] private Generator _generator;
 
     [SerializeField] private GameObject _camera;
 
@@ -54,46 +54,46 @@ public class PlayerMovement : MonoBehaviour
         #endregion
 
         #region NESW movement
-        transform.position = _manager.Levels[_level].Rooms[PlayerX, PlayerZ].Container.transform.position;
+        transform.position = _generator.Levels[_level].Rooms[PlayerX, PlayerZ].Container.transform.position;
         if (VrInputHelper.Secondary)
         {
             if (_north)
             {
-                if (_manager.Levels[_level].Rooms[PlayerX,PlayerZ].WallNorth == null)
+                if (_generator.Levels[_level].Rooms[PlayerX,PlayerZ].WallNorth == null)
                     PlayerZ--;
             }
             else if (_south)
             {
-                if (_manager.Levels[_level].Rooms[PlayerX, PlayerZ].WallSouth == null)
+                if (_generator.Levels[_level].Rooms[PlayerX, PlayerZ].WallSouth == null)
                     PlayerZ++;
             }
             else if (_east)
             {
-                if (_manager.Levels[_level].Rooms[PlayerX, PlayerZ].WallEast == null)
+                if (_generator.Levels[_level].Rooms[PlayerX, PlayerZ].WallEast == null)
                     PlayerX--;
             }
             else if (_west)
             {
-                if (_manager.Levels[_level].Rooms[PlayerX, PlayerZ].WallWest == null)
+                if (_generator.Levels[_level].Rooms[PlayerX, PlayerZ].WallWest == null)
                     PlayerX++;
             }
             Score.Turnip();
-            if (_manager.Levels[_level].Rooms[PlayerX, PlayerZ].Shimmer != null)
+            if (_generator.Levels[_level].Rooms[PlayerX, PlayerZ].Shimmer != null)
             {
-                Destroy(_manager.Levels[_level].Rooms[PlayerX, PlayerZ].Shimmer);
+                Destroy(_generator.Levels[_level].Rooms[PlayerX, PlayerZ].Shimmer);
                 Score.ShimmersUp();
             }
         }
         #endregion
         #region LevelMovement
-        if(_manager.Levels[_level].Rooms[PlayerX, PlayerZ].Floor == null)
+        if(_generator.Levels[_level].Rooms[PlayerX, PlayerZ].Floor == null)
         {
            Score.FloorUp();
            _level++;
            PlayerX++;
            PlayerZ++;
-           _manager.Levels[_level - 1] = null; //This code ain't work lululul
-           _manager.AddLevel(_level + 4);
+           _generator.Levels[_level - 1].Destroy(); //This code ain't work lululul
+           _generator.AddLevel(_level + 4);
         }
         #endregion
     }
