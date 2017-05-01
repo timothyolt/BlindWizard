@@ -26,7 +26,7 @@ public class Generator : MonoBehaviour
 
     private void Update()
     {
-        if (VrInputHelper.Primary)
+        if (VrInputHelper.Secondary)
             SceneManager.LoadScene(1);
     }
 }

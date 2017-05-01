@@ -22,7 +22,7 @@ public class ManageScores : MonoBehaviour {
         foreach (var shimmers in _shimmers)
             shimmers.text = "shimmers: " + Score.Shimmers;
 
-        if (VrInputHelper.Primary)
+        if (VrInputHelper.Secondary)
             SceneManager.LoadScene(0);
     }
 }

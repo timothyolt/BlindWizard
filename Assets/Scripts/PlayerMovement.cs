@@ -55,7 +55,7 @@ public class PlayerMovement : MonoBehaviour
 
         #region NESW movement
         transform.position = _generator.Levels[_level].Rooms[PlayerX, PlayerZ].Container.transform.position;
-        if (VrInputHelper.Secondary)
+        if (VrInputHelper.Primary)
         {
             if (_north)
             {
