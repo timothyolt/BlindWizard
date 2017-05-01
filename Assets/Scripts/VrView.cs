@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using NUnit.Framework.Constraints;
 using UnityEngine;
 using UnityEngine.VR;
 
@@ -59,7 +60,7 @@ public class VrView : MonoBehaviour
     private void Start ()
     {
         // TODO (timothyolt): settings override
-        Stereo = GvrIntent.IsLaunchedFromVr();
+        Stereo = true;  // GvrIntent.IsLaunchedFromVr();
     }
 
     private void Update ()
