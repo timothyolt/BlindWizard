@@ -59,22 +59,22 @@ public class PlayerMovement : MonoBehaviour
         {
             if (_north)
             {
-                if (_generator.Levels[_level].Rooms[PlayerX,PlayerZ].WallNorth == null)
+                if (!_generator.Levels[_level].Rooms[PlayerX,PlayerZ].WallNorth.Gen)
                     PlayerZ--;
             }
             else if (_south)
             {
-                if (_generator.Levels[_level].Rooms[PlayerX, PlayerZ].WallSouth == null)
+                if (!_generator.Levels[_level].Rooms[PlayerX, PlayerZ].WallSouth.Gen)
                     PlayerZ++;
             }
             else if (_east)
             {
-                if (_generator.Levels[_level].Rooms[PlayerX, PlayerZ].WallEast == null)
+                if (!_generator.Levels[_level].Rooms[PlayerX, PlayerZ].WallEast.Gen)
                     PlayerX--;
             }
             else if (_west)
             {
-                if (_generator.Levels[_level].Rooms[PlayerX, PlayerZ].WallWest == null)
+                if (!_generator.Levels[_level].Rooms[PlayerX, PlayerZ].WallWest.Gen)
                     PlayerX++;
             }
             Score.Turnip();
