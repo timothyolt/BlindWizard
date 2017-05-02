@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using NUnit.Framework.Constraints;
 using UnityEngine;
 using UnityEngine.VR;
 
@@ -43,8 +42,7 @@ public class VrView : MonoBehaviour
                 yield return null;
                 VRSettings.enabled = false;
                 Input.gyro.enabled = true;
-                Screen.autorotateToPortraitUpsideDown = false;
-                Screen.autorotateToPortrait = false;
+                Screen.orientation = ScreenOrientation.Landscape;
                 // Set NoVr offset
                 // TODO (timothyolt): settings adjustable offset. Idk for dorks who play laying down.
                 transform.parent.localRotation = Quaternion.Euler(90, 0, 0);
