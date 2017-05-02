@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using Object = UnityEngine.Object;
 using Random = UnityEngine.Random;
@@ -105,103 +104,7 @@ public class WizardLevel
     private void GenerateMaze()
     {
         Debug.Log(nameof(GenerateMaze));
-        Room Room(Vector2 id) => Rooms[(int) id.x, (int) id.y];
-        // TODO(timothyolt): make visited and border 2D boolean arrays
-        var path = new Stack<Vector2>();
-        var visited = new List<Vector2>();
-        var border = new List<Vector2>();
-        for (var i = 0; i < Width; i++)
-        {
-            border.Add(new Vector2(i, -1));
-            border.Add(new Vector2(i, Width));
-        }
-        for (var i = 0; i < Width; i++)
-        {
-            border.Add(new Vector2(-1, i));
-            border.Add(new Vector2(Width, i));
-        }
-
-        // Find a non-pit starting point
-        while (true)
-        {
-            Debug.Log(Width);
-            var roomId = new Vector2(Random.Range(0, Width), Random.Range(0, Width));
-            if (!Room(roomId).FloorGen)
-                continue;
-            path.Push(roomId);
-            visited.Add(roomId);
-            break;
-        }
-        // pick random n/s/e/w
-        // check to see if selection is in the path array
-        // if so, add it to Path, cut out the wall, set tileTested to new selection
-        // else, try again with new random direction
-        while (path.Count > 0)
-        {
-            var roomId = path.Peek();
-            // pit detection
-            if (!Room(roomId).FloorGen)
-            {
-                if (roomId.y < Width - 1)
-                    Room(roomId).WallSouth.Gen = false;
-                if (roomId.y > 0)
-                    Room(roomId).WallNorth.Gen = false;
-                if (roomId.x < Width - 1)
-                    Room(roomId).WallEast.Gen = false;
-                if (roomId.x > 0)
-                    Room(roomId).WallWest.Gen = false;
-                path.Pop();
-                continue;
-            }
-            // dead end detection
-            if (visited.Concat(border).Intersect(new[]
-                    {
-                        roomId + Vector2.up,
-                        roomId + Vector2.down,
-                        roomId + Vector2.right,
-                        roomId + Vector2.left
-                    })
-                    .Count() == 4)
-            {
-                path.Pop();
-                continue;
-            }
-            // select random direction
-            Vector2 nsew;
-            switch (Random.Range(0, 4))
-            {
-                case 0:
-                    nsew = Vector2.up;
-                    break;
-                case 1:
-                    nsew = Vector2.down;
-                    break;
-                case 2:
-                    nsew = Vector2.right;
-                    break;
-                case 3:
-                    nsew = Vector2.left;
-                    break;
-                default:
-                    throw new IndexOutOfRangeException("Only 4 cardinal directions allowed");
-            }
-            roomId += nsew;
-            // check for used rooms
-            if (visited.Concat(border).Contains(roomId)) continue;
-            // mark next room
-            path.Push(roomId);
-            visited.Add(roomId);
-            // break wall
-            if (nsew == Vector2.up)
-                Room(roomId).WallNorth.Gen = false;
-            else if (nsew == Vector2.down)
-                Room(roomId).WallSouth.Gen = false;
-            else if (nsew == Vector2.right)
-                Room(roomId).WallEast.Gen = false;
-            else if (nsew == Vector2.left)
-                Room(roomId).WallWest.Gen = false;
-            else throw new IndexOutOfRangeException("Only 4 cardinal directions allowed");
-        }
+        var maze = new Maze(Rooms);
     }
 
     private void GenerateShimmers(int max, double at, double desired, double spread)
