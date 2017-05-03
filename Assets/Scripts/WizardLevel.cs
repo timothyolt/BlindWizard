@@ -30,7 +30,7 @@ public class WizardLevel
     public WizardLevel(int level)
     {
         Level = level;
-        Width = level * 2 + 2;
+        Width = (level + 1) * 2 + 2;
         Area = Width * Width;
         _wOffset = Width / 2f - 0.5f;
         _y = Width * 2 + 1;

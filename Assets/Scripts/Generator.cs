@@ -13,7 +13,7 @@ public class Generator : MonoBehaviour
     private void Start()
     {
         Score.Clear();
-        for (var i = 1; i <= 4; i++)
+        for (var i = 0; i < 4; i++)
             AddLevel(i);
     }
 
