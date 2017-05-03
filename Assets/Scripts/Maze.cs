@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
-using Random = UnityEngine.Random;
+using Random = System.Random;
 
 public class Maze
 {
@@ -22,6 +23,10 @@ public class Maze
         public RoomId West  => new RoomId(X - 1, Z);
     }
 
+    private static int _seed = Environment.TickCount;
+
+    private readonly Random _random;
+
     private readonly Room[,] _rooms;
     private readonly int _width;
     // Current path from the starting point
@@ -32,6 +37,8 @@ public class Maze
 
     public Maze(Room[,] rooms)
     {
+        Debug.Log("Creating maze");
+        _random = new Random(Interlocked.Increment(ref _seed));
         _rooms = rooms;
         _width = rooms.GetLength(0);
         _path = new Stack<RoomId>();
@@ -115,7 +122,7 @@ public class Maze
     {
         while (true)
         {
-            var roomId = new RoomId (Random.Range(0, _width), Random.Range(0, _width));
+            var roomId = new RoomId (_random.Next(0, 4), _random.Next(0, 4));
             if (!Room(roomId).FloorGen)
                 continue;
             Visit(roomId);
@@ -131,6 +138,7 @@ public class Maze
     {
         while (InProgress)
         {
+            Debug.Log("Creating maze");
             var roomId = Current;
             // pit detection
             if (!Room(roomId).FloorGen)
@@ -156,7 +164,7 @@ public class Maze
                 continue;
             }
             // select random direction
-            switch (Random.Range(0, 4))
+            switch (_random.Next(0, 4))
             {
                 case 0:
                     roomId = roomId.North;

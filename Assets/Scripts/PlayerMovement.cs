@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
-    //private bool _north, _south, _east, _west;
     public int Level { get; private set; }
 
     private Vector2 _position;
@@ -11,7 +10,8 @@ public class PlayerMovement : MonoBehaviour
         set
         {
             _position = value;
-            var room = _generator.Levels[Level].Rooms[(int) _position.x, (int) _position.y];
+            var room = _generator.Levels[Level]?.Rooms[(int) _position.x, (int) _position.y];
+            if (room == null) return;
             Score.Turnip();
             if (room.Shimmer != null)
             {
@@ -23,19 +23,23 @@ public class PlayerMovement : MonoBehaviour
                 Score.FloorUp();
                 Level++;
                 _position += new Vector2(1, 1);
-                _generator.Levels[Level - 1].Destroy(); //This code ain't work lululul
-                _generator.AddLevel(Level + 4);
+                _generator.Levels[Level - 1].Destroy();
+                _generator.AddLevel();
             }
-            // 1.6f is a GoogleVR constant.
-            transform.position = _generator.Levels[Level]
-                                     .Rooms[(int) _position.x, (int) _position.y]
-                                     .Container.transform.position + Vector3.up * 1.6f;
+            UpdatePosition();
         }
     }
 
-    [SerializeField] private Generator _generator;
+    public void UpdatePosition()
+    {
+        // 1.6f is a GoogleVR constant.
+        if (_generator.Levels.Count > Level && _generator.Levels[Level] != null)
+            transform.position = _generator.Levels[Level]
+                                     .Rooms[(int) _position.x, (int) _position.y]
+                                     .Container.transform.position + Vector3.up * 1.6f;
+    }
 
-    [SerializeField] private GameObject _camera;
+    [SerializeField] private Generator _generator;
 
     private void Start()
     {
@@ -43,41 +47,8 @@ public class PlayerMovement : MonoBehaviour
         Position = Vector2.zero;
     }
 
- /*   private void Update()
+    private void Update()
     {
-        #region directions
-        if (_camera.transform.rotation.eulerAngles.y >= 45 && _camera.transform.rotation.eulerAngles.y < 135)
-        {
-            //Debug.Log("West");
-            _north = false;
-            _south = false;
-            _east = false;
-            _west = true;
-        }
-        else if (_camera.transform.rotation.eulerAngles.y >= 135 && _camera.transform.rotation.eulerAngles.y < 225)
-        {
-            //Debug.Log("North");
-            _north = true;
-            _south = false;
-            _east = false;
-            _west = false;
-        }
-        else if (_camera.transform.rotation.eulerAngles.y >= 225 && _camera.transform.rotation.eulerAngles.y < 315)
-        {
-            //Debug.Log("East");
-            _north = false;
-            _south = false;
-            _east = true;
-            _west = false;
-        }
-        else if (_camera.transform.rotation.eulerAngles.y >= 315 || _camera.transform.rotation.eulerAngles.y < 45)
-        {
-            //Debug.Log("South");
-            _north = false;
-            _south = true;
-            _east = false;
-            _west = false;
-        }
-        #endregion
-    }*/
+       UpdatePosition();
+    }
 }

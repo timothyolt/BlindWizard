@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Threading;
+using System.Threading.Tasks;
 using UnityEngine;
 using Object = UnityEngine.Object;
 using Random = UnityEngine.Random;
@@ -25,6 +27,8 @@ public class WizardLevel
     public int Width { get; }
     public int Area { get; }
     public Room[,] Rooms;
+    private Maze _maze;
+    private Thread _mazeTask;
     public GameObject Container { get; set; }
 
     public WizardLevel(int level)
@@ -38,9 +42,9 @@ public class WizardLevel
         GenerateRooms();
         GeneratePits(Area / 16, Area / 32d, 0.25);
         GenerateWalls();
-        GenerateMaze();
         GenerateShimmers(Width / 2, Width / 4d, 0.5f, 1);
         // GenerateEnemies(Width / 2, Width / 4d, 0.5f, 1, enemyPrefab);
+        GenerateMaze();
     }
 
     private static double ComplexProbabillity(double at, double desired, double spread = 1)
@@ -65,7 +69,7 @@ public class WizardLevel
 
     private void GenerateRooms()
     {
-        Debug.Log(nameof(GenerateRooms));
+        Debug.Log(Level + nameof(GenerateRooms));
         for (var x = 0; x < Width; x++)
         for (var z = 0; z < Width; z++)
             Rooms[x, z] = new Room {FloorGen = true};
@@ -73,7 +77,7 @@ public class WizardLevel
 
     private void GeneratePits(int max, double at, double desired, double spread = 1)
     {
-        Debug.Log(nameof(GeneratePits));
+        Debug.Log(Level + nameof(GeneratePits));
         var probability = ComplexProbabillity(at, desired, spread);
         WhereCount(Width,
             (x, z) => !Rooms[x, z].FloorGen,
@@ -83,7 +87,7 @@ public class WizardLevel
 
     private void GenerateWalls()
     {
-        Debug.Log(nameof(GenerateWalls));
+        Debug.Log(Level + nameof(GenerateWalls));
         for (var x = 0; x < Width + 1; x++)
         for (var z = 0; z < Width + 1; z++)
         {
@@ -106,15 +110,9 @@ public class WizardLevel
         }
     }
 
-    private void GenerateMaze()
-    {
-        Debug.Log(nameof(GenerateMaze));
-        var maze = new Maze(Rooms);
-    }
-
     private void GenerateShimmers(int max, double at, double desired, double spread)
     {
-        Debug.Log(nameof(GenerateShimmers));
+        Debug.Log(Level + nameof(GenerateShimmers));
         var probability = ComplexProbabillity(at, desired, spread);
         WhereCount(Width,
             (x, z) => !Rooms[x, z].FloorGen || Rooms[x, z].EnemyGen || Rooms[x, z].ShimmerGen,
@@ -124,7 +122,7 @@ public class WizardLevel
 
     private void GenerateEnemies(int max, double at, double desired, double spread)
     {
-        Debug.Log(nameof(GenerateEnemies));
+        Debug.Log(Level + nameof(GenerateEnemies));
         var probability = ComplexProbabillity(at, desired, spread);
         WhereCount(Width,
             (x, z) => !Rooms[x, z].FloorGen || Rooms[x, z].EnemyGen || Rooms[x, z].ShimmerGen,
@@ -132,9 +130,24 @@ public class WizardLevel
             (x, z) => Rooms[x, z].EnemyGen = true);
     }
 
+    private void GenerateMaze()
+    {
+        Debug.Log(Level + nameof(GenerateMaze));
+        _mazeTask = new Thread(() =>
+        {
+            Debug.Log("Maze creating");
+            _maze = new Maze(Rooms);
+            Debug.Log("Maze finished");
+        }) {Name = $"WizardLevel-{Level}", IsBackground = true};
+        _mazeTask.Start();
+        Debug.Log(Level + nameof(GenerateMaze) + " Started");
+    }
+
+    public bool IsDone => _maze != null;
+
     public void Instantiate(GameObject floorPrefab, GameObject pitPrefab, GameObject shimmerPrefab, GameObject enemyPrefab, GameObject wallPrefab)
     {
-        Debug.Log(nameof(Instantiate));
+        Debug.Log(Level + nameof(Instantiate));
         Container = new GameObject($"Level Container {Width / 2 - 1}");
         for (var x = 0; x < Width + 1; x++)
         for (var z = 0; z < Width + 1; z++)
@@ -189,6 +202,7 @@ public class WizardLevel
 
     public void Destroy()
     {
+        Object.Destroy(Container);
         // TODO (timothyolt): actually do something
     }
 }
