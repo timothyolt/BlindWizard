@@ -1,14 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
 using UnityEngine;
 using Object = UnityEngine.Object;
 using Random = UnityEngine.Random;
 
 public class WizardLevel
 {
-    private static readonly Vector3 WallNsOffset = new Vector3(0, 0.5f, -0.5f);
+    public const float RoomScale = 1.5f;
+    public const float FloorHeight = 1f;
+    public const float WallHeight = 2.5f;
+    public const float WallVerticalOffset = (WallHeight - FloorHeight) / 2;
+    private static readonly Vector3 WallNorthOffset = new Vector3(0, WallVerticalOffset, -RoomScale / 2);
+    private static readonly Vector3 WallSouthOffset = new Vector3(0, WallVerticalOffset, RoomScale / 2);
     private static readonly Quaternion WallNsRotation = Quaternion.AngleAxis(90, Vector3.up);
-    private static readonly Vector3 WallEwOffset = new Vector3(-0.5f, 0.5f, 0);
+    private static readonly Vector3 WallEastOffset = new Vector3(-RoomScale / 2, WallVerticalOffset, 0);
+    private static readonly Vector3 WallWestOffset = new Vector3(RoomScale / 2, WallVerticalOffset, 0);
     private static readonly Quaternion WallEwRotation = Quaternion.identity;
 
     private readonly float _wOffset;
@@ -127,7 +132,7 @@ public class WizardLevel
             (x, z) => Rooms[x, z].EnemyGen = true);
     }
 
-    public void Instantiate(GameObject floorPrefab, GameObject shimmerPrefab, GameObject enemyPrefab, GameObject wallPrefab)
+    public void Instantiate(GameObject floorPrefab, GameObject pitPrefab, GameObject shimmerPrefab, GameObject enemyPrefab, GameObject wallPrefab)
     {
         Debug.Log(nameof(Instantiate));
         Container = new GameObject($"Level Container {Width / 2 - 1}");
@@ -146,9 +151,21 @@ public class WizardLevel
                 var room = Rooms[x, z];
                 room.Container = new GameObject($"Room Container {x}, {z}");
                 room.Container.transform.SetParent(Container.transform);
-                room.Container.transform.position = new Vector3(x - _wOffset, -_y, z - _wOffset);
+                room.Container.transform.position = new Vector3(x * RoomScale - _wOffset, -_y, z * RoomScale - _wOffset);
                 if (room.FloorGen)
+                {
                     room.Floor = Object.Instantiate(floorPrefab, room.Container.transform);
+                    var floor = room.Floor.GetComponent<Floor>();
+                    floor.Level = Level;
+                    floor.Position = new Vector2(x, z);
+                }
+                else
+                {
+                    room.Pit = Object.Instantiate(pitPrefab, room.Container.transform);
+                    var floor = room.Pit.GetComponent<Floor>();
+                    floor.Level = Level;
+                    floor.Position = new Vector2(x, z);
+                }
                 if (room.ShimmerGen)
                     room.Shimmer =
                         Object.Instantiate(shimmerPrefab, room.Container.transform.position + Vector3.up,
@@ -157,15 +174,15 @@ public class WizardLevel
                     room.Enemy =
                         Object.Instantiate(enemyPrefab, room.Container.transform.position + Vector3.up,
                             shimmerPrefab.transform.rotation, room.Container.transform);
-                InstantiateWall(room.WallNorth, room.Container, WallNsOffset, WallNsRotation);
-                InstantiateWall(room.WallEast, room.Container, WallEwOffset, WallEwRotation);
+                InstantiateWall(room.WallNorth, room.Container, WallNorthOffset, WallNsRotation);
+                InstantiateWall(room.WallEast, room.Container, WallEastOffset, WallEwRotation);
             }
             else
             {
                 if (z > 0 && x < Width)
-                    InstantiateWall(Rooms[x, z - 1].WallSouth, Rooms[x, z - 1].Container, WallNsOffset + Vector3.forward, WallNsRotation);
+                    InstantiateWall(Rooms[x, z - 1].WallSouth, Rooms[x, z - 1].Container, WallSouthOffset, WallNsRotation);
                 if (x > 0 && z < Width)
-                    InstantiateWall(Rooms[x - 1, z].WallWest, Rooms[x - 1, z].Container, WallEwOffset + Vector3.right, WallEwRotation);
+                    InstantiateWall(Rooms[x - 1, z].WallWest, Rooms[x - 1, z].Container, WallWestOffset, WallEwRotation);
             }
         }
     }

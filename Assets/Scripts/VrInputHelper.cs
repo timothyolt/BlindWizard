@@ -2,6 +2,7 @@
 
 public static class VrInputHelper
 {
+
     public static bool Secondary
         => Input.GetKeyDown(KeyCode.C) || GvrController.AppButtonDown;
 

@@ -38,4 +38,8 @@ public class Room
     /// GameObject for a Shimmer in the room. Will be null if there is no shimmer
     /// </summary>
     public GameObject Shimmer { get; set; }
+    /// <summary>
+    /// GameObject for a Pit, used for player movement
+    /// </summary>
+    public GameObject Pit { get; set; }
 }

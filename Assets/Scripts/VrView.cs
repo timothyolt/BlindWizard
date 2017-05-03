@@ -4,6 +4,14 @@ using UnityEngine.VR;
 
 public class VrView : MonoBehaviour
 {
+    #if UNITY_EDITOR
+    public enum EditorViewType
+    {
+        Daydream, Cardboard
+    }
+
+    public EditorViewType ViewType;
+    #endif
 
     [SerializeField]
     private GameObject[] _googleVrObjects;
@@ -26,12 +34,12 @@ public class VrView : MonoBehaviour
         switch (platform.ToLower())
         {
             case "googlevr":
-                VRSettings.LoadDeviceByName(new [] {"daydream", "cardboard"});
-                yield return null;
-                VRSettings.enabled = true;
+                // VRSettings.LoadDeviceByName(new [] {"daydream", "cardboard"});
+                // yield return null;
+                // VRSettings.enabled = true;
                 // Reset NoVr offset
                 transform.parent.localRotation = Quaternion.Euler(0, 0, 0);
-                transform.localPosition = new Vector3(0, 1, 0);
+                //transform.localPosition = new Vector3(0, 0, 0);
                 // Enable any special GVR stuff
                 if (_googleVrObjects != null)
                     foreach (var googleVrObject in _googleVrObjects)
@@ -46,7 +54,7 @@ public class VrView : MonoBehaviour
                 // Set NoVr offset
                 // TODO (timothyolt): settings adjustable offset. Idk for dorks who play laying down.
                 transform.parent.localRotation = Quaternion.Euler(90, 0, 0);
-                transform.localPosition = new Vector3(0, 0, -1);
+                //transform.localPosition = new Vector3(0, 0, -1);
                 // Disable any special GVR stuff
                 if (_googleVrObjects != null)
                     foreach (var googleVrObject in _googleVrObjects)
@@ -61,15 +69,13 @@ public class VrView : MonoBehaviour
         Stereo = true;  // GvrIntent.IsLaunchedFromVr();
     }
 
-    private void Update ()
-    {
-        if (!Stereo)
-        {
-            transform.localPosition = new Vector3(0, 0, -1);
-            transform.localRotation = new Quaternion(
-                Input.gyro.attitude.x, Input.gyro.attitude.y, -Input.gyro.attitude.z, -Input.gyro.attitude.w);
-        }
-        else
-            transform.localPosition = new Vector3(0, 1, 0);
-    }
+//    private void Update ()
+//    {
+//        if (!Stereo)
+//        {
+//            transform.localPosition = new Vector3(0, 0, -1);
+//            transform.localRotation = new Quaternion(
+//                Input.gyro.attitude.x, Input.gyro.attitude.y, -Input.gyro.attitude.z, -Input.gyro.attitude.w);
+//        }
+//    }
 }
