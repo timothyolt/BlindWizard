@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
@@ -145,7 +147,7 @@ public class WizardLevel
 
     public bool IsDone => _maze != null;
 
-    public void Instantiate(GameObject floorPrefab, GameObject pitPrefab, GameObject shimmerPrefab, GameObject enemyPrefab, GameObject wallPrefab)
+    public IEnumerator Instantiate(GameObject floorPrefab, GameObject pitPrefab, GameObject shimmerPrefab, GameObject enemyPrefab, GameObject wallPrefab)
     {
         Debug.Log(Level + nameof(Instantiate));
         Container = new GameObject($"Level Container {Width / 2 - 1}");
@@ -197,6 +199,7 @@ public class WizardLevel
                 if (x > 0 && z < Width)
                     InstantiateWall(Rooms[x - 1, z].WallWest, Rooms[x - 1, z].Container, WallWestOffset, WallEwRotation);
             }
+            yield return null;
         }
     }
 

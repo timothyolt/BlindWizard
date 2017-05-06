@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -27,17 +28,20 @@ public class Generator : MonoBehaviour
         Levels.Add(null);
     }
 
+    private IEnumerator InstantiateLevel(WizardLevel level)
+    {
+        _pendingLevels.Remove(level);
+        yield return StartCoroutine(level.Instantiate(_floorPrefab, _pitPrefab, _shimmerPrefab, _enemyPrefab, _wallPrefab));
+        Levels[level.Level] = level;
+        _player.UpdatePosition();
+    }
+
     private void Update()
     {
         if (VrInputHelper.Secondary)
             SceneManager.LoadScene(1);
         for (var i = _pendingLevels.Count - 1; i >= 0; i--)
             if (_pendingLevels[i].IsDone)
-            {
-                _pendingLevels[i].Instantiate(_floorPrefab, _pitPrefab, _shimmerPrefab, _enemyPrefab, _wallPrefab);
-                Levels[_pendingLevels[i].Level] = _pendingLevels[i];
-                _pendingLevels.RemoveAt(i);
-                _player.UpdatePosition();
-            }
+                StartCoroutine(InstantiateLevel(_pendingLevels[i]));
     }
 }
