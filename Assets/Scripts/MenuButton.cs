@@ -1,21 +1,32 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MenuButton : MonoBehaviour {
+[RequireComponent(typeof(Renderer))]
+public class MenuButton : MonoBehaviour
+{
 
-    private void Start () {
-		
+	[SerializeField] private Color _inactiveColor, _activeColor;
+	private Renderer _renderer;
+
+	private void Start()
+	{
+		_renderer = GetComponent<Renderer>();
+		_renderer.material.color = _inactiveColor;
 	}
 
-    private void Update () {
-		
+	public void SetGazedAt(bool gazed)
+	{
+		if (gazed)
+		{
+			transform.localPosition += new Vector3(0, 0.1f, 0);
+			_renderer.material.color = _activeColor;
+		}
+		else
+		{
+			transform.localPosition -= new Vector3(0, 0.1f, 0);
+			_renderer.material.color = _inactiveColor;
+		}
 	}
-
-    public void SetGazedAt(bool gazed)
-    {
-        Debug.Log($"Gazed at menu button {gazed}");
-    }
 
     public void ShowMenu()
     {
