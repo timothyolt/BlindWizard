@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.VR;
 
@@ -14,7 +15,7 @@ public class VrView : MonoBehaviour
     #endif
 
     [SerializeField]
-    private GameObject[] _googleVrObjects;
+    private GameObject[] _googleCardboardObjects;
 
     [SerializeField]
     private bool _stereo;
@@ -41,8 +42,8 @@ public class VrView : MonoBehaviour
                 transform.parent.localRotation = Quaternion.Euler(0, 0, 0);
                 //transform.localPosition = new Vector3(0, 0, 0);
                 // Enable any special GVR stuff
-                if (_googleVrObjects != null)
-                    foreach (var googleVrObject in _googleVrObjects)
+                if (_googleCardboardObjects != null)
+                    foreach (var googleVrObject in _googleCardboardObjects)
                         googleVrObject?.SetActive(true);
                 break;
             default:
@@ -56,8 +57,8 @@ public class VrView : MonoBehaviour
                 transform.parent.localRotation = Quaternion.Euler(90, 0, 0);
                 //transform.localPosition = new Vector3(0, 0, -1);
                 // Disable any special GVR stuff
-                if (_googleVrObjects != null)
-                    foreach (var googleVrObject in _googleVrObjects)
+                if (_googleCardboardObjects != null)
+                    foreach (var googleVrObject in _googleCardboardObjects)
                         googleVrObject?.SetActive(false);
                 break;
         }
@@ -66,7 +67,34 @@ public class VrView : MonoBehaviour
     private void Start ()
     {
         // TODO (timothyolt): settings override
+        Debug.Log($"yoyoyo {VRDevice.model}");
         Stereo = true;  // GvrIntent.IsLaunchedFromVr();
+    }
+
+    private void Update()
+    {
+        switch (GvrController.ApiStatus)
+        {
+            case GvrControllerApiStatus.Ok:
+                if (_googleCardboardObjects != null)
+                    foreach (var googleVrObject in _googleCardboardObjects)
+                        googleVrObject?.SetActive(false);
+                break;
+            case GvrControllerApiStatus.Error:
+            case GvrControllerApiStatus.Unsupported:
+            case GvrControllerApiStatus.NotAuthorized:
+            case GvrControllerApiStatus.Unavailable:
+            case GvrControllerApiStatus.ApiServiceObsolete:
+            case GvrControllerApiStatus.ApiClientObsolete:
+            case GvrControllerApiStatus.ApiMalfunction:
+                if (_googleCardboardObjects != null)
+                    foreach (var googleVrObject in _googleCardboardObjects)
+                        googleVrObject?.SetActive(true);
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
+        }
+        // Debug.Log($"{GvrController.ApiStatus} {GvrController.State}");
     }
 
 //    private void Update ()

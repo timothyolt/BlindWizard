@@ -788,7 +788,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ViewType: 0
-  _googleVrObjects: []
+  _googleCardboardObjects:
+  - {fileID: 1462550842}
+  - {fileID: 1729354928}
   _stereo: 0
 --- !u!114 &1159367354
 MonoBehaviour:

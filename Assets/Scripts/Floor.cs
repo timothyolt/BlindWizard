@@ -20,7 +20,7 @@ public class Floor : MonoBehaviour
 
     public void SetGazedAt(bool gazed)
     {
-        Debug.Log($"Gazed at {Position.x},{Position.y} {gazed}");
+        //Debug.Log($"Gazed at {Position.x},{Position.y} {gazed}");
         _renderer.material = gazed ? _gazedMaterial : _ungazedMaterial;
     }
 

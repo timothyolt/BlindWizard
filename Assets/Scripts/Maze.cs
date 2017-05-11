@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading;
-using UnityEngine;
 using Random = System.Random;
 
 public class Maze
@@ -37,7 +36,7 @@ public class Maze
 
     public Maze(Room[,] rooms)
     {
-        Debug.Log("Creating maze");
+        //Debug.Log("Creating maze");
         _random = new Random(Interlocked.Increment(ref _seed));
         _rooms = rooms;
         _width = rooms.GetLength(0);
@@ -138,7 +137,7 @@ public class Maze
     {
         while (InProgress)
         {
-            Debug.Log("Creating maze");
+            //Debug.Log("Creating maze");
             var roomId = Current;
             // pit detection
             if (!Room(roomId).FloorGen)
