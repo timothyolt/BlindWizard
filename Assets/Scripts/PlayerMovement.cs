@@ -3,6 +3,8 @@ public class PlayerMovement : MonoBehaviour
 {
     public int Level { get; private set; }
 
+    [SerializeField] private GameObject _loadingBox;
+
     private Vector2 _position;
     public Vector2 Position
     {
@@ -32,11 +34,15 @@ public class PlayerMovement : MonoBehaviour
 
     public void UpdatePosition()
     {
+        _loadingBox.SetActive(false);
         // 1.6f is a GoogleVR constant.
         if (_generator.Levels.Count > Level && _generator.Levels[Level] != null)
+        {
             transform.position = _generator.Levels[Level]
                                      .Rooms[(int) _position.x, (int) _position.y]
                                      .Container.transform.position + Vector3.up * 1.6f;
+        }
+        else _loadingBox.SetActive(true);
     }
 
     [SerializeField] private Generator _generator;
