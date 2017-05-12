@@ -15,7 +15,7 @@ public class VrView : MonoBehaviour
     #endif
 
     [SerializeField]
-    private GameObject[] _googleCardboardObjects;
+    private GameObject[] _googleCardboardObjects, _googleDaydreamObjects;
 
     [SerializeField]
     private bool _stereo;
@@ -42,9 +42,9 @@ public class VrView : MonoBehaviour
                 transform.parent.localRotation = Quaternion.Euler(0, 0, 0);
                 //transform.localPosition = new Vector3(0, 0, 0);
                 // Enable any special GVR stuff
-                if (_googleCardboardObjects != null)
-                    foreach (var googleVrObject in _googleCardboardObjects)
-                        googleVrObject?.SetActive(true);
+                //if (_googleCardboardObjects != null)
+                //    foreach (var googleVrObject in _googleCardboardObjects)
+                //        googleVrObject?.SetActive(true);
                 break;
             default:
                 VRSettings.LoadDeviceByName("None");
@@ -67,34 +67,36 @@ public class VrView : MonoBehaviour
     private void Start ()
     {
         // TODO (timothyolt): settings override
-        Debug.Log($"yoyoyo {VRDevice.model}");
-        Stereo = true;  // GvrIntent.IsLaunchedFromVr();
+        //Stereo = true;  // GvrIntent.IsLaunchedFromVr();
     }
 
     private void Update()
     {
-        switch (GvrController.ApiStatus)
+        switch (GvrController.State)
         {
-            case GvrControllerApiStatus.Ok:
+            case GvrConnectionState.Error:
+            case GvrConnectionState.Disconnected:
+            case GvrConnectionState.Scanning:
+            case GvrConnectionState.Connecting:
+                if (_googleCardboardObjects != null)
+                    foreach (var googleVrObject in _googleCardboardObjects)
+                        googleVrObject?.SetActive(true);
+                if (_googleDaydreamObjects != null)
+                    foreach (var googleVrObject in _googleDaydreamObjects)
+                        googleVrObject?.SetActive(false);
+                break;
+            case GvrConnectionState.Connected:
                 if (_googleCardboardObjects != null)
                     foreach (var googleVrObject in _googleCardboardObjects)
                         googleVrObject?.SetActive(false);
-                break;
-            case GvrControllerApiStatus.Error:
-            case GvrControllerApiStatus.Unsupported:
-            case GvrControllerApiStatus.NotAuthorized:
-            case GvrControllerApiStatus.Unavailable:
-            case GvrControllerApiStatus.ApiServiceObsolete:
-            case GvrControllerApiStatus.ApiClientObsolete:
-            case GvrControllerApiStatus.ApiMalfunction:
-                if (_googleCardboardObjects != null)
-                    foreach (var googleVrObject in _googleCardboardObjects)
+                if (_googleDaydreamObjects != null)
+                    foreach (var googleVrObject in _googleDaydreamObjects)
                         googleVrObject?.SetActive(true);
                 break;
             default:
                 throw new ArgumentOutOfRangeException();
         }
-        // Debug.Log($"{GvrController.ApiStatus} {GvrController.State}");
+        Debug.Log($"{GvrController.ApiStatus} {GvrController.State}");
     }
 
 //    private void Update ()
