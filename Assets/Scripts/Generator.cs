@@ -18,7 +18,7 @@ public class Generator : MonoBehaviour
     {
         Score.Clear();
         _pendingLevels = new List<WizardLevel>();
-        for (var i = 0; i < 2; i++)
+        for (var i = 0; i < 4; i++)
             AddLevel();
     }
 
@@ -41,7 +41,7 @@ public class Generator : MonoBehaviour
         if (VrInputHelper.Secondary)
             SceneManager.LoadScene(1);
         for (var i = _pendingLevels.Count - 1; i >= 0; i--)
-            if (_pendingLevels[i].IsDone)
+            if (_pendingLevels[i].IsDone && _pendingLevels[i].Level <= _player.Level + 1)
                 StartCoroutine(InstantiateLevel(_pendingLevels[i]));
     }
 }
