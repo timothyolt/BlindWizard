@@ -25,3 +25,5 @@ sysinfo.txt
 CSharp70Support/compilation\.log
 
 build_debug\.apk
+
+*.apk
