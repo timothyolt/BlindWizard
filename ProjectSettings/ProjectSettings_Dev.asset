@@ -5,7 +5,7 @@ PlayerSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 11
   productGUID: 34f3e823863e00544a6f3e32261612ef
-  AndroidProfiler: 0
+  AndroidProfiler: 1
   defaultScreenOrientation: 4
   targetDevice: 2
   useOnDemandResources: 0
@@ -118,7 +118,7 @@ PlayerSettings:
     16:10: 1
     16:9: 1
     Others: 1
-  bundleVersion: 1.1.2
+  bundleVersion: 1.1.1
   preloadedAssets: []
   metroInputSource: 0
   m_HolographicPauseOnTrackingLoss: 1
@@ -138,7 +138,7 @@ PlayerSettings:
   applicationIdentifier:
     Android: com.rubberduckstudios.blind
   buildNumber: {}
-  AndroidBundleVersionCode: 10102
+  AndroidBundleVersionCode: 10101
   AndroidMinSdkVersion: 19
   AndroidTargetSdkVersion: 0
   AndroidPreferredInstallLocation: 0
@@ -212,7 +212,7 @@ PlayerSettings:
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
   AndroidKeystoreName: C:/Users/timot/Documents/GitHub/BlindWizard/user.keystore
-  AndroidKeyaliasName: release
+  AndroidKeyaliasName: 
   AndroidTVCompatibility: 0
   AndroidIsGame: 1
   androidEnableBanner: 1
@@ -503,7 +503,7 @@ PlayerSettings:
     1: 
   platformArchitecture: {}
   scriptingBackend:
-    Android: 1
+    Android: 0
   incrementalIl2cppBuild: {}
   additionalIl2CppArgs: 
   apiCompatibilityLevelPerPlatform: {}
