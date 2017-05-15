@@ -20,19 +20,19 @@ public class Magic : MonoBehaviour {
     {
 
 /*
-        if(_player.north && _manager.levels[_player.level].Rooms[_player.playerx, _player.playerz].WallNorth != null && _manager.levels[_player.level].Rooms[_player.playerx, _player.playerz+1].WallNorth != null)
+        if(_player.north && _generator.levels[_player.level].Rooms[_player.playerx, _player.playerz].WallNorth != null && _generator.levels[_player.level].Rooms[_player.playerx, _player.playerz+1].WallNorth != null)
         {
             _player.playerz += 2;
         }
-        else if (_player.east && _manager.levels[_player.level].Rooms[_player.playerx, _player.playerz].WallEast != null && _manager.levels[_player.level].Rooms[_player.playerx+1, _player.playerz].WallEast != null)
+        else if (_player.east && _generator.levels[_player.level].Rooms[_player.playerx, _player.playerz].WallEast != null && _generator.levels[_player.level].Rooms[_player.playerx+1, _player.playerz].WallEast != null)
         {
             _player.playerx += 2;
         }
-        else if (_player.west && _manager.levels[_player.level].Rooms[_player.playerx, _player.playerz].WallWest != null && _manager.levels[_player.level].Rooms[_player.playerx-1, _player.playerz].WallWest != null)
+        else if (_player.west && _generator.levels[_player.level].Rooms[_player.playerx, _player.playerz].WallWest != null && _generator.levels[_player.level].Rooms[_player.playerx-1, _player.playerz].WallWest != null)
         {
             _player.playerx -= 2;
         }
-        else if (_player.south && _manager.levels[_player.level].Rooms[_player.playerx, _player.playerz].WallSouth != null && _manager.levels[_player.level].Rooms[_player.playerx, _player.playerz-1].WallSouth != null)
+        else if (_player.south && _generator.levels[_player.level].Rooms[_player.playerx, _player.playerz].WallSouth != null && _generator.levels[_player.level].Rooms[_player.playerx, _player.playerz-1].WallSouth != null)
         {
             _player.playerz -= 2;
         }

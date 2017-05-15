@@ -1,42 +1,58 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using UnityEngine;
 using Object = UnityEngine.Object;
 using Random = UnityEngine.Random;
 
 public class WizardLevel
 {
-    private static readonly Vector3 WallNsOffset = new Vector3(0, 0.5f, -0.5f);
+    public const float RoomScale = 1.5f;
+    public const float FloorHeight = 1f;
+    public const float WallHeight = 2.5f;
+    public const float WallVerticalOffset = (WallHeight - FloorHeight) / 2;
+    private static readonly Vector3 WallNorthOffset = new Vector3(0, WallVerticalOffset, -RoomScale / 2);
+    private static readonly Vector3 WallSouthOffset = new Vector3(0, WallVerticalOffset, RoomScale / 2);
     private static readonly Quaternion WallNsRotation = Quaternion.AngleAxis(90, Vector3.up);
-    private static readonly Vector3 WallEwOffset = new Vector3(-0.5f, 0.5f, 0);
+    private static readonly Vector3 WallEastOffset = new Vector3(-RoomScale / 2, WallVerticalOffset, 0);
+    private static readonly Vector3 WallWestOffset = new Vector3(RoomScale / 2, WallVerticalOffset, 0);
     private static readonly Quaternion WallEwRotation = Quaternion.identity;
+
+    private readonly float _wOffset;
+    private readonly int _y;
+    private int _x;
+    private int _z;
 
     public int Level { get; }
     public int Width { get; }
     public int Area { get; }
     public Room[,] Rooms;
+    private Maze _maze;
+    private Thread _mazeTask;
+    public GameObject Container { get; set; }
 
-    public WizardLevel(int level, GameObject floorPrefab,
-        GameObject wallPrefab, GameObject shimmerPrefab, GameObject enemyPrefab)
+    public WizardLevel(int level)
     {
         Level = level;
-        Width = level * 2 + 2;
+        Width = (level + 1) * 2 + 2;
         Area = Width * Width;
+        _wOffset = Width / 2f - 0.5f;
+        _y = Width * 2 + 1;
         Rooms = new Room[Width, Width];
-        CreateContainers();
-        CreateFloor(floorPrefab);
-        CreateWalls(wallPrefab);
-        Pitify(Area / 16, Area / 32d, 0.25);
-        Wallify();
-        PopulateShimmers(Width / 2, Width / 4d, 0.5f, 1, shimmerPrefab);
-        // PopulateEnemies(Width / 2, Width / 4d, 0.5f, 1, enemyPrefab);
+        GenerateRooms();
+        GeneratePits(Area / 16, Area / 32d, 0.25);
+        GenerateWalls();
+        GenerateShimmers(Width / 2, Width / 4d, 0.5f, 1);
+        // GenerateEnemies(Width / 2, Width / 4d, 0.5f, 1, enemyPrefab);
+        GenerateMaze();
     }
 
     private static double ComplexProbabillity(double at, double desired, double spread = 1)
         => Math.Pow(Math.Pow(10, Math.Log10(desired) / (at * spread)), spread);
 
-    private static void FloorEach(int width, Func<int, int, bool> inner, Func<int, bool> outer,
+    private static void WhereCount(int width, Func<int, int, bool> inner, Func<int, bool> outer,
         Action<int, int> action)
     {
         var count = 1;
@@ -53,37 +69,34 @@ public class WizardLevel
         } while (outer(count++));
     }
 
-    private void CreateContainers()
+    private void GenerateRooms()
     {
-        var wOffset = Width / 2f - 0.5f;
-        for (var x = 0; x <Width; x++)
+        //Debug.Log(Level + nameof(GenerateRooms));
+        for (var x = 0; x < Width; x++)
         for (var z = 0; z < Width; z++)
-        {
-            Rooms[x, z] = new Room {Container = new GameObject($"Room Container ({x},{Level},{z})")};
-            Rooms[x, z].Container.transform.position = new Vector3(x - wOffset, -Width * 2 + 1, z - wOffset);
-        }
+            Rooms[x, z] = new Room {FloorGen = true};
     }
 
-    private void CreateFloor(GameObject prefab)
+    private void GeneratePits(int max, double at, double desired, double spread = 1)
     {
-        for (var x = 0; x <Width; x++)
-        for (var z = 0; z < Width; z++)
-            Rooms[x, z].Floor = Object.Instantiate(prefab, Rooms[x, z].Container.transform);
+        //Debug.Log(Level + nameof(GeneratePits));
+        var probability = ComplexProbabillity(at, desired, spread);
+        WhereCount(Width,
+            (x, z) => !Rooms[x, z].FloorGen,
+            count => count < max && Random.Range(0, 1f) < probability,
+            (x, z) => Rooms[x, z].FloorGen = false);
     }
 
-    private void CreateWalls(GameObject wallPrefab)
+    private void GenerateWalls()
     {
+        //Debug.Log(Level + nameof(GenerateWalls));
         for (var x = 0; x < Width + 1; x++)
         for (var z = 0; z < Width + 1; z++)
         {
             if (x < Width && z < Width)
             {
-                Rooms[x, z].WallNorth = Object.Instantiate(wallPrefab,
-                    wallPrefab.transform.position + Rooms[x, z].Container.transform.position + WallNsOffset,
-                    wallPrefab.transform.rotation * WallNsRotation, Rooms[x, z].Container.transform);
-                Rooms[x, z].WallEast = Object.Instantiate(wallPrefab,
-                    wallPrefab.transform.position + Rooms[x, z].Container.transform.position + WallEwOffset,
-                    wallPrefab.transform.rotation * WallEwRotation, Rooms[x, z].Container.transform);
+                Rooms[x, z].WallNorth = new Wall {Gen = true};
+                Rooms[x, z].WallEast = new Wall {Gen = true};
                 if (z > 0 && x < Width)
                     Rooms[x, z - 1].WallSouth = Rooms[x, z].WallNorth;
                 if (x > 0 && z < Width)
@@ -92,154 +105,107 @@ public class WizardLevel
             else
             {
                 if (x > 0 && z < Width)
-                    Rooms[x - 1, z].WallWest = Object.Instantiate(wallPrefab,
-                        wallPrefab.transform.position + Rooms[x - 1, z].Container.transform.position + WallEwOffset + Vector3.right,
-                        wallPrefab.transform.rotation * WallEwRotation, Rooms[x - 1, z].Container.transform);
+                    Rooms[x - 1, z].WallWest = new Wall {Gen = true};
                 if (z > 0 && x < Width)
-                    Rooms[x, z - 1].WallSouth = Object.Instantiate(wallPrefab,
-                        wallPrefab.transform.position + Rooms[x, z - 1].Container.transform.position + WallNsOffset + Vector3.forward,
-                        wallPrefab.transform.rotation * WallNsRotation, Rooms[x, z - 1].Container.transform);
+                    Rooms[x, z - 1].WallSouth = new Wall {Gen = true};
             }
         }
     }
 
-    private void Pitify(int max, double at, double desired, double spread = 1)
+    private void GenerateShimmers(int max, double at, double desired, double spread)
     {
+        //Debug.Log(Level + nameof(GenerateShimmers));
         var probability = ComplexProbabillity(at, desired, spread);
-        FloorEach(Width,
-            (x, z) => Rooms[x, z].Floor == null,
+        WhereCount(Width,
+            (x, z) => !Rooms[x, z].FloorGen || Rooms[x, z].EnemyGen || Rooms[x, z].ShimmerGen,
             count => count < max && Random.Range(0, 1f) < probability,
-            (x, z) =>
-            {
-                Object.Destroy(Rooms[x, z].Floor);
-                Rooms[x, z].Floor = null;
-            });
+            (x, z) => Rooms[x, z].ShimmerGen = true);
     }
 
-    private void Wallify()
+    private void GenerateEnemies(int max, double at, double desired, double spread)
     {
-        Room Room(Vector2 id) => Rooms[(int) id.x, (int) id.y];
-
-        var path = new Stack<Vector2>();
-        var visited = new List<Vector2>();
-        var border = new List<Vector2>();
-        for (var i = 0; i < Width; i++)
-        {
-            border.Add(new Vector2(i, -1));
-            border.Add(new Vector2(i, Width));
-        }
-        for (var i = 0; i < Width; i++)
-        {
-            border.Add(new Vector2(-1, i));
-            border.Add(new Vector2(Width, i));
-        }
-
-        // Find a non-pit starting point
-        while (true)
-        {
-            Debug.Log(Width);
-            var roomId = new Vector2(Random.Range(0, Width), Random.Range(0, Width));
-            if (Room(roomId).Floor == null)
-                continue;
-            path.Push(roomId);
-            visited.Add(roomId);
-            break;
-        }
-        // pick random n/s/e/w
-        // check to see if selection is in the path array
-        // if so, add it to Path, cut out the wall, set tileTested to new selection
-        // else, try again with new random direction
-        while (path.Count > 0)
-        {
-            var roomId = path.Peek();
-            // pit detection
-            if (Room(roomId).Floor == null)
-            {
-                if (roomId.y < Width - 1)
-                    Object.Destroy(Room(roomId).WallSouth);
-                if (roomId.y > 0)
-                    Object.Destroy(Room(roomId).WallNorth);
-                if (roomId.x < Width - 1)
-                    Object.Destroy(Room(roomId).WallWest);
-                if (roomId.x > 0)
-                    Object.Destroy(Room(roomId).WallEast);
-                path.Pop();
-                continue;
-            }
-            // dead end detection
-            if (visited.Concat(border).Intersect(new[]
-                    {
-                        roomId + Vector2.up,
-                        roomId + Vector2.down,
-                        roomId + Vector2.right,
-                        roomId + Vector2.left
-                    })
-                    .Count() == 4)
-            {
-                path.Pop();
-                continue;
-            }
-            // select random direction
-            Vector2 nsew;
-            switch (Random.Range(0, 4))
-            {
-                case 0:
-                    nsew = Vector2.up;
-                    break;
-                case 1:
-                    nsew = Vector2.down;
-                    break;
-                case 2:
-                    nsew = Vector2.right;
-                    break;
-                case 3:
-                    nsew = Vector2.left;
-                    break;
-                default:
-                    throw new IndexOutOfRangeException("Only 4 cardinal directions allowed");
-            }
-            roomId += nsew;
-            // check for used rooms
-            if (visited.Concat(border).Contains(roomId)) continue;
-            // mark next room
-            path.Push(roomId);
-            visited.Add(roomId);
-            // break wall
-            if (nsew == Vector2.up)
-                Object.Destroy(Room(roomId).WallNorth);
-            else if (nsew == Vector2.down)
-                Object.Destroy(Room(roomId).WallSouth);
-            else if (nsew == Vector2.right)
-                Object.Destroy(Room(roomId).WallEast);
-            else if (nsew == Vector2.left)
-                Object.Destroy(Room(roomId).WallWest);
-            else throw new IndexOutOfRangeException("Only 4 cardinal directions allowed");
-        }
-    }
-
-    private void PopulateShimmers(int max, double at, double desired, double spread, GameObject shimmerPrefab)
-    {
+        //Debug.Log(Level + nameof(GenerateEnemies));
         var probability = ComplexProbabillity(at, desired, spread);
-        FloorEach(Width,
-            (x, z) => Rooms[x, z].Floor == null || Rooms[x, z].Enemy != null,
+        WhereCount(Width,
+            (x, z) => !Rooms[x, z].FloorGen || Rooms[x, z].EnemyGen || Rooms[x, z].ShimmerGen,
             count => count < max && Random.Range(0, 1f) < probability,
-            (x, z) =>
-                Rooms[x, z].Shimmer =
-                    Object.Instantiate(shimmerPrefab, Rooms[x, z].Container.transform.position + Vector3.up,
-                        shimmerPrefab.transform.rotation, Rooms[x, z].Container.transform)
-        );
+            (x, z) => Rooms[x, z].EnemyGen = true);
     }
 
-    private void PopulateEnemies(int max, double at, double desired, double spread, GameObject enemyPrefab)
+    private void GenerateMaze()
     {
-        var probability = ComplexProbabillity(at, desired, spread);
-        FloorEach(Width,
-            (x, z) => Rooms[x, z].Floor == null || Rooms[x, z].Enemy != null,
-            count => count < max && Random.Range(0, 1f) < probability,
-            (x, z) =>
-                Rooms[x, z].Enemy =
-                    Object.Instantiate(enemyPrefab, Rooms[x, z].Container.transform.position + Vector3.up,
-                        enemyPrefab.transform.rotation, Rooms[x, z].Container.transform)
-        );
+        //Debug.Log(Level + nameof(GenerateMaze));
+        _mazeTask = new Thread(() =>
+        {
+            //Debug.Log("Maze creating");
+            _maze = new Maze(Rooms);
+            //Debug.Log("Maze finished");
+        }) {Name = $"WizardLevel-{Level}", IsBackground = true};
+        _mazeTask.Start();
+        //Debug.Log(Level + nameof(GenerateMaze) + " Started");
+    }
+
+    public bool IsDone => _maze != null;
+
+    public IEnumerator Instantiate(GameObject floorPrefab, GameObject pitPrefab, GameObject shimmerPrefab, GameObject enemyPrefab, GameObject wallPrefab)
+    {
+        //Debug.Log(Level + nameof(Instantiate));
+        Container = new GameObject($"Level Container {Width / 2 - 1}");
+        for (var x = 0; x < Width + 1; x++)
+        for (var z = 0; z < Width + 1; z++)
+        {
+            void InstantiateWall(Wall wall, GameObject container, Vector3 offset, Quaternion rotation)
+            {
+                if (wall.Gen && wall.GameObject == null)
+                    wall.GameObject = Object.Instantiate(wallPrefab,
+                        wallPrefab.transform.position + container.transform.position + offset,
+                        wallPrefab.transform.rotation * rotation, container.transform);
+            }
+            if (x < Width && z < Width)
+            {
+                var room = Rooms[x, z];
+                room.Container = new GameObject($"Room Container {x}, {z}");
+                room.Container.transform.SetParent(Container.transform);
+                room.Container.transform.position = new Vector3(x * RoomScale - _wOffset, -_y, z * RoomScale - _wOffset);
+                if (room.FloorGen)
+                {
+                    room.Floor = Object.Instantiate(floorPrefab, room.Container.transform);
+                    var floor = room.Floor.GetComponent<Floor>();
+                    floor.Level = Level;
+                    floor.Position = new Vector2(x, z);
+                }
+                else
+                {
+                    room.Pit = Object.Instantiate(pitPrefab, room.Container.transform);
+                    var floor = room.Pit.GetComponent<Floor>();
+                    floor.Level = Level;
+                    floor.Position = new Vector2(x, z);
+                }
+                if (room.ShimmerGen)
+                    room.Shimmer =
+                        Object.Instantiate(shimmerPrefab, room.Container.transform.position + Vector3.up,
+                            shimmerPrefab.transform.rotation, room.Container.transform);
+                if (room.EnemyGen)
+                    room.Enemy =
+                        Object.Instantiate(enemyPrefab, room.Container.transform.position + Vector3.up,
+                            shimmerPrefab.transform.rotation, room.Container.transform);
+                InstantiateWall(room.WallNorth, room.Container, WallNorthOffset, WallNsRotation);
+                InstantiateWall(room.WallEast, room.Container, WallEastOffset, WallEwRotation);
+            }
+            else
+            {
+                if (z > 0 && x < Width)
+                    InstantiateWall(Rooms[x, z - 1].WallSouth, Rooms[x, z - 1].Container, WallSouthOffset, WallNsRotation);
+                if (x > 0 && z < Width)
+                    InstantiateWall(Rooms[x - 1, z].WallWest, Rooms[x - 1, z].Container, WallWestOffset, WallEwRotation);
+            }
+            yield return null;
+        }
+    }
+
+    public void Destroy()
+    {
+        Object.Destroy(Container);
+        // TODO (timothyolt): actually do something
     }
 }

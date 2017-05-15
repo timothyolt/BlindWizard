@@ -23,3 +23,7 @@ sysinfo.txt
 \.idea/\.idea\.BlindWizard/
 
 CSharp70Support/compilation\.log
+
+build_debug\.apk
+
+*.apk
