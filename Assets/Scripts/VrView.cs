@@ -72,6 +72,7 @@ public class VrView : MonoBehaviour
 
     private void Update()
     {
+		#if UNITY_ANDROID
         switch (GvrController.State)
         {
             case GvrConnectionState.Error:
@@ -96,6 +97,14 @@ public class VrView : MonoBehaviour
             default:
                 throw new ArgumentOutOfRangeException();
         }
+		#else
+		if (_googleCardboardObjects != null)
+			foreach (var googleVrObject in _googleCardboardObjects)
+				googleVrObject?.SetActive(true);
+		if (_googleDaydreamObjects != null)
+			foreach (var googleVrObject in _googleDaydreamObjects)
+				googleVrObject?.SetActive(false);
+		#endif
         Debug.Log($"{GvrController.ApiStatus} {GvrController.State}");
     }
 
