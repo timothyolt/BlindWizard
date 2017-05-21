@@ -5,22 +5,6 @@ using Random = System.Random;
 
 public class Maze
 {
-    private struct RoomId
-    {
-        public RoomId(int x, int z)
-        {
-            X = x;
-            Z = z;
-        }
-
-        public int X { get; }
-        public int Z { get; }
-
-        public RoomId North => new RoomId(X, Z + 1);
-        public RoomId South => new RoomId(X, Z - 1);
-        public RoomId East  => new RoomId(X + 1, Z);
-        public RoomId West  => new RoomId(X - 1, Z);
-    }
 
     private static int _seed = Environment.TickCount;
 
@@ -121,7 +105,7 @@ public class Maze
     {
         while (true)
         {
-            var roomId = new RoomId (_random.Next(0, 4), _random.Next(0, 4));
+            var roomId = new RoomId (_random.Next(0, DirectionUtils.Count), _random.Next(0, DirectionUtils.Count));
             if (!Room(roomId).FloorGen)
                 continue;
             Visit(roomId);
@@ -142,14 +126,9 @@ public class Maze
             // pit detection
             if (!Room(roomId).FloorGen)
             {
-                if (roomId.Z > 0)
-                    Room(roomId).WallNorth.Gen = false;
-                if (roomId.Z < _width - 1)
-                    Room(roomId).WallSouth.Gen = false;
-                if (roomId.X > 0)
-                    Room(roomId).WallEast.Gen = false;
-                if (roomId.X < _width - 1)
-                    Room(roomId).WallWest.Gen = false;
+                for (var i = (Direction) 0; i < (Direction) DirectionUtils.Count; i++)
+                    if (roomId.To(i).Bounds(_width))
+                        Room(roomId).Walls[i].Gen = false;
                 Backtrace();
                 continue;
             }
@@ -163,31 +142,10 @@ public class Maze
                 continue;
             }
             // select random direction
-            switch (_random.Next(0, 4))
-            {
-                case 0:
-                    roomId = roomId.North;
-                    if (!Validate(roomId)) continue;
-                    Room(roomId).WallNorth.Gen = false;
-                    break;
-                case 1:
-                    roomId = roomId.South;
-                    if (!Validate(roomId)) continue;
-                    Room(roomId).WallSouth.Gen = false;
-                    break;
-                case 2:
-                    roomId = roomId.East;
-                    if (!Validate(roomId)) continue;
-                    Room(roomId).WallEast.Gen = false;
-                    break;
-                case 3:
-                    roomId = roomId.West;
-                    if (!Validate(roomId)) continue;
-                    Room(roomId).WallWest.Gen = false;
-                    break;
-                default:
-                    throw new IndexOutOfRangeException("Only 4 cardinal directions allowed");
-            }
+            var direction = (Direction) _random.Next(0, DirectionUtils.Count);
+            roomId = roomId.To(direction);
+            if (!Validate(roomId)) continue;
+            Room(roomId).Walls[direction].Gen = false;
         }
     }
 }

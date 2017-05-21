@@ -14,22 +14,19 @@ public class Room
     /// Floor GameObject of a room, will be null if this is a "pit room"
     /// </summary>
     public GameObject Floor { get; set; }
-    /// <summary>
-    /// GameObject for the Northern Wall, will be null if there is no wall
-    /// </summary>
-    public Wall WallNorth { get; set; }
-    /// <summary>
-    /// South Wall, will be null if there is no wall
-    /// </summary>
-    public Wall WallSouth { get; set; }
-    /// <summary>
-    /// Eastern Wall, will be null if there is no wall
-    /// </summary>
-    public Wall WallEast { get; set; }
-    /// <summary>
-    /// Western Wall, will be null if there is no wall
-    /// </summary>
-    public Wall WallWest { get; set; }
+
+    public class WallCollection
+    {
+        private readonly Wall[] _walls = new Wall[DirectionUtils.Count];
+
+        public Wall this[Direction direction]
+        {
+            get => _walls[(int) direction];
+            set => _walls[(int) direction] = value;
+        }
+    }
+    public WallCollection Walls { get; } = new WallCollection();
+
     /// <summary>
     /// GameObject for an enemy in the room. Will be null if there is no enemy in the room
     /// </summary>

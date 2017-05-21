@@ -28,7 +28,9 @@ public class WizardLevel
     public int Level { get; }
     public int Width { get; }
     public int Area { get; }
-    public Room[,] Rooms;
+    //TODO: using Rooms while the Maze is being generated is likely not threadsafe
+    // Experiment with making them structs for further immutability
+    public readonly Room[,] Rooms;
     private Maze _maze;
     private Thread _mazeTask;
     public GameObject Container { get; set; }
@@ -95,19 +97,19 @@ public class WizardLevel
         {
             if (x < Width && z < Width)
             {
-                Rooms[x, z].WallNorth = new Wall {Gen = true};
-                Rooms[x, z].WallEast = new Wall {Gen = true};
+                Rooms[x, z].Walls[Direction.North] = new Wall {Gen = true};
+                Rooms[x, z].Walls[Direction.East] = new Wall {Gen = true};
                 if (z > 0 && x < Width)
-                    Rooms[x, z - 1].WallSouth = Rooms[x, z].WallNorth;
+                    Rooms[x, z - 1].Walls[Direction.South] = Rooms[x, z].Walls[Direction.North];
                 if (x > 0 && z < Width)
-                    Rooms[x - 1, z].WallWest = Rooms[x, z].WallEast;
+                    Rooms[x - 1, z].Walls[Direction.West] = Rooms[x, z].Walls[Direction.East];
             }
             else
             {
                 if (x > 0 && z < Width)
-                    Rooms[x - 1, z].WallWest = new Wall {Gen = true};
+                    Rooms[x - 1, z].Walls[Direction.West] = new Wall {Gen = true};
                 if (z > 0 && x < Width)
-                    Rooms[x, z - 1].WallSouth = new Wall {Gen = true};
+                    Rooms[x, z - 1].Walls[Direction.South] = new Wall {Gen = true};
             }
         }
     }
@@ -189,15 +191,15 @@ public class WizardLevel
                     room.Enemy =
                         Object.Instantiate(enemyPrefab, room.Container.transform.position + Vector3.up,
                             shimmerPrefab.transform.rotation, room.Container.transform);
-                InstantiateWall(room.WallNorth, room.Container, WallNorthOffset, WallNsRotation);
-                InstantiateWall(room.WallEast, room.Container, WallEastOffset, WallEwRotation);
+                InstantiateWall(room.Walls[Direction.North], room.Container, WallNorthOffset, WallNsRotation);
+                InstantiateWall(room.Walls[Direction.East], room.Container, WallEastOffset, WallEwRotation);
             }
             else
             {
                 if (z > 0 && x < Width)
-                    InstantiateWall(Rooms[x, z - 1].WallSouth, Rooms[x, z - 1].Container, WallSouthOffset, WallNsRotation);
+                    InstantiateWall(Rooms[x, z - 1].Walls[Direction.South], Rooms[x, z - 1].Container, WallSouthOffset, WallNsRotation);
                 if (x > 0 && z < Width)
-                    InstantiateWall(Rooms[x - 1, z].WallWest, Rooms[x - 1, z].Container, WallWestOffset, WallEwRotation);
+                    InstantiateWall(Rooms[x - 1, z].Walls[Direction.West], Rooms[x - 1, z].Container, WallWestOffset, WallEwRotation);
             }
             yield return null;
         }
