@@ -13,25 +13,28 @@ public struct RoomId
 
     public RoomId North => new RoomId(X, Z + 1);
     public RoomId South => new RoomId(X, Z - 1);
-    public RoomId East  => new RoomId(X + 1, Z);
-    public RoomId West  => new RoomId(X - 1, Z);
+    public RoomId East => new RoomId(X + 1, Z);
+    public RoomId West => new RoomId(X - 1, Z);
 
-    public RoomId To(Direction direction)
+    public RoomId this[Direction direction]
     {
-        switch (direction)
+        get
         {
-            case Direction.North:
-                return North;
-            case Direction.South:
-                return South;
-            case Direction.East:
-                return East;
-            case Direction.West:
-                return West;
-            default:
-                throw new ArgumentOutOfRangeException(nameof(direction), direction, null);
+            switch (direction)
+            {
+                case Direction.North:
+                    return North;
+                case Direction.South:
+                    return South;
+                case Direction.East:
+                    return East;
+                case Direction.West:
+                    return West;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(direction), direction, null);
+            }
         }
     }
 
-    public bool Bounds(int width) => X >= 0 && X < width && Z >= 0 && Z < width;
+public bool Bounds(int width) => X >= 0 && X < width && Z >= 0 && Z < width;
 }

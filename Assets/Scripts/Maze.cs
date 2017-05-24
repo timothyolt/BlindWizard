@@ -126,9 +126,9 @@ public class Maze
             // pit detection
             if (!Room(roomId).FloorGen)
             {
-                for (var i = (Direction) 0; i < (Direction) DirectionUtils.Count; i++)
-                    if (roomId.To(i).Bounds(_width))
-                        Room(roomId).Walls[i].Gen = false;
+                for (var d = (Direction) 0; d < (Direction) DirectionUtils.Count; d++)
+                    if (roomId[d].Bounds(_width))
+                        Room(roomId).Walls[d].Gen = false;
                 Backtrace();
                 continue;
             }
@@ -143,7 +143,7 @@ public class Maze
             }
             // select random direction
             var direction = (Direction) _random.Next(0, DirectionUtils.Count);
-            roomId = roomId.To(direction);
+            roomId = roomId[direction];
             if (!Validate(roomId)) continue;
             Room(roomId).Walls[direction].Gen = false;
         }
