@@ -316,7 +316,7 @@ GameObject:
   - component: {fileID: 606399882}
   - component: {fileID: 606399881}
   m_Layer: 0
-  m_Name: Generator
+  m_Name: World
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1493,7 +1493,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _loadingBox: {fileID: 565320789}
-  _generator: {fileID: 606399881}
+  _world: {fileID: 606399881}
 --- !u!1001 &2111458787
 Prefab:
   m_ObjectHideFlags: 0
