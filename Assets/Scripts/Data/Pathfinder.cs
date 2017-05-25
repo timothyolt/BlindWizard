@@ -158,13 +158,14 @@ namespace Blindwizard.Data
             /// </summary>
             /// <param name="previous">The room to take the given direction from</param>
             /// <param name="direction">Determines the destination room from the previous room</param>
-            private void Open(RoomId previous, Direction direction)
+            /// <param name="destination">Destination room for allowing paths including an end-pit</param>
+            private void Open(RoomId previous, Direction direction, RoomId destination)
             {
                 var current = previous[direction];
-                if (!current.Bounds(_pathfinder.Width) ||                           // Out of bounds
-                    !Rooms[current.X, current.Z].FloorGen ||                        // Over a pit
-                    Rooms[previous.X, previous.Z].Walls[direction].Gen) return;     // Through a wall
-                if (_state[current.X, current.Z] == State.Untouched)                // Not visited before
+                if (!current.Bounds(_pathfinder.Width) ||                               // Out of bounds
+                    !Rooms[current.X, current.Z].FloorGen && current != destination ||  // Over a pit unless it is the destination
+                    Rooms[previous.X, previous.Z].Walls[direction].Gen) return;         // Through a wall
+                if (_state[current.X, current.Z] == State.Untouched)                    // Not visited before
                 {
                     _state[ current.X, current.Z] = State.Open;
                     _open.Add(current);
@@ -187,12 +188,13 @@ namespace Blindwizard.Data
             /// Marks a room as closed and attempts to open any acessible rooms
             /// </summary>
             /// <param name="current">The room to close</param>
-            private void Close(RoomId current)
+            /// <param name="destination">Destination room for allowing paths including an end-pit</param>
+            private void Close(RoomId current, RoomId destination)
             {
                 _state[current.X, current.Z] = State.Closed;
                 _open.Remove(current);
                 for (var d = (Direction) 0; d < (Direction) DirectionUtils.Count; d++)
-                    Open(current, d);
+                    Open(current, d, destination);
             }
 
 
@@ -220,7 +222,7 @@ namespace Blindwizard.Data
                         minRoomId = open;
                         minCost = cost;
                     }
-                    Close(minRoomId);
+                    Close(minRoomId, destination);
                 }
                 // Build path list by parenting
                 var path = new List<RoomId> { destination };

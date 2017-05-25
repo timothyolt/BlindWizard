@@ -4,6 +4,7 @@ namespace Blindwizard.Data
 {
     public struct RoomId
     {
+
         public RoomId(int x, int z)
         {
             X = x;
@@ -41,5 +42,22 @@ namespace Blindwizard.Data
         public bool Bounds(int width) => X >= 0 && X < width && Z >= 0 && Z < width;
 
         public override string ToString() => $"X:{X}, Z:{Z}";
+
+        public bool Equals(RoomId other) => X == other.X && Z == other.Z;
+
+        public override bool Equals(object second)
+            => !ReferenceEquals(null, second) && second is RoomId && Equals((RoomId) second);
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                return (X * 397) ^ Z;
+            }
+        }
+
+        public static bool operator ==(RoomId first, RoomId second) => first.Equals(second);
+
+        public static bool operator!=(RoomId first, RoomId second) => !first.Equals(second);
     }
 }
