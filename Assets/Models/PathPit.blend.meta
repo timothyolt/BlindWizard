@@ -11,6 +11,7 @@ ModelImporter:
     3300000: //RootNode
     4300000: Path_End
     4300002: Circle
+    4300004: Path_Pit
     7400000: Default Take
     9500000: //RootNode
   materials:
