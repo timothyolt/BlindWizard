@@ -29,9 +29,12 @@ namespace Blindwizard.Data
         public int Level { get; }
         public int Width { get; }
         public int Area { get; }
+
         //TODO: using Rooms while the Maze is being generated is likely not threadsafe
         // Experiment with making them structs for further immutability
         public readonly Room[,] Rooms;
+        public Room this[int x, int z] => Rooms[x, z];
+        public Room this[RoomId roomId] => Rooms[roomId.X, roomId.Z];
         private Maze _maze;
         private Thread _mazeTask;
         public GameObject Container { get; set; }
@@ -152,7 +155,8 @@ namespace Blindwizard.Data
 
         public bool IsDone => _maze != null;
 
-        public IEnumerator Instantiate(GameObject floorPrefab, GameObject pitPrefab, GameObject shimmerPrefab, GameObject enemyPrefab, GameObject wallPrefab)
+        public IEnumerator Instantiate(GameObject floorPrefab, GameObject pitPrefab, GameObject shimmerPrefab,
+            GameObject enemyPrefab, GameObject wallPrefab, GameObject pathPrefab)
         {
             //Debug.Log(Level + nameof(Instantiate));
             Container = new GameObject($"Level Container {Width / 2 - 1}");
@@ -169,9 +173,13 @@ namespace Blindwizard.Data
                 if (x < Width && z < Width)
                 {
                     var room = Rooms[x, z];
-                    room.Container = new GameObject($"Room Container {x}, {z}");
+                    room.Container = new GameObject($"Room Container {x}, {z}")
+                    {
+                        transform = {position = new Vector3(x * RoomScale - _wOffset, -_y, z * RoomScale - _wOffset)}
+                    };
                     room.Container.transform.SetParent(Container.transform);
-                    room.Container.transform.position = new Vector3(x * RoomScale - _wOffset, -_y, z * RoomScale - _wOffset);
+                    room.Path = Object.Instantiate(pathPrefab, room.Container.transform);
+                    room.Path.name = $"Path {x}, {z}";
                     if (room.FloorGen)
                     {
                         room.Floor = Object.Instantiate(floorPrefab, room.Container.transform);

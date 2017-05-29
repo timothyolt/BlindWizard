@@ -39,6 +39,18 @@ namespace Blindwizard.Data
             }
         }
 
+        public Direction Orient(RoomId to)
+        {
+            if (to.X > X)
+                return Direction.East;
+            if (to.X < X)
+                return Direction.West;
+            if (to.Z > Z)
+                return Direction.North;
+            else
+                return Direction.South;
+        }
+
         public bool Bounds(int width) => X >= 0 && X < width && Z >= 0 && Z < width;
 
         public override string ToString() => $"X:{X}, Z:{Z}";

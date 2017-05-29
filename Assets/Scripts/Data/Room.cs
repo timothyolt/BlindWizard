@@ -12,6 +12,7 @@ namespace Blindwizard.Data
         /// GameObject that always exists within a room
         /// </summary>
         public GameObject Container { get; set; }
+        public GameObject Path { get; set; }
         /// <summary>
         /// Floor GameObject of a room, will be null if this is a "pit room"
         /// </summary>
