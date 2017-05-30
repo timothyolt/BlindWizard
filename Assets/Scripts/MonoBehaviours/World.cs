@@ -58,6 +58,7 @@ namespace Blindwizard.MonoBehaviours
             get => _path;
             set
             {
+                // Reset previous path
                 if (_path != null)
                     foreach (var roomId in _path)
                         Levels[_player.Level][roomId].Path.GetComponent<MeshFilter>().mesh = _pathNone;
@@ -66,7 +67,8 @@ namespace Blindwizard.MonoBehaviours
                     if (value.Count > 1)
                     {
                         var endPath = Levels[_player.Level][value[0]].Path;
-                        endPath.GetComponent<MeshFilter>().mesh = _pathEnd;
+                        endPath.GetComponent<MeshFilter>().mesh =
+                            Levels[_player.Level][value[0]].FloorGen ? _pathEnd : _pathPit;
                         endPath.transform.rotation =
                             Quaternion.AngleAxis(value[1].Orient(value[0]).Rotation(), Vector3.up);
                     }
@@ -84,7 +86,9 @@ namespace Blindwizard.MonoBehaviours
                         else
                         {
                             path.GetComponent<MeshFilter>().mesh = _pathCorner;
-                            path.transform.rotation = Quaternion.AngleAxis((next + 90) % 360 == last ? next : last, Vector3.up);
+                            // Find which pairing creates the right angle
+                            path.transform.rotation =
+                                Quaternion.AngleAxis((next + 90) % 360 == last ? next : last, Vector3.up);
                         }
                     }
                     if (value.Count > 0)
@@ -93,7 +97,7 @@ namespace Blindwizard.MonoBehaviours
                         beginPath.GetComponent<MeshFilter>().mesh = _pathStraight;
                         beginPath.transform.rotation =
                             Quaternion.AngleAxis(
-                                value[Math.Max(0, value.Count - 1)].Orient(value[value.Count - 1]).Rotation(),
+                                value[Math.Max(0, value.Count - 2)].Orient(value[value.Count - 1]).Rotation(),
                                 Vector3.up);
                     }
                 }
