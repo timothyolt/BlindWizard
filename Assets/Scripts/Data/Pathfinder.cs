@@ -158,12 +158,10 @@ namespace Blindwizard.Data
             /// </summary>
             /// <param name="previous">The room to take the given direction from</param>
             /// <param name="direction">Determines the destination room from the previous room</param>
-            /// <param name="destination">Destination room for allowing paths including an end-pit</param>
-            private void Open(RoomId previous, Direction direction, RoomId destination)
+            private void Open(RoomId previous, Direction direction)
             {
                 var current = previous[direction];
                 if (!current.Bounds(_pathfinder.Width) ||                               // Out of bounds
-                    !Rooms[current.X, current.Z].FloorGen && current != destination ||  // Over a pit unless it is the destination
                     Rooms[previous.X, previous.Z].Walls[direction].Gen) return;         // Through a wall
                 if (_state[current.X, current.Z] == State.Untouched)                    // Not visited before
                 {
@@ -188,13 +186,12 @@ namespace Blindwizard.Data
             /// Marks a room as closed and attempts to open any acessible rooms
             /// </summary>
             /// <param name="current">The room to close</param>
-            /// <param name="destination">Destination room for allowing paths including an end-pit</param>
-            private void Close(RoomId current, RoomId destination)
+            private void Close(RoomId current)
             {
                 _state[current.X, current.Z] = State.Closed;
                 _open.Remove(current);
                 for (var d = (Direction) 0; d < (Direction) DirectionUtils.Count; d++)
-                    Open(current, d, destination);
+                    Open(current, d);
             }
 
 
@@ -216,13 +213,16 @@ namespace Blindwizard.Data
                     var minCost = _actual[minRoomId.X, minRoomId.Z] + Heuristic(minRoomId, destination);
                     foreach (var open in _open)
                     {
+                        // Skip pits that are not the final destination
+                        if (!Rooms[open.X, open.Z].FloorGen && open != destination)
+                            continue;
                         var cost = _actual[open.X, open.Z] + Heuristic(open, destination);
                         if (cost > minCost)
                             continue;
                         minRoomId = open;
                         minCost = cost;
                     }
-                    Close(minRoomId, destination);
+                    Close(minRoomId);
                 }
                 // Build path list by parenting
                 var path = new List<RoomId> { destination };
@@ -236,6 +236,10 @@ namespace Blindwizard.Data
                     path.Add(last);
                 }
                 _path[destination.X, destination.Z] = path;
+                // Re-open destination if pit
+                if (Rooms[destination.X, destination.Z].FloorGen) return path;
+                _state[destination.X, destination.Z] = State.Open;
+                _open.Add(destination);
                 return path;
             }
         }

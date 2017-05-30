@@ -64,13 +64,14 @@ namespace Blindwizard.MonoBehaviours
                         Levels[_player.Level][roomId].Path.GetComponent<MeshFilter>().mesh = _pathNone;
                 if (value != null)
                 {
-                    if (value.Count > 1)
+                    if (value.Count > 0)
                     {
-                        var endPath = Levels[_player.Level][value[0]].Path;
-                        endPath.GetComponent<MeshFilter>().mesh =
-                            Levels[_player.Level][value[0]].FloorGen ? _pathEnd : _pathPit;
-                        endPath.transform.rotation =
-                            Quaternion.AngleAxis(value[1].Orient(value[0]).Rotation(), Vector3.up);
+                        var beginPath = Levels[_player.Level][value[value.Count - 1]].Path;
+                        beginPath.GetComponent<MeshFilter>().mesh = _pathStraight;
+                        beginPath.transform.rotation =
+                            Quaternion.AngleAxis(
+                                value[Math.Max(0, value.Count - 2)].Orient(value[value.Count - 1]).Rotation(),
+                                Vector3.up);
                     }
                     for (var i = 1; i < value.Count - 1; i++)
                     {
@@ -91,14 +92,13 @@ namespace Blindwizard.MonoBehaviours
                                 Quaternion.AngleAxis((next + 90) % 360 == last ? next : last, Vector3.up);
                         }
                     }
-                    if (value.Count > 0)
+                    if (value.Count > 1)
                     {
-                        var beginPath = Levels[_player.Level][value[value.Count - 1]].Path;
-                        beginPath.GetComponent<MeshFilter>().mesh = _pathStraight;
-                        beginPath.transform.rotation =
-                            Quaternion.AngleAxis(
-                                value[Math.Max(0, value.Count - 2)].Orient(value[value.Count - 1]).Rotation(),
-                                Vector3.up);
+                        var endPath = Levels[_player.Level][value[0]].Path;
+                        endPath.GetComponent<MeshFilter>().mesh =
+                            Levels[_player.Level][value[0]].FloorGen ? _pathEnd : _pathPit;
+                        endPath.transform.rotation =
+                            Quaternion.AngleAxis(value[1].Orient(value[0]).Rotation(), Vector3.up);
                     }
                 }
                 _path = value;

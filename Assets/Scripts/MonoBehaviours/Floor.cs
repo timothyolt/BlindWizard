@@ -9,9 +9,6 @@ namespace Blindwizard.MonoBehaviours
     {
         private World _world;
         private PlayerMovement _player;
-        [SerializeField]
-        private Material _gazedMaterial, _ungazedMaterial;
-        private MeshRenderer _renderer;
 
         public RoomId Position { get; set; }
         public int Level { get; set; }
@@ -20,13 +17,10 @@ namespace Blindwizard.MonoBehaviours
         {
             _world = FindObjectOfType<World>();
             _player = FindObjectOfType<PlayerMovement>();
-            _renderer = GetComponent<MeshRenderer>();
         }
 
         public void SetGazedAt(bool gazed)
         {
-            //Debug.Log($"Gazed at {Position.x},{Position.y} {gazed}");
-            //_renderer.material = gazed ? _gazedMaterial : _ungazedMaterial;
             if (!gazed)
             {
                 _world.Path = null;
