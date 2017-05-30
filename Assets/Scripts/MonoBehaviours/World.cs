@@ -84,7 +84,7 @@ namespace Blindwizard.MonoBehaviours
                         else
                         {
                             path.GetComponent<MeshFilter>().mesh = _pathCorner;
-                            path.transform.rotation = Quaternion.AngleAxis(diff, Vector3.up);
+                            path.transform.rotation = Quaternion.AngleAxis((next + 90) % 360 == last ? next : last, Vector3.up);
                         }
                     }
                     if (value.Count > 0)
