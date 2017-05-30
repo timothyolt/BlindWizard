@@ -316,7 +316,7 @@ GameObject:
   - component: {fileID: 606399882}
   - component: {fileID: 606399881}
   m_Layer: 0
-  m_Name: Generator
+  m_Name: World
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -342,6 +342,13 @@ MonoBehaviour:
     type: 2}
   _enemyPrefab: {fileID: 1416031708043760, guid: 562e0bb045aa2462a81eeb5806b5e1af,
     type: 2}
+  _pathPrefab: {fileID: 1734391755513874, guid: 83822a764b372cb44b05f51bcac77ac8,
+    type: 2}
+  _pathStraight: {fileID: 4300000, guid: 198d9a49595c87449aee89c02ffe1542, type: 3}
+  _pathCorner: {fileID: 4300000, guid: d72a7f7fbe1e63a49950b061c17d28d9, type: 3}
+  _pathEnd: {fileID: 4300000, guid: c0f6835fe2e284a48be9910ddf350a8d, type: 3}
+  _pathPit: {fileID: 4300004, guid: fbbb5bd50bef16f419b3fb4c944b5a97, type: 3}
+  _pathNone: {fileID: 0}
   _player: {fileID: 2034769415}
 --- !u!4 &606399882
 Transform:
@@ -1493,7 +1500,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _loadingBox: {fileID: 565320789}
-  _generator: {fileID: 606399881}
+  _world: {fileID: 606399881}
 --- !u!1001 &2111458787
 Prefab:
   m_ObjectHideFlags: 0
