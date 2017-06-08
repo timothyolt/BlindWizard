@@ -27,3 +27,8 @@ CSharp70Support/compilation\.log
 build_debug\.apk
 
 *.apk
+
+\.DS_Store
+
+*.blend1
+*.blend1.meta
