@@ -1,0 +1,9 @@
+1. Import SVG into blender
+2. Delete frame curve
+3. While the other curves are selected, press Tab (edit mode).
+4. Scale it to uniform size by pressing A (select all), S (scale), 416 (size), and Enter (to commit)
+5. Press Tab again (leave edit mode).
+6. Press Alt-C (Convert curve to mesh).
+7. Press R (Rotate), X (select X axis), -90 (amount), and Enter (commit).
+8. Ctrl-S (Save) in the Icons folder.
+9. Disable Materials, Animation and Rigging in Unity importer. 
