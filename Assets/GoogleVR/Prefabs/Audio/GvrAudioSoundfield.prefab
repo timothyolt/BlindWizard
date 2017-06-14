@@ -5,10 +5,12 @@ GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Component:
-  - 4: {fileID: 440248}
-  - 114: {fileID: 11469856}
+  - component: {fileID: 440248}
+  - component: {fileID: 11469856}
+  - component: {fileID: 114866652649863946}
+  - component: {fileID: 114185934856035430}
   m_Layer: 0
   m_Name: GvrAudioSoundfield
   m_TagString: Untagged
@@ -28,6 +30,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &11469856
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -39,6 +42,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d38f0664abc0c446a8fa0886ec2bcd12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bypassRoomEffects: 1
   gainDb: 0
   playOnAwake: 1
   soundfieldClip0102: {fileID: 0}
@@ -59,3 +63,32 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 119012}
   m_IsPrefabParent: 1
+--- !u!114 &114185934856035430
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 119012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 112998890, guid: 325c5b2a7434372429c2ca9d61dba58e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _guid: 499393f9-2cf4-4175-a270-6ec462c14bbf
+--- !u!114 &114866652649863946
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 119012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -605777808, guid: 325c5b2a7434372429c2ca9d61dba58e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isConnected: 1
+  _guid: 
+  _referenceCollection:
+    _collection:
+    - {fileID: 119012}
+  _assetGuid: 33b1331235def4618ab66fa8dad6d443

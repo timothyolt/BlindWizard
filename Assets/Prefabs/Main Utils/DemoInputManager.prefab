@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 224261592347235350}
   - component: {fileID: 222244515561104914}
   - component: {fileID: 114430899004537882}
+  - component: {fileID: 114923732043764232}
   m_Layer: 5
   m_Name: Background
   m_TagString: Untagged
@@ -37,6 +38,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4342829328399680}
   - component: {fileID: 114638339754391828}
+  - component: {fileID: 114926532347783340}
+  - component: {fileID: 114103805519869410}
   m_Layer: 0
   m_Name: DemoInputManager
   m_TagString: Untagged
@@ -54,6 +57,7 @@ GameObject:
   - component: {fileID: 224421079918232942}
   - component: {fileID: 222756920777643438}
   - component: {fileID: 114859224020654992}
+  - component: {fileID: 114018813088752314}
   m_Layer: 5
   m_Name: MessageText
   m_TagString: Untagged
@@ -71,6 +75,7 @@ GameObject:
   - component: {fileID: 224600991885912342}
   - component: {fileID: 223741211849350730}
   - component: {fileID: 114405184001045848}
+  - component: {fileID: 114800434187144410}
   m_Layer: 5
   m_Name: MessageCanvas
   m_TagString: Untagged
@@ -92,6 +97,30 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114018813088752314
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1287123213913990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 112998890, guid: 325c5b2a7434372429c2ca9d61dba58e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _guid: ef2ffd76-18dc-40ee-beb0-c91b35fb8599
+--- !u!114 &114103805519869410
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1252211824955232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 112998890, guid: 325c5b2a7434372429c2ca9d61dba58e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _guid: 2d28e1db-f80e-40d1-824e-2f7e764fc2d0
 --- !u!114 &114405184001045848
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -153,12 +182,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controllerMain: {fileID: 1780262592320690, guid: 3e347e6897414c248aa7bce3c83c1c1a,
     type: 2}
-  controllerPointer: {fileID: 1407699927366876, guid: 9e5ecb9ea99fffd468c37b3e1016ebc7,
+  controllerPointer: {fileID: 1408555547687958, guid: 24bbb7eef4202cf4baa00a5583f5dfa6,
     type: 2}
-  reticlePointer: {fileID: 0}
+  reticlePointer: {fileID: 1827554164107550, guid: 3bd69d97352a6c5418c8acfb9bccc4b1,
+    type: 2}
   messageCanvas: {fileID: 0}
   messageText: {fileID: 0}
   gvrEmulatedPlatformType: 1
+--- !u!114 &114800434187144410
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1787155939915584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 112998890, guid: 325c5b2a7434372429c2ca9d61dba58e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _guid: 3f029036-4100-4a96-89da-f425fc3f6575
 --- !u!114 &114859224020654992
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -193,6 +235,38 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: To use the controller, please upgrade to a version of Unity with the GVR
     native integration
+--- !u!114 &114923732043764232
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1107385050599336}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 112998890, guid: 325c5b2a7434372429c2ca9d61dba58e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _guid: 36a605b8-2299-46f2-b0b3-4b64f3542169
+--- !u!114 &114926532347783340
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1252211824955232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -605777808, guid: 325c5b2a7434372429c2ca9d61dba58e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isConnected: 1
+  _guid: 
+  _referenceCollection:
+    _collection:
+    - {fileID: 1252211824955232}
+    - {fileID: 1787155939915584}
+    - {fileID: 1107385050599336}
+    - {fileID: 1287123213913990}
+  _assetGuid: bdbc61f2efbd5df4a99374fb4bd5c63c
 --- !u!222 &222244515561104914
 CanvasRenderer:
   m_ObjectHideFlags: 1

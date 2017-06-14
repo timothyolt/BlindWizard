@@ -22,6 +22,8 @@ GameObject:
   - component: {fileID: 33324317682082148}
   - component: {fileID: 135270210449484694}
   - component: {fileID: 23702652537882242}
+  - component: {fileID: 114616254547300314}
+  - component: {fileID: 114067621074142614}
   m_Layer: 0
   m_Name: Shimmer
   m_TagString: Untagged
@@ -81,6 +83,35 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1017390358026920}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &114067621074142614
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1017390358026920}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 112998890, guid: 325c5b2a7434372429c2ca9d61dba58e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _guid: ee5985a1-0d5a-4e41-99f7-387a9e65c437
+--- !u!114 &114616254547300314
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1017390358026920}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -605777808, guid: 325c5b2a7434372429c2ca9d61dba58e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isConnected: 1
+  _guid: 
+  _referenceCollection:
+    _collection:
+    - {fileID: 1017390358026920}
+  _assetGuid: 496c13a6c7c4941698aa2d4e195defb5
 --- !u!135 &135270210449484694
 SphereCollider:
   m_ObjectHideFlags: 1

@@ -24,6 +24,8 @@ GameObject:
   - component: {fileID: 222339998428301258}
   - component: {fileID: 102967539369873028}
   - component: {fileID: 114330918379118282}
+  - component: {fileID: 114021778815137738}
+  - component: {fileID: 114099795538673356}
   m_Layer: 0
   m_Name: Quad
   m_TagString: Untagged
@@ -98,6 +100,35 @@ TextMesh:
   m_Color:
     serializedVersion: 2
     rgba: 4294967295
+--- !u!114 &114021778815137738
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1271304906090722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -605777808, guid: 325c5b2a7434372429c2ca9d61dba58e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isConnected: 1
+  _guid: 
+  _referenceCollection:
+    _collection:
+    - {fileID: 1271304906090722}
+  _assetGuid: 7c922e2a43cc5be44b7aceaf2eec7058
+--- !u!114 &114099795538673356
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1271304906090722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 112998890, guid: 325c5b2a7434372429c2ca9d61dba58e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _guid: e8dc9cba-9a69-4e42-ae48-6e94a77b0da6
 --- !u!114 &114330918379118282
 MonoBehaviour:
   m_ObjectHideFlags: 1

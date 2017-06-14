@@ -16,6 +16,8 @@ namespace BlindWizard.MonoBehaviours
             set
             {
                 _position = value;
+                if (_world.Levels.Count <= Level)
+                    return;
                 var room = _world.Levels[Level]?.Rooms[_position.X, _position.Z];
                 if (room == null) return;
                 Score.Turnip();

@@ -20,6 +20,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4943411819947336}
   - component: {fileID: 114522968861171934}
+  - component: {fileID: 114174299798457590}
+  - component: {fileID: 114321060402100574}
   m_Layer: 0
   m_Name: ScoreManager
   m_TagString: Untagged
@@ -40,6 +42,35 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114174299798457590
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1462315324194594}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -605777808, guid: 325c5b2a7434372429c2ca9d61dba58e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isConnected: 1
+  _guid: 
+  _referenceCollection:
+    _collection:
+    - {fileID: 1462315324194594}
+  _assetGuid: 2e82a1f71b8f85e45916f90ab8d2bdeb
+--- !u!114 &114321060402100574
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1462315324194594}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 112998890, guid: 325c5b2a7434372429c2ca9d61dba58e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _guid: 81ca6118-e816-4cfe-b847-dfb2d096ba96
 --- !u!114 &114522968861171934
 MonoBehaviour:
   m_ObjectHideFlags: 1

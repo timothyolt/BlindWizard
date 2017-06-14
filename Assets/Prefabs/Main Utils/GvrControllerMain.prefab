@@ -21,6 +21,8 @@ GameObject:
   - component: {fileID: 4491170020211906}
   - component: {fileID: 114173389322159650}
   - component: {fileID: 114424661700762116}
+  - component: {fileID: 114460152903039982}
+  - component: {fileID: 114146980739254896}
   m_Layer: 0
   m_Name: GvrControllerMain
   m_TagString: Untagged
@@ -41,6 +43,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114146980739254896
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1780262592320690}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 112998890, guid: 325c5b2a7434372429c2ca9d61dba58e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _guid: 9946b01f-1ea3-46d2-82be-777d98fb7768
 --- !u!114 &114173389322159650
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -71,3 +85,20 @@ MonoBehaviour:
   tooltipMinDistanceFromFace: 0.4
   followGaze: 2
   useAccelerometer: 0
+--- !u!114 &114460152903039982
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1780262592320690}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -605777808, guid: 325c5b2a7434372429c2ca9d61dba58e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isConnected: 1
+  _guid: 
+  _referenceCollection:
+    _collection:
+    - {fileID: 1780262592320690}
+  _assetGuid: 3e347e6897414c248aa7bce3c83c1c1a

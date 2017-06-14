@@ -20,6 +20,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4143901168752656}
   - component: {fileID: 114803144798696092}
+  - component: {fileID: 114226509361147936}
+  - component: {fileID: 114146765671317524}
   m_Layer: 0
   m_Name: World
   m_TagString: Untagged
@@ -40,6 +42,35 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114146765671317524
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1760622929413306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 112998890, guid: 325c5b2a7434372429c2ca9d61dba58e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _guid: 4bc64318-8db8-4de3-92ab-ec7b37f63bf7
+--- !u!114 &114226509361147936
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1760622929413306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -605777808, guid: 325c5b2a7434372429c2ca9d61dba58e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isConnected: 1
+  _guid: 
+  _referenceCollection:
+    _collection:
+    - {fileID: 1760622929413306}
+  _assetGuid: bc0f77bc1e2ef4e4bb4f91c3231f5949
 --- !u!114 &114803144798696092
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -67,4 +98,4 @@ MonoBehaviour:
   _pathEnd: {fileID: 4300000, guid: c0f6835fe2e284a48be9910ddf350a8d, type: 3}
   _pathPit: {fileID: 4300004, guid: fbbb5bd50bef16f419b3fb4c944b5a97, type: 3}
   _pathNone: {fileID: 0}
-  _player: {fileID: 0}
+  _player: {fileID: 114832593860060622, guid: 9e5ecb9ea99fffd468c37b3e1016ebc7, type: 2}
