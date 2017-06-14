@@ -9,6 +9,7 @@ namespace BlindWizard.MonoBehaviours
 
 		[SerializeField] private Color _inactiveColor, _activeColor;
 		private Renderer _renderer;
+		[SerializeField] private ManageScores _score;
 
 		private void Start()
 		{
@@ -32,7 +33,7 @@ namespace BlindWizard.MonoBehaviours
 
 		public void ShowMenu()
 		{
-			SceneManager.LoadScene(1);
+			_score.ToggleShowScores();
 		}
 	}
 }
