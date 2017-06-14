@@ -7,7 +7,6 @@ TagManager:
   - waypoint
   - blocks
   - kills
-  - scorebox
   layers:
   - Default
   - TransparentFX
