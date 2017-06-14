@@ -32,3 +32,5 @@ build_debug\.apk
 
 *.blend1
 *.blend1.meta
+
+*.meta
