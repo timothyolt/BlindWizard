@@ -1,32 +1,28 @@
-﻿using Blindwizard.Data;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-namespace Blindwizard.MonoBehaviours
-{
-    public class ManageScores : MonoBehaviour {
-        [SerializeField]
-        private Text[] _kills, _turns, _shimmers, _blocks, _floors;
+public class ManageScores : MonoBehaviour {
+    [SerializeField]
+    private GameObject[] _kills, _turns, _shimmers, _blocks, _floors;
 
-        private void Start () {
-        }
+    private void Start () {
+    }
 
-        private void Update ()
-        {
-            foreach (var kills in _kills)
-                kills.text = "Kills: " + Score.Kills;
-            foreach (var turns in _turns)
-                turns.text = "Turns: " + Score.Turns;
-            foreach (var blocks in _blocks)
-                blocks.text = "Blocks: " + Score.Blocks;
-            foreach (var floors in _floors)
-                floors.text = "floors: " + Score.Floors;
-            foreach (var shimmers in _shimmers)
-                shimmers.text = "shimmers: " + Score.Shimmers;
+    private void FixedUpdate ()
+    {
+        foreach (var kills in _kills)
+            kills.GetComponent<TextMesh>().text = "Kills: " + Score.Kills;
+        foreach (var turns in _turns)
+            turns.GetComponent<TextMesh>().text = "Turns: " + Score.Turns;
+        foreach (var blocks in _blocks)
+            blocks.GetComponent<TextMesh>().text = "Blocks: " + Score.Blocks;
+        foreach (var floors in _floors)
+            floors.GetComponent<TextMesh>().text = "floors: " + Score.Floors;
+        foreach (var shimmers in _shimmers)
+            shimmers.GetComponent<TextMesh>().text = "shimmers: " + Score.Shimmers;
 
-            if (VrInputHelper.Secondary || VrInputHelper.Primary)
-                SceneManager.LoadScene(0);
-        }
+        //if (VrInputHelper.Secondary || VrInputHelper.Primary)
+          //  SceneManager.LoadScene(0);
     }
 }
