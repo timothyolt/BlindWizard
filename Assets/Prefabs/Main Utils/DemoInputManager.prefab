@@ -180,12 +180,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddd25f1308577456cbaa207901961126, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controllerMain: {fileID: 1780262592320690, guid: 3e347e6897414c248aa7bce3c83c1c1a,
-    type: 2}
-  controllerPointer: {fileID: 1408555547687958, guid: 24bbb7eef4202cf4baa00a5583f5dfa6,
-    type: 2}
-  reticlePointer: {fileID: 1827554164107550, guid: 3bd69d97352a6c5418c8acfb9bccc4b1,
-    type: 2}
+  controllerMain: {fileID: 0}
+  controllerPointer: {fileID: 0}
+  reticlePointer: {fileID: 0}
   messageCanvas: {fileID: 0}
   messageText: {fileID: 0}
   gvrEmulatedPlatformType: 1

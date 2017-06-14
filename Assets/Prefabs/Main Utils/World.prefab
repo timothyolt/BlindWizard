@@ -98,4 +98,4 @@ MonoBehaviour:
   _pathEnd: {fileID: 4300000, guid: c0f6835fe2e284a48be9910ddf350a8d, type: 3}
   _pathPit: {fileID: 4300004, guid: fbbb5bd50bef16f419b3fb4c944b5a97, type: 3}
   _pathNone: {fileID: 0}
-  _player: {fileID: 114832593860060622, guid: 9e5ecb9ea99fffd468c37b3e1016ebc7, type: 2}
+  _player: {fileID: 0}
