@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace MonoBehaviours
+namespace BlindWizard.MonoBehaviours
 {
 	[RequireComponent(typeof(Renderer))]
 	public class MenuButton : MonoBehaviour
@@ -9,10 +9,9 @@ namespace MonoBehaviours
 
 		[SerializeField] private Color _inactiveColor, _activeColor;
 		private Renderer _renderer;
-		public GameObject _scorebox;
+
 		private void Start()
 		{
-			// didnt work _scorebox = GameObject.FindGameObjectWithTag("scorebox");
 			_renderer = GetComponent<Renderer>();
 			_renderer.material.color = _inactiveColor;
 		}
@@ -33,15 +32,7 @@ namespace MonoBehaviours
 
 		public void ShowMenu()
 		{
-			_scorebox.SetActive(true);
-		}
-		public void Resume()
-		{
-			_scorebox.SetActive(false);
-		}
-		public void Restart()
-		{
-			SceneManager.LoadScene(0);
+			SceneManager.LoadScene(1);
 		}
 	}
 }

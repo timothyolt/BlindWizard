@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Blindwizard.Data
+namespace BlindWizard.Data
 {
 	public static class VrInputHelper
 	{

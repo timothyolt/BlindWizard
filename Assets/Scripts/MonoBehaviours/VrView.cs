@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.VR;
 
-namespace Blindwizard.MonoBehaviours
+namespace BlindWizard.MonoBehaviours
 {
     public class VrView : MonoBehaviour
     {

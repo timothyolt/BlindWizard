@@ -1,7 +1,7 @@
-﻿using Blindwizard.Data;
+﻿using BlindWizard.Data;
 using UnityEngine;
 
-namespace Blindwizard.MonoBehaviours
+namespace BlindWizard.MonoBehaviours
 {
     public class PlayerMovement : MonoBehaviour
     {

@@ -1,8 +1,8 @@
 ﻿using System.Text;
-using Blindwizard.Data;
+using BlindWizard.Data;
 using UnityEngine;
 
-namespace Blindwizard.MonoBehaviours
+namespace BlindWizard.MonoBehaviours
 {
     [RequireComponent(typeof(MeshRenderer))]
     public class Floor : MonoBehaviour

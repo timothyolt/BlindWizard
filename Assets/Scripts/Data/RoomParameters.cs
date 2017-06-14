@@ -1,4 +1,4 @@
-﻿namespace Blindwizard.Data
+﻿namespace BlindWizard.Data
 {
     public class RoomParameters
     {
