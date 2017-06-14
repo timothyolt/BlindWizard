@@ -11,9 +11,9 @@ namespace BlindWizard.MonoBehaviours
 
         private bool _showScores;
 
-        public void ToggleShowScores()
+        public void SetShowScores(bool showScores)
         {
-            _showScores = !_showScores;
+            _showScores = showScores;
             gameObject.SetActive(_showScores);
         }
 

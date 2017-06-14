@@ -30,9 +30,9 @@ namespace BlindWizard.MonoBehaviours
 			}
 		}
 
-		public void ShowMenu()
+		public void SetClicked(bool clicked)
 		{
-			_score.ToggleShowScores();
+			_score.SetShowScores(clicked);
 		}
 	}
 }

@@ -152,56 +152,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 5
       objectReference: {fileID: 0}
-    - target: {fileID: 224362113076366550, guid: 9e5ecb9ea99fffd468c37b3e1016ebc7,
-        type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 224362113076366550, guid: 9e5ecb9ea99fffd468c37b3e1016ebc7,
-        type: 2}
-      propertyPath: m_LocalRotation.w
-      value: -0.00000004371139
-      objectReference: {fileID: 0}
-    - target: {fileID: 224847825918962404, guid: 9e5ecb9ea99fffd468c37b3e1016ebc7,
-        type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 224847825918962404, guid: 9e5ecb9ea99fffd468c37b3e1016ebc7,
-        type: 2}
-      propertyPath: m_LocalRotation.w
-      value: -0.00000004371139
-      objectReference: {fileID: 0}
-    - target: {fileID: 114970010637132686, guid: 9e5ecb9ea99fffd468c37b3e1016ebc7,
-        type: 2}
-      propertyPath: m_FontData.m_Alignment
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 224468151545242634, guid: 9e5ecb9ea99fffd468c37b3e1016ebc7,
-        type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 224468151545242634, guid: 9e5ecb9ea99fffd468c37b3e1016ebc7,
-        type: 2}
-      propertyPath: m_LocalRotation.w
-      value: -0.00000004371139
-      objectReference: {fileID: 0}
-    - target: {fileID: 114571171182161156, guid: 9e5ecb9ea99fffd468c37b3e1016ebc7,
-        type: 2}
-      propertyPath: m_FontData.m_Alignment
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 224808470854691692, guid: 9e5ecb9ea99fffd468c37b3e1016ebc7,
-        type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 224808470854691692, guid: 9e5ecb9ea99fffd468c37b3e1016ebc7,
-        type: 2}
-      propertyPath: m_LocalRotation.w
-      value: -0.00000004371139
-      objectReference: {fileID: 0}
     - target: {fileID: 114752993294660908, guid: 9e5ecb9ea99fffd468c37b3e1016ebc7,
         type: 2}
       propertyPath: _world
