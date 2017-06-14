@@ -165,7 +165,7 @@ MonoBehaviour:
   delegates: []
 --- !u!114 &114252031114291612
 MonoBehaviour:
-  m_ObjectHideFlags: 11
+  m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1094549089687986}
@@ -177,7 +177,7 @@ MonoBehaviour:
   _guid: 41de6066-6cc4-45e0-a3de-1f6a03deb0b0
 --- !u!114 &114671706869046204
 MonoBehaviour:
-  m_ObjectHideFlags: 11
+  m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1094549089687986}
@@ -205,3 +205,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _inactiveColor: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 0.5019608}
   _activeColor: {r: 1, g: 1, b: 1, a: 0.7529412}
+  _score: {fileID: 114055111526562172, guid: bdac8fc0b1725d1439f6d541ed8eb444, type: 2}
