@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using Blindwizard.Data;
+using BlindWizard.Data;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace Blindwizard.MonoBehaviours
+namespace BlindWizard.MonoBehaviours
 {
     public class World : MonoBehaviour
     {

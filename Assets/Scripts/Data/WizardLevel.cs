@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections;
 using System.Threading;
-using Blindwizard.MonoBehaviours;
+using BlindWizard.MonoBehaviours;
 using UnityEngine;
 using Object = UnityEngine.Object;
 using Random = UnityEngine.Random;
 
-namespace Blindwizard.Data
+namespace BlindWizard.Data
 {
     public class WizardLevel
     {

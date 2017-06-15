@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Threading;
 using Random = System.Random;
 
-namespace Blindwizard.Data
+namespace BlindWizard.Data
 {
     public class Maze
     {

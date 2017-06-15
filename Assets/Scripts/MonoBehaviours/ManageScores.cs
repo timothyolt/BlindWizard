@@ -1,19 +1,26 @@
-﻿using Blindwizard.Data;
+﻿using BlindWizard.Data;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-namespace Blindwizard.MonoBehaviours
+namespace BlindWizard.MonoBehaviours
 {
-    public class ManageScores : MonoBehaviour {
+    public class ManageScores : MonoBehaviour
+    {
         [SerializeField]
         private Text[] _kills, _turns, _shimmers, _blocks, _floors;
 
-        private void Start () {
+        private bool _showScores;
+
+        public void SetShowScores(bool showScores)
+        {
+            _showScores = showScores;
+            gameObject.SetActive(_showScores);
         }
 
-        private void Update ()
+        private void Update()
         {
+            if (!_showScores)
+                return;
             foreach (var kills in _kills)
                 kills.text = "Kills: " + Score.Kills;
             foreach (var turns in _turns)
@@ -24,9 +31,6 @@ namespace Blindwizard.MonoBehaviours
                 floors.text = "floors: " + Score.Floors;
             foreach (var shimmers in _shimmers)
                 shimmers.text = "shimmers: " + Score.Shimmers;
-
-            if (VrInputHelper.Secondary || VrInputHelper.Primary)
-                SceneManager.LoadScene(0);
         }
     }
 }

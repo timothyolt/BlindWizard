@@ -5,11 +5,12 @@ GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Component:
-  - 4: {fileID: 413102}
-  - 20: {fileID: 2013102}
-  - 114: {fileID: 11413102}
+  - component: {fileID: 413102}
+  - component: {fileID: 2013102}
+  - component: {fileID: 11413102}
+  - component: {fileID: 114046732867330962}
   m_Layer: 0
   m_Name: PreRender
   m_TagString: Untagged
@@ -22,12 +23,13 @@ GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Component:
-  - 4: {fileID: 413104}
-  - 20: {fileID: 2013104}
-  - 92: {fileID: 9213102}
-  - 114: {fileID: 11413104}
+  - component: {fileID: 413104}
+  - component: {fileID: 2013104}
+  - component: {fileID: 9213102}
+  - component: {fileID: 11413104}
+  - component: {fileID: 114526711573462736}
   m_Layer: 0
   m_Name: PostRender
   m_TagString: Untagged
@@ -40,10 +42,12 @@ GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Component:
-  - 4: {fileID: 413106}
-  - 114: {fileID: 11403204}
+  - component: {fileID: 413106}
+  - component: {fileID: 11403204}
+  - component: {fileID: 114777995972159736}
+  - component: {fileID: 114203537227821314}
   m_Layer: 0
   m_Name: GvrManager
   m_TagString: Untagged
@@ -63,6 +67,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 413106}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &413104
 Transform:
   m_ObjectHideFlags: 1
@@ -75,6 +80,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 413106}
   m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &413106
 Transform:
   m_ObjectHideFlags: 1
@@ -89,6 +95,7 @@ Transform:
   - {fileID: 413104}
   m_Father: {fileID: 0}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &2013102
 Camera:
   m_ObjectHideFlags: 1
@@ -119,6 +126,8 @@ Camera:
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 0
+  m_AllowMSAA: 1
+  m_ForceIntoRT: 0
   m_OcclusionCulling: 0
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
@@ -153,6 +162,8 @@ Camera:
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 0
+  m_AllowMSAA: 1
+  m_ForceIntoRT: 0
   m_OcclusionCulling: 0
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
@@ -177,11 +188,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   vrModeEnabled: 1
   distortionCorrection: 2
-  enableAlignmentMarker: 1
-  enableSettingsButton: 1
-  backButtonMode: 1
   neckModelScale: 1
-  electronicDisplayStabilization: 0
   autoUntiltHead: 1
   UseUnityRemoteInput: 0
   screenSize: 0
@@ -220,3 +227,58 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 113106}
   m_IsPrefabParent: 1
+--- !u!114 &114046732867330962
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 113102}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 112998890, guid: 325c5b2a7434372429c2ca9d61dba58e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _guid: e7ad5fc7-c25a-403b-98b3-371dfe6f04bc
+--- !u!114 &114203537227821314
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 113106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 112998890, guid: 325c5b2a7434372429c2ca9d61dba58e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _guid: cdd6bf57-b407-464d-8ad2-41a32a92f416
+--- !u!114 &114526711573462736
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 113104}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 112998890, guid: 325c5b2a7434372429c2ca9d61dba58e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _guid: 4e823ea8-b3ed-4026-9036-f3fd16cb173e
+--- !u!114 &114777995972159736
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 113106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -605777808, guid: 325c5b2a7434372429c2ca9d61dba58e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isConnected: 1
+  _guid: 
+  _referenceCollection:
+    _collection:
+    - {fileID: 113106}
+    - {fileID: 113102}
+    - {fileID: 113104}
+  _assetGuid: 147a0ee7cc2314633a42ba43dde568c8

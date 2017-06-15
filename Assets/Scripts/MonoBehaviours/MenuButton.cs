@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
-using UnityEngine.SceneManagement;
 
-namespace Blindwizard.MonoBehaviours
+namespace BlindWizard.MonoBehaviours
 {
 	[RequireComponent(typeof(Renderer))]
 	public class MenuButton : MonoBehaviour
@@ -9,6 +8,7 @@ namespace Blindwizard.MonoBehaviours
 
 		[SerializeField] private Color _inactiveColor, _activeColor;
 		private Renderer _renderer;
+		[SerializeField] private ManageScores _score;
 
 		private void Start()
 		{
@@ -30,9 +30,9 @@ namespace Blindwizard.MonoBehaviours
 			}
 		}
 
-		public void ShowMenu()
+		public void SetClicked(bool clicked)
 		{
-			SceneManager.LoadScene(1);
+			_score.SetShowScores(clicked);
 		}
 	}
 }

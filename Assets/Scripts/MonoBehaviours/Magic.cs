@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Blindwizard.MonoBehaviours
+namespace BlindWizard.MonoBehaviours
 {
     public class Magic : MonoBehaviour {
         private PlayerMovement _player;

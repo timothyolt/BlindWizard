@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Blindwizard.MonoBehaviours
+namespace BlindWizard.MonoBehaviours
 {
 	public class WizWave : MonoBehaviour
 	{

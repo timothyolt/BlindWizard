@@ -1,4 +1,4 @@
-﻿namespace Blindwizard.Data
+﻿namespace BlindWizard.Data
 {
     public static class Score {
         // TODO: save/load the current score on pause/resume

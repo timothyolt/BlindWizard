@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Blindwizard.Data
+namespace BlindWizard.Data
 {
     public class Pathfinder
     {

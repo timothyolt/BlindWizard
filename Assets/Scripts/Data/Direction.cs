@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Blindwizard.Data
+namespace BlindWizard.Data
 {
     public enum Direction
     {

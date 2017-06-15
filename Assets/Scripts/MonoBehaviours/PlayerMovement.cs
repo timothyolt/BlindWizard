@@ -1,7 +1,7 @@
-﻿using Blindwizard.Data;
+﻿using BlindWizard.Data;
 using UnityEngine;
 
-namespace Blindwizard.MonoBehaviours
+namespace BlindWizard.MonoBehaviours
 {
     public class PlayerMovement : MonoBehaviour
     {
@@ -16,6 +16,8 @@ namespace Blindwizard.MonoBehaviours
             set
             {
                 _position = value;
+                if (_world.Levels.Count <= Level)
+                    return;
                 var room = _world.Levels[Level]?.Rooms[_position.X, _position.Z];
                 if (room == null) return;
                 Score.Turnip();
