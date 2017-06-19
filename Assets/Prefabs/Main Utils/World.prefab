@@ -93,6 +93,8 @@ MonoBehaviour:
     type: 2}
   _pathPrefab: {fileID: 1734391755513874, guid: 83822a764b372cb44b05f51bcac77ac8,
     type: 2}
+  _devTextPrefab: {fileID: 1946213860186292, guid: 835f5de7fc3f2cc4bad45cec3af4595b,
+    type: 2}
   _pathStraight: {fileID: 4300000, guid: 198d9a49595c87449aee89c02ffe1542, type: 3}
   _pathCorner: {fileID: 4300000, guid: d72a7f7fbe1e63a49950b061c17d28d9, type: 3}
   _pathEnd: {fileID: 4300000, guid: c0f6835fe2e284a48be9910ddf350a8d, type: 3}

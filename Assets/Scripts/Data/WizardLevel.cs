@@ -155,8 +155,13 @@ namespace BlindWizard.Data
 
         public bool IsDone => _maze != null;
 
+#if DEVELOPMENT_BUILD || UNITY_EDITOR
+        public IEnumerator Instantiate(GameObject floorPrefab, GameObject pitPrefab, GameObject shimmerPrefab,
+            GameObject enemyPrefab, GameObject wallPrefab, GameObject pathPrefab, GameObject devTextPrefab)
+#else
         public IEnumerator Instantiate(GameObject floorPrefab, GameObject pitPrefab, GameObject shimmerPrefab,
             GameObject enemyPrefab, GameObject wallPrefab, GameObject pathPrefab)
+#endif
         {
             //Debug.Log(Level + nameof(Instantiate));
             Container = new GameObject($"Level Container {Width / 2 - 1}");
@@ -180,6 +185,9 @@ namespace BlindWizard.Data
                     room.Container.transform.SetParent(Container.transform);
                     room.Path = Object.Instantiate(pathPrefab, room.Container.transform);
                     room.Path.name = $"Path {x}, {z}";
+#if DEVELOPMENT_BUILD || UNITY_EDITOR
+                    room.DevText = Object.Instantiate(devTextPrefab, room.Container.transform);
+#endif
                     if (room.FloorGen)
                     {
                         room.Floor = Object.Instantiate(floorPrefab, room.Container.transform);

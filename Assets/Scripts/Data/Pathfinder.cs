@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 
 namespace BlindWizard.Data
 {
@@ -85,6 +86,12 @@ namespace BlindWizard.Data
                 (_origin[origin.X, origin.Z] =
                     new Origin(this, origin))).Shortest(
                 destination);
+        
+        public Direction? Parent(RoomId origin, RoomId room)
+            => _origin[origin.X, origin.Z]?.Parent(room);
+        
+        public bool IsClosed(RoomId origin, RoomId room)
+            => _origin[origin.X, origin.Z]?.IsClosed(room) ?? false;
 
         /// <summary>
         /// An A* module, organized by origin RoomId
@@ -163,23 +170,23 @@ namespace BlindWizard.Data
                 var current = previous[direction];
                 if (!current.Bounds(_pathfinder.Width) ||                               // Out of bounds
                     Rooms[previous.X, previous.Z].Walls[direction].Gen) return;         // Through a wall
+                // Update actual cost and parent with new path
+                void UpdateActual()
+                {
+                    _actual[current.X, current.Z] =
+                        _actual[previous.X, previous.Z] + (Rooms[current.X, current.Z].FloorGen ? ActualWeight : Width * 2);
+                    _parent[current.X, current.Z] = previous;
+                }
                 if (_state[current.X, current.Z] == State.Untouched)                    // Not visited before
                 {
                     _state[ current.X, current.Z] = State.Open;
                     _open.Add(current);
-                    _actual[current.X, current.Z] =
-                        _actual[previous.X, previous.Z] + ActualWeight;
-                    _parent[current.X, current.Z] = previous;
+                    UpdateActual();
                 }
                 else if (_state[current.X, current.Z] == State.Open &&  // Previously visited but still open
                          _actual[current.X, current.Z] >                // Previous visit was worse
                          _actual[previous.X, previous.Z] + ActualWeight)
-                {
-                    // Update actual cost and parent with new path
-                    _actual[current.X, current.Z] =
-                        _actual[previous.X, previous.Z] + ActualWeight;
-                    _parent[current.X, current.Z] = previous;
-                }
+                    UpdateActual();
             }
 
             /// <summary>
@@ -214,14 +221,16 @@ namespace BlindWizard.Data
                     foreach (var open in _open)
                     {
                         // Skip pits that are not the final destination
-                        if (!Rooms[open.X, open.Z].FloorGen && open != destination)
-                            continue;
+                        //if (!Rooms[open.X, open.Z].FloorGen && open != destination)
+                        //    continue;
                         var cost = _actual[open.X, open.Z] + Heuristic(open, destination);
                         if (cost > minCost)
                             continue;
                         minRoomId = open;
                         minCost = cost;
                     }
+                    if (destination == minRoomId)
+                        break;
                     Close(minRoomId);
                 }
                 // Build path list by parenting
@@ -237,11 +246,32 @@ namespace BlindWizard.Data
                 }
                 _path[destination.X, destination.Z] = path;
                 // Re-open destination if pit
-                if (Rooms[destination.X, destination.Z].FloorGen) return path;
-                _state[destination.X, destination.Z] = State.Open;
-                _open.Add(destination);
+                //if (Rooms[destination.X, destination.Z].FloorGen) return path;
+                //_state[destination.X, destination.Z] = State.Open;
+                //_open.Add(destination);
+#if DEVELOPMENT_BUILD || UNITY_EDITOR
+                for (var x = 0; x < Width; x++)
+                for (var z = 0; z < Width; z++)
+                {
+                    var textMesh = Rooms[x, z].DevText?.GetComponent<TextMesh>();
+                    if (textMesh == null)
+                        continue;
+                    textMesh.text = $"{_actual[x, z]}";
+                    textMesh.color = _state[x, z] == State.Untouched
+                        ? Color.white
+                        : _state[x, z] == State.Open
+                            ? Color.green
+                            : Color.red;
+                }
+#endif
                 return path;
             }
+
+            public Direction? Parent(RoomId room)
+                => _parent[room.X, room.Z]?.Orient(room);
+
+            public bool IsClosed(RoomId room)
+                => _state[room.X, room.Z] == State.Closed;
         }
     }
 }

@@ -13,6 +13,10 @@ namespace BlindWizard.MonoBehaviours
         [SerializeField]
         private GameObject _floorPrefab, _pitPrefab, _wallPrefab, _shimmerPrefab, _enemyPrefab, _pathPrefab;
         
+        #if UNITY_EDITOR || DEVELOPMENT_BUILD
+        [SerializeField] private GameObject _devTextPrefab;
+        #endif
+        
         [SerializeField]
         private Mesh _pathStraight, _pathCorner, _pathEnd, _pathPit, _pathNone;
 
@@ -32,7 +36,11 @@ namespace BlindWizard.MonoBehaviours
         private IEnumerator InstantiateLevel(WizardLevel level)
         {
             _pendingLevels.Remove(level);
+#if  DEVELOPMENT_BUILD || UNITY_EDITOR
+            yield return StartCoroutine(level.Instantiate(_floorPrefab, _pitPrefab, _shimmerPrefab, _enemyPrefab, _wallPrefab, _pathPrefab, _devTextPrefab));
+#else
             yield return StartCoroutine(level.Instantiate(_floorPrefab, _pitPrefab, _shimmerPrefab, _enemyPrefab, _wallPrefab, _pathPrefab));
+#endif
             Levels[level.Level] = level;
             _player.UpdatePosition();
         }
@@ -59,9 +67,27 @@ namespace BlindWizard.MonoBehaviours
             set
             {
                 // Reset previous path
+#if DEVELOPMENT_BUILD || UNITY_EDITOR
+                for (var x = 0; x < Levels[_player.Level].Width; x++)
+                for (var z = 0; z < Levels[_player.Level].Width; z++)
+                {
+                    var path = Levels[_player.Level][x, z].Path;
+                    var parent = Levels[_player.Level].Pathfinder.Parent(_player.Position, new RoomId(x, z));
+                    if (parent == null)
+                    {
+                        path.GetComponent<MeshFilter>().mesh = _pathNone;
+                        continue;
+                    }
+                    path.GetComponent<MeshFilter>().mesh = _pathEnd;
+                    path.transform.rotation =
+                        Quaternion.AngleAxis(parent.Value.Rotation(), Vector3.up);
+                    path.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+                }
+#else
                 if (_path != null)
                     foreach (var roomId in _path)
                         Levels[_player.Level][roomId].Path.GetComponent<MeshFilter>().mesh = _pathNone;
+#endif
                 if (value != null)
                 {
                     if (value.Count > 0)
@@ -72,6 +98,7 @@ namespace BlindWizard.MonoBehaviours
                             Quaternion.AngleAxis(
                                 value[Math.Max(0, value.Count - 2)].Orient(value[value.Count - 1]).Rotation(),
                                 Vector3.up);
+                        beginPath.transform.localScale = Vector3.one;
                     }
                     for (var i = 1; i < value.Count - 1; i++)
                     {
@@ -91,6 +118,7 @@ namespace BlindWizard.MonoBehaviours
                             path.transform.rotation =
                                 Quaternion.AngleAxis((next + 90) % 360 == last ? next : last, Vector3.up);
                         }
+                        path.transform.localScale = Vector3.one;
                     }
                     if (value.Count > 1)
                     {
@@ -99,6 +127,7 @@ namespace BlindWizard.MonoBehaviours
                             Levels[_player.Level][value[0]].FloorGen ? _pathEnd : _pathPit;
                         endPath.transform.rotation =
                             Quaternion.AngleAxis(value[1].Orient(value[0]).Rotation(), Vector3.up);
+                        endPath.transform.localScale = Vector3.one;
                     }
                 }
                 _path = value;

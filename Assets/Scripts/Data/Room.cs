@@ -42,5 +42,9 @@ namespace BlindWizard.Data
         /// GameObject for a Pit, used for player movement
         /// </summary>
         public GameObject Pit { get; set; }
+        
+#if DEVELOPMENT_BUILD || UNITY_EDITOR
+        public GameObject DevText { get; set; }
+#endif
     }
 }
