@@ -956,13 +956,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa952cbcc0eb13d4ca558b6da550ff55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  touchPoint: {fileID: 1228276710127866}
+  maximumAlpha: 1
   material_idle: {fileID: 2100000, guid: 3b4f6031d569a624ba87b631c93a788a, type: 2}
   material_app: {fileID: 2100000, guid: 3fe59d3fe0697b84196c28c184197906, type: 2}
   material_system: {fileID: 2100000, guid: 6c9fcd230d4724c40af9e27326dc25f1, type: 2}
   material_touchpad: {fileID: 2100000, guid: a89bc9f2db5f60743a95275d0336b6c2, type: 2}
-  touchTransparent: {fileID: 2100000, guid: 089662c06964d614db131b6b344431e4, type: 2}
-  touchOpaque: {fileID: 2100000, guid: 7bc1b31ae424a1448b1be6be3707ad31, type: 2}
 --- !u!114 &114305377566276220
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1915,7 +1913,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
   m_AnchoredPosition: {x: -32, y: 0}
-  m_SizeDelta: {x: 0, y: 78}
+  m_SizeDelta: {x: 198, y: 78}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!224 &224099782754327740
 RectTransform:
@@ -2031,10 +2029,10 @@ RectTransform:
   m_Father: {fileID: 224060496903470804}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 99, y: -39}
+  m_SizeDelta: {x: 134, y: 78}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224519759889200318
 RectTransform:
@@ -2067,10 +2065,10 @@ RectTransform:
   m_Father: {fileID: 224974442681859516}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 153.5, y: -39}
+  m_SizeDelta: {x: 243, y: 78}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224560469861349072
 RectTransform:
@@ -2200,7 +2198,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
   m_AnchoredPosition: {x: -32, y: 0}
-  m_SizeDelta: {x: 0, y: 78}
+  m_SizeDelta: {x: 307, y: 78}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!225 &225441385142323906
 CanvasGroup:

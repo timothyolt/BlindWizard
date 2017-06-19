@@ -20,8 +20,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1509313747}
   - component: {fileID: 1980163928}
-  - component: {fileID: 114761276131746110}
-  - component: {fileID: 114758576731445056}
+  - component: {fileID: 114663877464532176}
+  - component: {fileID: 114019187268974328}
   m_Layer: 0
   m_Name: DemoSceneManager
   m_TagString: Untagged
@@ -53,7 +53,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bec9ea3efe7849ffae666549aca3cad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114758576731445056
+--- !u!114 &114019187268974328
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -64,8 +64,8 @@ MonoBehaviour:
   m_Script: {fileID: 112998890, guid: 325c5b2a7434372429c2ca9d61dba58e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _guid: b2d45969-4720-4081-93dc-40a130613586
---- !u!114 &114761276131746110
+  _guid: f2921fb2-9347-44d1-9fdf-ed26d39981d3
+--- !u!114 &114663877464532176
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}

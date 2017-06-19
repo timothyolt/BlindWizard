@@ -9,8 +9,8 @@ GameObject:
   m_Component:
   - component: {fileID: 440248}
   - component: {fileID: 11469856}
-  - component: {fileID: 114866652649863946}
-  - component: {fileID: 114185934856035430}
+  - component: {fileID: 114685581301582292}
+  - component: {fileID: 114217648366042852}
   m_Layer: 0
   m_Name: GvrAudioSoundfield
   m_TagString: Untagged
@@ -51,7 +51,12 @@ MonoBehaviour:
   soundfieldMute: 0
   soundfieldPitch: 1
   soundfieldPriority: 32
+  soundfieldSpatialBlend: 0
+  soundfieldDopplerLevel: 0
   soundfieldVolume: 1
+  soundfieldRolloffMode: 0
+  soundfieldMaxDistance: 500
+  soundfieldMinDistance: 1
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -63,7 +68,7 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 119012}
   m_IsPrefabParent: 1
---- !u!114 &114185934856035430
+--- !u!114 &114217648366042852
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -74,8 +79,8 @@ MonoBehaviour:
   m_Script: {fileID: 112998890, guid: 325c5b2a7434372429c2ca9d61dba58e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _guid: 499393f9-2cf4-4175-a270-6ec462c14bbf
---- !u!114 &114866652649863946
+  _guid: 95e0e721-f2cc-45a8-9f0e-c4ba4e4eb68e
+--- !u!114 &114685581301582292
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}

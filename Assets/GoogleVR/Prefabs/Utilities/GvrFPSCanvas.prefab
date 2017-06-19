@@ -14,8 +14,8 @@ GameObject:
   - component: {fileID: 11429704}
   - component: {fileID: 22295478}
   - component: {fileID: 11413652}
-  - component: {fileID: 114935829342289494}
-  - component: {fileID: 114160253847863390}
+  - component: {fileID: 114889090752543574}
+  - component: {fileID: 114210320481878728}
   m_Layer: 5
   m_Name: GvrFPSCanvas
   m_TagString: Untagged
@@ -160,7 +160,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 0}
---- !u!114 &114160253847863390
+--- !u!114 &114210320481878728
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -171,8 +171,8 @@ MonoBehaviour:
   m_Script: {fileID: 112998890, guid: 325c5b2a7434372429c2ca9d61dba58e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _guid: ca9c44d7-939b-4ca2-80ed-5bb0d6b3cf96
---- !u!114 &114935829342289494
+  _guid: a671efdb-b5dc-427a-96ac-be48cbbc58ab
+--- !u!114 &114889090752543574
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
