@@ -108,7 +108,7 @@ namespace BlindWizard.MonoBehaviours
 				googleVrObject?.SetActive(false);
 #endif
 #if DEBUG
-            Debug.Log($"{GvrController.ApiStatus} {GvrController.State}");
+            // Debug.Log($"{GvrController.ApiStatus} {GvrController.State}");
 #endif
         }
 

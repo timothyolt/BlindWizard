@@ -15,6 +15,7 @@ namespace BlindWizard.MonoBehaviours
         
         #if UNITY_EDITOR || DEVELOPMENT_BUILD
         [SerializeField] private GameObject _devTextPrefab;
+        [SerializeField] private bool _pathfinderDebug;
         #endif
         
         [SerializeField]
@@ -68,12 +69,13 @@ namespace BlindWizard.MonoBehaviours
             {
                 // Reset previous path
 #if DEVELOPMENT_BUILD || UNITY_EDITOR
+                Pathfinder.Debug = _pathfinderDebug;
                 for (var x = 0; x < Levels[_player.Level].Width; x++)
                 for (var z = 0; z < Levels[_player.Level].Width; z++)
                 {
                     var path = Levels[_player.Level][x, z].Path;
                     var parent = Levels[_player.Level].Pathfinder.Parent(_player.Position, new RoomId(x, z));
-                    if (parent == null)
+                    if (parent == null || !Pathfinder.Debug)
                     {
                         path.GetComponent<MeshFilter>().mesh = _pathNone;
                         continue;

@@ -32,7 +32,8 @@ namespace BlindWizard.MonoBehaviours
             var stringBuilder = new StringBuilder();
             foreach (var roomId in path)
                 stringBuilder.Append(roomId);
-            Debug.Log(stringBuilder);
+            if (Pathfinder.Debug)
+                Debug.Log(stringBuilder);
 #endif
         }
 

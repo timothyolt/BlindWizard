@@ -7,6 +7,9 @@ namespace BlindWizard.Data
 {
     public class Pathfinder
     {
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
+        public static bool Debug { get; set; }
+#endif
         /// <summary>
         /// Affects how the algorithm values it's proximity to the destination
         /// </summary>
@@ -170,11 +173,12 @@ namespace BlindWizard.Data
                 var current = previous[direction];
                 if (!current.Bounds(_pathfinder.Width) ||                               // Out of bounds
                     Rooms[previous.X, previous.Z].Walls[direction].Gen) return;         // Through a wall
+                // Calculate new actual from previous headed into current
+                var actual = _actual[previous.X, previous.Z] + (Rooms[current.X, current.Z].FloorGen ? ActualWeight : Width * 2);
                 // Update actual cost and parent with new path
                 void UpdateActual()
                 {
-                    _actual[current.X, current.Z] =
-                        _actual[previous.X, previous.Z] + (Rooms[current.X, current.Z].FloorGen ? ActualWeight : Width * 2);
+                    _actual[current.X, current.Z] = actual;
                     _parent[current.X, current.Z] = previous;
                 }
                 if (_state[current.X, current.Z] == State.Untouched)                    // Not visited before
@@ -184,8 +188,7 @@ namespace BlindWizard.Data
                     UpdateActual();
                 }
                 else if (_state[current.X, current.Z] == State.Open &&  // Previously visited but still open
-                         _actual[current.X, current.Z] >                // Previous visit was worse
-                         _actual[previous.X, previous.Z] + ActualWeight)
+                         _actual[current.X, current.Z] > actual)             // Previous visit was worse
                     UpdateActual();
             }
 
@@ -210,9 +213,32 @@ namespace BlindWizard.Data
             /// or a list containing only the destination if no such path can be found</returns>
             public List<RoomId> Shortest(RoomId destination)
             {
+#if DEVELOPMENT_BUILD || UNITY_EDITOR
+                void UpdateDebug()
+                {
+                    for (var x = 0; x < Width; x++)
+                    for (var z = 0; z < Width; z++)
+                    {
+                        var textMesh = Rooms[x, z].DevText?.GetComponent<TextMesh>();
+                        if (textMesh == null)
+                            continue;
+                        textMesh.text = Debug ? $"{_actual[x, z]}" : "";
+                        textMesh.color = _state[x, z] == State.Untouched
+                            ? Color.white
+                            : _state[x, z] == State.Open
+                                ? Color.green
+                                : Color.red;
+                    }
+                }
+#endif
                 // Check cache
                 if (_path[destination.X, destination.Z] != null)
+                {
+#if DEVELOPMENT_BUILD || UNITY_EDITOR
+                    UpdateDebug();
+#endif
                     return _path[ destination.X, destination.Z];
+                }
                 // Proceed with A* by finding the lowest cost open room and closing it, functions take care of the rest
                 while (_state[destination.X, destination.Z] != State.Closed && _open.Count > 0)
                 {
@@ -245,24 +271,8 @@ namespace BlindWizard.Data
                     path.Add(last);
                 }
                 _path[destination.X, destination.Z] = path;
-                // Re-open destination if pit
-                //if (Rooms[destination.X, destination.Z].FloorGen) return path;
-                //_state[destination.X, destination.Z] = State.Open;
-                //_open.Add(destination);
 #if DEVELOPMENT_BUILD || UNITY_EDITOR
-                for (var x = 0; x < Width; x++)
-                for (var z = 0; z < Width; z++)
-                {
-                    var textMesh = Rooms[x, z].DevText?.GetComponent<TextMesh>();
-                    if (textMesh == null)
-                        continue;
-                    textMesh.text = $"{_actual[x, z]}";
-                    textMesh.color = _state[x, z] == State.Untouched
-                        ? Color.white
-                        : _state[x, z] == State.Open
-                            ? Color.green
-                            : Color.red;
-                }
+                UpdateDebug();
 #endif
                 return path;
             }
