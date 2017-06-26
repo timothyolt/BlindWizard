@@ -14,6 +14,7 @@ namespace BlindWizard.Data
         /// Affects how the algorithm values it's proximity to the destination
         /// </summary>
         private const int HeuristicWeight = 1;
+
         /// <summary>
         /// Affects how the algorithm values it's travel time from the origin
         /// </summary>
@@ -28,10 +29,12 @@ namespace BlindWizard.Data
         /// Proxy for WizardLevel.Level
         /// </summary>
         public int Level => _level.Level;
+
         /// <summary>
         /// Proxy for WizardLevel.Width;
         /// </summary>
         public int Width => _level.Width;
+
         /// <summary>
         /// Proxy for WizardLevel.Rooms
         /// </summary>
@@ -62,10 +65,12 @@ namespace BlindWizard.Data
             /// Room has not been considered yet
             /// </summary>
             Untouched,
+
             /// <summary>
             /// Room has been considered but not completed
             /// </summary>
             Open,
+
             /// <summary>
             /// Optimal path has been found for this room, use _actual and _parent to look it up
             /// </summary>
@@ -89,10 +94,10 @@ namespace BlindWizard.Data
                 (_origin[origin.X, origin.Z] =
                     new Origin(this, origin))).Shortest(
                 destination);
-        
+
         public Direction? Parent(RoomId origin, RoomId room)
             => _origin[origin.X, origin.Z]?.Parent(room);
-        
+
         public bool IsClosed(RoomId origin, RoomId room)
             => _origin[origin.X, origin.Z]?.IsClosed(room) ?? false;
 
@@ -101,7 +106,6 @@ namespace BlindWizard.Data
         /// </summary>
         private class Origin
         {
-
             /// <summary>
             /// Link to the parent Pathfinder
             /// </summary>
@@ -111,6 +115,7 @@ namespace BlindWizard.Data
             /// Proxy for Pathfinder.Width
             /// </summary>
             private int Width => _pathfinder.Width;
+
             /// <summary>
             /// Proxy for Pathfinder.Rooms
             /// </summary>
@@ -171,24 +176,27 @@ namespace BlindWizard.Data
             private void Open(RoomId previous, Direction direction)
             {
                 var current = previous[direction];
-                if (!current.Bounds(_pathfinder.Width) ||                               // Out of bounds
-                    Rooms[previous.X, previous.Z].Walls[direction].Gen) return;         // Through a wall
+                if (!current.Bounds(_pathfinder.Width) || // Out of bounds
+                    Rooms[previous.X, previous.Z].Walls[direction].Gen) return; // Through a wall
                 // Calculate new actual from previous headed into current
-                var actual = _actual[previous.X, previous.Z] + (Rooms[current.X, current.Z].FloorGen ? ActualWeight : Width * 2);
+                var actual = _actual[previous.X, previous.Z] +
+                             (Rooms[current.X, current.Z].FloorGen ? ActualWeight : Width * 2);
+
                 // Update actual cost and parent with new path
                 void UpdateActual()
                 {
                     _actual[current.X, current.Z] = actual;
                     _parent[current.X, current.Z] = previous;
                 }
-                if (_state[current.X, current.Z] == State.Untouched)                    // Not visited before
+
+                if (_state[current.X, current.Z] == State.Untouched) // Not visited before
                 {
-                    _state[ current.X, current.Z] = State.Open;
+                    _state[current.X, current.Z] = State.Open;
                     _open.Add(current);
                     UpdateActual();
                 }
-                else if (_state[current.X, current.Z] == State.Open &&  // Previously visited but still open
-                         _actual[current.X, current.Z] > actual)             // Previous visit was worse
+                else if (_state[current.X, current.Z] == State.Open && // Previously visited but still open
+                         _actual[current.X, current.Z] > actual) // Previous visit was worse
                     UpdateActual();
             }
 
@@ -237,7 +245,7 @@ namespace BlindWizard.Data
 #if DEVELOPMENT_BUILD || UNITY_EDITOR
                     UpdateDebug();
 #endif
-                    return _path[ destination.X, destination.Z];
+                    return _path[destination.X, destination.Z];
                 }
                 // Proceed with A* by finding the lowest cost open room and closing it, functions take care of the rest
                 while (_state[destination.X, destination.Z] != State.Closed && _open.Count > 0)
@@ -260,7 +268,7 @@ namespace BlindWizard.Data
                     Close(minRoomId);
                 }
                 // Build path list by parenting
-                var path = new List<RoomId> { destination };
+                var path = new List<RoomId> {destination};
                 var last = destination;
                 for (var i = 0; i < _actual[destination.X, destination.Z]; i++)
                 {
