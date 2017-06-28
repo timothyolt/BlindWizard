@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 11437632}
   - component: {fileID: 114962086282293478}
   - component: {fileID: 114293488657025882}
+  - component: {fileID: 114208545646224962}
+  - component: {fileID: 114557120488340966}
   m_Layer: 0
   m_Name: GvrAudioRoom
   m_TagString: Untagged
@@ -92,6 +94,23 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 103798}
   m_IsPrefabParent: 1
+--- !u!114 &114208545646224962
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 103798}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -605777808, guid: 2508b139adb0da94496f61d5b3ddc401, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isConnected: 1
+  _guid: 
+  _referenceCollection:
+    _collection:
+    - {fileID: 103798}
+  _assetGuid: c162c5667f1844e798189ae778eafc76
 --- !u!114 &114293488657025882
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -104,6 +123,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _guid: abd123f6-069a-48b1-97b5-01c5826ab504
+--- !u!114 &114557120488340966
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 103798}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 112998890, guid: 2508b139adb0da94496f61d5b3ddc401, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _guid: 99cdc1d1-1402-4606-99b0-8fc33bd82018
 --- !u!114 &114962086282293478
 MonoBehaviour:
   m_ObjectHideFlags: 1

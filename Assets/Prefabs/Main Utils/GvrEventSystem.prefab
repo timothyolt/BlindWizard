@@ -24,6 +24,8 @@ GameObject:
   - component: {fileID: 114515511497960826}
   - component: {fileID: 114314958634938172}
   - component: {fileID: 114939289743941912}
+  - component: {fileID: 114187890035882922}
+  - component: {fileID: 114425156963789928}
   m_Layer: 0
   m_Name: GvrEventSystem
   m_TagString: Untagged
@@ -55,6 +57,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22a6dc478e59e4b35b25f9f26ddc4361, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114187890035882922
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1048436385064292}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -605777808, guid: 2508b139adb0da94496f61d5b3ddc401, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isConnected: 1
+  _guid: 
+  _referenceCollection:
+    _collection:
+    - {fileID: 1048436385064292}
+  _assetGuid: 318cb9192df7f8548a2b7f1f7cc4cb50
 --- !u!114 &114314958634938172
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -72,6 +91,18 @@ MonoBehaviour:
     _collection:
     - {fileID: 1048436385064292}
   _assetGuid: 2a8b7a73adbbcdd429d12176886ccf5f
+--- !u!114 &114425156963789928
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1048436385064292}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 112998890, guid: 2508b139adb0da94496f61d5b3ddc401, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _guid: 9caa0ab3-9425-42ab-bddc-3eced7766400
 --- !u!114 &114515511497960826
 MonoBehaviour:
   m_ObjectHideFlags: 1

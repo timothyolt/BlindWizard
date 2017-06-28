@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 22228636}
   - component: {fileID: 11450286}
   - component: {fileID: 114355802484885154}
+  - component: {fileID: 114914215516371524}
   m_Layer: 5
   m_Name: MessageText
   m_TagString: Untagged
@@ -29,6 +30,7 @@ GameObject:
   - component: {fileID: 22233428}
   - component: {fileID: 11437516}
   - component: {fileID: 114231283730212176}
+  - component: {fileID: 114103081069948060}
   m_Layer: 5
   m_Name: Background
   m_TagString: Untagged
@@ -47,6 +49,7 @@ GameObject:
   - component: {fileID: 22358712}
   - component: {fileID: 11424358}
   - component: {fileID: 114994681625124986}
+  - component: {fileID: 114329827171104258}
   m_Layer: 5
   m_Name: MessageCanvas
   m_TagString: Untagged
@@ -65,6 +68,8 @@ GameObject:
   - component: {fileID: 11499020}
   - component: {fileID: 114733583731831380}
   - component: {fileID: 114547523742599058}
+  - component: {fileID: 114464913223987528}
+  - component: {fileID: 114584847039498080}
   m_Layer: 0
   m_Name: DemoInputManager
   m_TagString: Untagged
@@ -284,6 +289,18 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 195966}
   m_IsPrefabParent: 1
+--- !u!114 &114103081069948060
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 156300}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 112998890, guid: 2508b139adb0da94496f61d5b3ddc401, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _guid: 483b63ab-3ad4-4606-b627-86a2100f786b
 --- !u!114 &114231283730212176
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -296,6 +313,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _guid: 3ec508e0-843b-4e87-aff2-a5e38095c9e0
+--- !u!114 &114329827171104258
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 162814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 112998890, guid: 2508b139adb0da94496f61d5b3ddc401, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _guid: 16f45d8e-10c9-4544-8a35-8fd0179236fc
 --- !u!114 &114355802484885154
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -308,6 +337,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _guid: 1b0060f9-e31c-44fa-81fa-e8697c65afca
+--- !u!114 &114464913223987528
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 195966}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -605777808, guid: 2508b139adb0da94496f61d5b3ddc401, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isConnected: 1
+  _guid: 
+  _referenceCollection:
+    _collection:
+    - {fileID: 195966}
+    - {fileID: 162814}
+    - {fileID: 156300}
+    - {fileID: 152284}
+  _assetGuid: 8524bbe5e592a42dc9251484a73c9c7f
 --- !u!114 &114547523742599058
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -320,6 +369,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _guid: 104fdf36-ac49-4ea8-9542-f712372508ac
+--- !u!114 &114584847039498080
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 195966}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 112998890, guid: 2508b139adb0da94496f61d5b3ddc401, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _guid: b7512cf0-b3b1-4936-9f67-c6463dd23152
 --- !u!114 &114733583731831380
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -340,6 +401,18 @@ MonoBehaviour:
     - {fileID: 156300}
     - {fileID: 152284}
   _assetGuid: 8524bbe5e592a42dc9251484a73c9c7f
+--- !u!114 &114914215516371524
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 152284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 112998890, guid: 2508b139adb0da94496f61d5b3ddc401, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _guid: 610dd389-6219-4e67-8c2d-24dad084e732
 --- !u!114 &114994681625124986
 MonoBehaviour:
   m_ObjectHideFlags: 1

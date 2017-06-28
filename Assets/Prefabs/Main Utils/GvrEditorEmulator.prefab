@@ -22,6 +22,8 @@ GameObject:
   - component: {fileID: 114427743965500486}
   - component: {fileID: 114273499693533692}
   - component: {fileID: 114561453921375362}
+  - component: {fileID: 114994798109344308}
+  - component: {fileID: 114634620502560360}
   m_Layer: 0
   m_Name: GvrEditorEmulator
   m_TagString: Untagged
@@ -83,3 +85,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _guid: 9670d9ce-1a1a-40df-96b5-5e3fc0e11847
+--- !u!114 &114634620502560360
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1482119044473830}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 112998890, guid: 2508b139adb0da94496f61d5b3ddc401, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _guid: 1d5528c8-acd9-4f14-8d66-cc2abd947484
+--- !u!114 &114994798109344308
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1482119044473830}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -605777808, guid: 2508b139adb0da94496f61d5b3ddc401, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isConnected: 1
+  _guid: 
+  _referenceCollection:
+    _collection:
+    - {fileID: 1482119044473830}
+  _assetGuid: bb8386aecfca6fe48b3d26780ef6c4da

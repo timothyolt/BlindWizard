@@ -27,6 +27,8 @@ GameObject:
   - component: {fileID: 114604798586132894}
   - component: {fileID: 114170058879566120}
   - component: {fileID: 114596160005842730}
+  - component: {fileID: 114931202568372672}
+  - component: {fileID: 114197071551555724}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -45,6 +47,7 @@ GameObject:
   - component: {fileID: 114772736749059480}
   - component: {fileID: 23272557450141096}
   - component: {fileID: 114500166563329356}
+  - component: {fileID: 114869628610966146}
   m_Layer: 2
   m_Name: GvrReticlePointer
   m_TagString: Untagged
@@ -173,6 +176,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _guid: f8035c71-923c-4d37-b4c5-475d9bec0bd0
+--- !u!114 &114197071551555724
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1648933113600804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 112998890, guid: 2508b139adb0da94496f61d5b3ddc401, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _guid: bcebe6af-26ce-4ce2-96a6-23572309685b
 --- !u!114 &114290634079796596
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -246,6 +261,36 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   reticleSegments: 20
   reticleGrowthSpeed: 8
+--- !u!114 &114869628610966146
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1827554164107550}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 112998890, guid: 2508b139adb0da94496f61d5b3ddc401, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _guid: cd066d32-35fe-4ddb-a07b-565a28900dcd
+--- !u!114 &114931202568372672
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1648933113600804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -605777808, guid: 2508b139adb0da94496f61d5b3ddc401, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isConnected: 1
+  _guid: 
+  _referenceCollection:
+    _collection:
+    - {fileID: 1648933113600804}
+    - {fileID: 1827554164107550}
+  _assetGuid: ca1dbaaec9dd2ed4691ae8a8a68df543
 --- !u!124 &124891413225891338
 Behaviour:
   m_ObjectHideFlags: 1

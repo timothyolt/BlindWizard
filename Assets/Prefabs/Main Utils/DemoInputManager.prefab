@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 223712666983123274}
   - component: {fileID: 114989709466853458}
   - component: {fileID: 114960652754684992}
+  - component: {fileID: 114733193487206190}
   m_Layer: 5
   m_Name: MessageCanvas
   m_TagString: Untagged
@@ -40,6 +41,7 @@ GameObject:
   - component: {fileID: 222184664316289910}
   - component: {fileID: 114213157820667618}
   - component: {fileID: 114258477028613616}
+  - component: {fileID: 114376350771919058}
   m_Layer: 5
   m_Name: Background
   m_TagString: Untagged
@@ -58,6 +60,7 @@ GameObject:
   - component: {fileID: 222458305867630310}
   - component: {fileID: 114316918259544786}
   - component: {fileID: 114241959911213180}
+  - component: {fileID: 114220698706513824}
   m_Layer: 5
   m_Name: MessageText
   m_TagString: Untagged
@@ -76,6 +79,8 @@ GameObject:
   - component: {fileID: 114527239185777354}
   - component: {fileID: 114255698747720232}
   - component: {fileID: 114994885913493864}
+  - component: {fileID: 114541896263957284}
+  - component: {fileID: 114449154216080580}
   m_Layer: 0
   m_Name: DemoInputManager
   m_TagString: Untagged
@@ -124,6 +129,18 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114220698706513824
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1705453414779594}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 112998890, guid: 2508b139adb0da94496f61d5b3ddc401, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _guid: 8d16fc67-99e0-419c-989f-69c95be3be5f
 --- !u!114 &114241959911213180
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -202,6 +219,30 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: To use the controller, please upgrade to a version of Unity with the GVR
     native integration
+--- !u!114 &114376350771919058
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1487539720036884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 112998890, guid: 2508b139adb0da94496f61d5b3ddc401, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _guid: c96e0c8a-b1a5-488d-9043-35d30511b050
+--- !u!114 &114449154216080580
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1767560704978276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 112998890, guid: 2508b139adb0da94496f61d5b3ddc401, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _guid: 48958153-234a-4b6f-ad45-38b65a74327e
 --- !u!114 &114527239185777354
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -221,6 +262,38 @@ MonoBehaviour:
   messageCanvas: {fileID: 0}
   messageText: {fileID: 0}
   gvrEmulatedPlatformType: 0
+--- !u!114 &114541896263957284
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1767560704978276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -605777808, guid: 2508b139adb0da94496f61d5b3ddc401, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isConnected: 1
+  _guid: 
+  _referenceCollection:
+    _collection:
+    - {fileID: 1767560704978276}
+    - {fileID: 1250573689115360}
+    - {fileID: 1487539720036884}
+    - {fileID: 1705453414779594}
+  _assetGuid: 7fc0e92a5b5f5234595afa89e08f647a
+--- !u!114 &114733193487206190
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1250573689115360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 112998890, guid: 2508b139adb0da94496f61d5b3ddc401, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _guid: 617a605e-20b0-4d5e-890e-5605078d6231
 --- !u!114 &114960652754684992
 MonoBehaviour:
   m_ObjectHideFlags: 1

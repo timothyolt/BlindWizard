@@ -22,6 +22,8 @@ GameObject:
   - component: {fileID: 114803144798696092}
   - component: {fileID: 114226509361147936}
   - component: {fileID: 114146765671317524}
+  - component: {fileID: 114676574499596838}
+  - component: {fileID: 114865251739743786}
   m_Layer: 0
   m_Name: World
   m_TagString: Untagged
@@ -71,6 +73,23 @@ MonoBehaviour:
     _collection:
     - {fileID: 1760622929413306}
   _assetGuid: bc0f77bc1e2ef4e4bb4f91c3231f5949
+--- !u!114 &114676574499596838
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1760622929413306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -605777808, guid: 2508b139adb0da94496f61d5b3ddc401, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isConnected: 1
+  _guid: 
+  _referenceCollection:
+    _collection:
+    - {fileID: 1760622929413306}
+  _assetGuid: cee7e4b2de4df564caac6d0026373390
 --- !u!114 &114803144798696092
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -101,3 +120,15 @@ MonoBehaviour:
   _pathPit: {fileID: 4300004, guid: fbbb5bd50bef16f419b3fb4c944b5a97, type: 3}
   _pathNone: {fileID: 0}
   _player: {fileID: 0}
+--- !u!114 &114865251739743786
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1760622929413306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 112998890, guid: 2508b139adb0da94496f61d5b3ddc401, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _guid: 38407033-7ece-414d-a88b-6c90faf795fc

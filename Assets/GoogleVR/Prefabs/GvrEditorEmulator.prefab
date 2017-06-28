@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 114000013210091632}
   - component: {fileID: 114665776292583992}
   - component: {fileID: 114474534650003114}
+  - component: {fileID: 114135531785930960}
+  - component: {fileID: 114489173775282714}
   m_Layer: 0
   m_Name: GvrEditorEmulator
   m_TagString: Untagged
@@ -54,6 +56,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_camera: {fileID: 0}
+--- !u!114 &114135531785930960
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 177758}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -605777808, guid: 2508b139adb0da94496f61d5b3ddc401, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isConnected: 1
+  _guid: 
+  _referenceCollection:
+    _collection:
+    - {fileID: 177758}
+  _assetGuid: abe147ba9b47b8d4dae0fb25aabee495
 --- !u!114 &114474534650003114
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -66,6 +85,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _guid: 9670d9ce-1a1a-40df-96b5-5e3fc0e11847
+--- !u!114 &114489173775282714
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 177758}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 112998890, guid: 2508b139adb0da94496f61d5b3ddc401, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _guid: 94dc62c9-0b40-4500-b2b0-5ee615346dca
 --- !u!114 &114665776292583992
 MonoBehaviour:
   m_ObjectHideFlags: 1
