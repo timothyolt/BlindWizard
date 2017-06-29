@@ -2807,9 +2807,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c52851ea0de74a228fa29a84de008ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  location: 0
-  text: {fileID: 114336483561139292}
-  alwaysVisible: 0
 --- !u!114 &114283459447797928
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3127,8 +3124,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c173f7c6a736fe469d4acc5b108d6d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  joint: 1
-  debugDrawTo: {fileID: 0}
 --- !u!114 &114340339638816564
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3689,11 +3684,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51b65678ccdd949e9a58874d2880c0ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  laserColor: {r: 1, g: 1, b: 1, a: 0.2509804}
-  maxLaserDistance: 0.75
-  maxReticleDistance: 2.5
-  reticle: {fileID: 1628872505312470}
-  reticleSortingOrder: 32767
 --- !u!114 &114588810410727430
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3744,12 +3734,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddd25f1308577456cbaa207901961126, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controllerMain: {fileID: 0}
-  controllerPointer: {fileID: 1644050343720358}
-  reticlePointer: {fileID: 1821278316745996}
-  messageCanvas: {fileID: 0}
-  messageText: {fileID: 0}
-  gvrEmulatedPlatformType: 0
 --- !u!114 &114631875396502638
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3921,8 +3905,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c173f7c6a736fe469d4acc5b108d6d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  joint: 0
-  debugDrawTo: {fileID: 0}
 --- !u!114 &114678679463970816
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4070,11 +4052,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa952cbcc0eb13d4ca558b6da550ff55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maximumAlpha: 1
-  material_idle: {fileID: 2100000, guid: 3b4f6031d569a624ba87b631c93a788a, type: 2}
-  material_app: {fileID: 2100000, guid: 3fe59d3fe0697b84196c28c184197906, type: 2}
-  material_system: {fileID: 2100000, guid: 6c9fcd230d4724c40af9e27326dc25f1, type: 2}
-  material_touchpad: {fileID: 2100000, guid: a89bc9f2db5f60743a95275d0336b6c2, type: 2}
 --- !u!114 &114720022291257306
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4582,9 +4559,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c52851ea0de74a228fa29a84de008ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  location: 1
-  text: {fileID: 114970010637132686}
-  alwaysVisible: 0
 --- !u!114 &114828708383653734
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4726,9 +4700,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c52851ea0de74a228fa29a84de008ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  location: 2
-  text: {fileID: 114059177902779910}
-  alwaysVisible: 0
 --- !u!114 &114903026571194496
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4919,9 +4890,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c52851ea0de74a228fa29a84de008ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  location: 3
-  text: {fileID: 114571171182161156}
-  alwaysVisible: 0
 --- !u!114 &114979895685625682
 MonoBehaviour:
   m_ObjectHideFlags: 1
