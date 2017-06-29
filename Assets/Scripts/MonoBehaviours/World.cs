@@ -57,7 +57,9 @@ namespace BlindWizard.MonoBehaviours
 
         public void AddLevel()
         {
-            _pendingLevels.Add(new WizardLevel(Levels.Count));
+            var level = new WizardLevel(Levels.Count);
+            level.Generate();
+            _pendingLevels.Add(level);
             Levels.Add(null);
         }
 
