@@ -48,12 +48,6 @@ namespace BlindWizard.Data
             _wOffset = Width / 2f - 0.5f;
             _y = Width * 2 + 1;
             Rooms = new Room[Width, Width];
-            GenerateRooms();
-            GeneratePits(Area / 16, Area / 32d, 0.25);
-            GenerateWalls();
-            GenerateShimmers(Width / 2, Width / 4d, 0.5f, 1);
-            // GenerateEnemies(Width / 2, Width / 4d, 0.5f, 1, enemyPrefab);
-            GenerateMaze();
             Pathfinder = new Pathfinder(this);
         }
 
@@ -151,6 +145,15 @@ namespace BlindWizard.Data
             }) {Name = $"WizardLevel-{Level}", IsBackground = true};
             _mazeTask.Start();
             //Debug.Log(Level + nameof(GenerateMaze) + " Started");
+        }
+
+        public void Generate() {
+            GenerateRooms();
+            GeneratePits(Area / 16, Area / 32d, 0.25);
+            GenerateWalls();
+            GenerateShimmers(Width / 2, Width / 4d, 0.5f, 1);
+            // GenerateEnemies(Width / 2, Width / 4d, 0.5f, 1, enemyPrefab);
+            GenerateMaze();
         }
 
         public bool IsDone => _maze != null;
