@@ -70,7 +70,7 @@ namespace BlindWizard.Data
                 action(x, z);
             } while (outer(count++));
         }
-
+        
         private void GenerateRooms()
         {
             //Debug.Log(Level + nameof(GenerateRooms));
@@ -88,7 +88,7 @@ namespace BlindWizard.Data
                 count => count < max && Random.Range(0, 1f) < probability,
                 (x, z) => Rooms[x, z].FloorGen = false);
         }
-
+       
         private void GenerateWalls()
         {
             //Debug.Log(Level + nameof(GenerateWalls));
@@ -113,6 +113,7 @@ namespace BlindWizard.Data
                 }
             }
         }
+        
 
         private void GenerateShimmers(int max, double at, double desired, double spread)
         {
@@ -155,7 +156,31 @@ namespace BlindWizard.Data
             // GenerateEnemies(Width / 2, Width / 4d, 0.5f, 1, enemyPrefab);
             GenerateMaze();
         }
+        public void GenerateLevel1()
+        {
+            GenerateRooms();
+            // oposite corner has hole
+            Rooms[3, 3].FloorGen = false;
 
+            // other 2 corners have shimmers
+            Rooms[0, 3].ShimmerGen = true;
+            Rooms[3, 0].ShimmerGen = true;
+
+            // L shaped walls leading towards pit
+            GenerateWalls();
+
+            //GenerateMaze(); as follows
+            //Debug.Log(Level + nameof(GenerateMaze));
+            _mazeTask = new Thread(() =>
+            {
+                //Debug.Log("Maze creating");
+                _maze = new Maze(Rooms);
+                //Debug.Log("Maze finished");
+            })
+            { Name = $"WizardLevel-{Level}", IsBackground = true };
+            _mazeTask.Start();
+            //Debug.Log(Level + nameof(GenerateMaze) + " Started");
+        }
         public bool IsDone => _maze != null;
 
 #if DEVELOPMENT_BUILD || UNITY_EDITOR
@@ -178,61 +203,74 @@ namespace BlindWizard.Data
                             wallPrefab.transform.position + container.transform.position + offset,
                             wallPrefab.transform.rotation * rotation, container.transform)).name = name;
                 }
+                
                 if (x < Width && z < Width)
-                {
-                    var room = Rooms[x, z];
-                    room.Container = new GameObject($"Room Container {x}, {z}")
                     {
-                        transform = {position = new Vector3(x * RoomScale - _wOffset, -_y, z * RoomScale - _wOffset)}
-                    };
-                    room.Container.transform.SetParent(Container.transform);
-                    room.Path = Object.Instantiate(pathPrefab, room.Container.transform);
-                    room.Path.name = $"Path {x}, {z}";
+                        var room = Rooms[x, z];
+                        room.Container = new GameObject($"Room Container {x}, {z}")
+                        {
+                            transform = { position = new Vector3(x * RoomScale - _wOffset, -_y, z * RoomScale - _wOffset) }
+                        };
+                        room.Container.transform.SetParent(Container.transform);
+                        room.Path = Object.Instantiate(pathPrefab, room.Container.transform);
+                        room.Path.name = $"Path {x}, {z}";
 #if DEVELOPMENT_BUILD || UNITY_EDITOR
-                    room.DevText = Object.Instantiate(devTextPrefab, room.Container.transform);
+                        room.DevText = Object.Instantiate(devTextPrefab, room.Container.transform);
 #endif
-                    if (room.FloorGen)
-                    {
-                        room.Floor = Object.Instantiate(floorPrefab, room.Container.transform);
-                        room.Floor.name = $"Floor {x}, {z}";
-                        var floor = room.Floor.GetComponent<Floor>();
-                        floor.Level = Level;
-                        floor.Position = new RoomId(x, z);
+                        if (room.FloorGen)
+                        {
+                            room.Floor = Object.Instantiate(floorPrefab, room.Container.transform);
+                            room.Floor.name = $"Floor {x}, {z}";
+                            var floor = room.Floor.GetComponent<Floor>();
+                            floor.Level = Level;
+                            floor.Position = new RoomId(x, z);
+                        }
+                        else
+                        {
+                            room.Pit = Object.Instantiate(pitPrefab, room.Container.transform);
+                            room.Pit.name = $"Pit {x}, {z}";
+                            var floor = room.Pit.GetComponent<Floor>();
+                            floor.Level = Level;
+                            floor.Position = new RoomId(x, z);
+                        }
+                        if (room.ShimmerGen)
+                            (room.Shimmer =
+                                Object.Instantiate(shimmerPrefab, room.Container.transform.position + Vector3.up,
+                                    shimmerPrefab.transform.rotation, room.Container.transform)).name = $"Shimmer {x}, {z}";
+                        if (room.EnemyGen)
+                            (room.Enemy =
+                                Object.Instantiate(enemyPrefab, room.Container.transform.position + Vector3.up,
+                                    shimmerPrefab.transform.rotation, room.Container.transform)).name = $"Enemy {x}, {z}";
+                        
+                            InstantiateWall(room.Walls[Direction.South], room.Container, WallSouthOffset, WallNsRotation,
+                                $"Wall North {x}, {z}");
+                            InstantiateWall(room.Walls[Direction.West], room.Container, WallWestOffset, WallEwRotation,
+                                $"Wall East {x}, {z}");
+                        
+                        
+
+
                     }
                     else
                     {
-                        room.Pit = Object.Instantiate(pitPrefab, room.Container.transform);
-                        room.Pit.name = $"Pit {x}, {z}";
-                        var floor = room.Pit.GetComponent<Floor>();
-                        floor.Level = Level;
-                        floor.Position = new RoomId(x, z);
+                       
+                            if (z > 0 && x < Width)
+                                InstantiateWall(Rooms[x, z - 1].Walls[Direction.North], Rooms[x, z - 1].Container,
+                                    WallNorthOffset, WallNsRotation, $"Wall South {x}, {z - 1}");
+                            if (x > 0 && z < Width)
+                                InstantiateWall(Rooms[x - 1, z].Walls[Direction.East], Rooms[x - 1, z].Container,
+                                    WallEastOffset, WallEwRotation, $"Wall West {x - 1}, {z}");
+                        
+                        
+
                     }
-                    if (room.ShimmerGen)
-                        (room.Shimmer =
-                            Object.Instantiate(shimmerPrefab, room.Container.transform.position + Vector3.up,
-                                shimmerPrefab.transform.rotation, room.Container.transform)).name = $"Shimmer {x}, {z}";
-                    if (room.EnemyGen)
-                        (room.Enemy =
-                            Object.Instantiate(enemyPrefab, room.Container.transform.position + Vector3.up,
-                                shimmerPrefab.transform.rotation, room.Container.transform)).name = $"Enemy {x}, {z}";
-                    InstantiateWall(room.Walls[Direction.South], room.Container, WallSouthOffset, WallNsRotation,
-                        $"Wall North {x}, {z}");
-                    InstantiateWall(room.Walls[Direction.West], room.Container, WallWestOffset, WallEwRotation,
-                        $"Wall East {x}, {z}");
-                }
-                else
-                {
-                    if (z > 0 && x < Width)
-                        InstantiateWall(Rooms[x, z - 1].Walls[Direction.North], Rooms[x, z - 1].Container,
-                            WallNorthOffset, WallNsRotation, $"Wall South {x}, {z - 1}");
-                    if (x > 0 && z < Width)
-                        InstantiateWall(Rooms[x - 1, z].Walls[Direction.East], Rooms[x - 1, z].Container,
-                            WallEastOffset, WallEwRotation, $"Wall West {x - 1}, {z}");
-                }
+               
                 yield return null;
             }
         }
-
+        
+            
+        
         public void Destroy()
         {
             Object.Destroy(Container);

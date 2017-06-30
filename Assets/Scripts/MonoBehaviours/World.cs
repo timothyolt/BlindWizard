@@ -30,7 +30,8 @@ namespace BlindWizard.MonoBehaviours
         {
             Score.Clear();
             _pendingLevels = new List<WizardLevel>();
-            for (var i = 0; i < 4; i++)
+            AddLevel1();
+            for (var i = 0; i < 3; i++)
                 AddLevel();
         }
 
@@ -62,7 +63,13 @@ namespace BlindWizard.MonoBehaviours
             _pendingLevels.Add(level);
             Levels.Add(null);
         }
-
+        public void AddLevel1()
+        {
+            var level = new WizardLevel(Levels.Count);
+            level.GenerateLevel1();
+            _pendingLevels.Add(level);
+            Levels.Add(null);
+        }
         private List<RoomId> _path;
         public List<RoomId> Path
         {

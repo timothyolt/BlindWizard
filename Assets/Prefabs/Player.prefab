@@ -222,7 +222,6 @@ GameObject:
   - component: {fileID: 114242606182608346}
   - component: {fileID: 114574694728926634}
   - component: {fileID: 114803548886802684}
-  - component: {fileID: 114718609795265144}
   m_Layer: 0
   m_Name: LoadingBox
   m_TagString: Untagged
@@ -455,7 +454,6 @@ GameObject:
   - component: {fileID: 222426198236966344}
   - component: {fileID: 114771366579369704}
   - component: {fileID: 114939283713275136}
-  - component: {fileID: 114900102031507802}
   m_Layer: 5
   m_Name: MessageText
   m_TagString: Untagged
@@ -656,7 +654,6 @@ GameObject:
   - component: {fileID: 222300676480554088}
   - component: {fileID: 114267325980397338}
   - component: {fileID: 114406300066273580}
-  - component: {fileID: 114715855221578512}
   m_Layer: 5
   m_Name: Background
   m_TagString: Untagged
@@ -798,7 +795,6 @@ GameObject:
   - component: {fileID: 114769671490994074}
   - component: {fileID: 114132137604725092}
   - component: {fileID: 114473107444731584}
-  - component: {fileID: 114719806944214690}
   m_Layer: 0
   m_Name: ScoreBox
   m_TagString: Untagged
@@ -3065,6 +3061,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c52851ea0de74a228fa29a84de008ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  location: 0
+  text: {fileID: 0}
+  alwaysVisible: 0
 --- !u!114 &114283459447797928
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3442,6 +3441,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c173f7c6a736fe469d4acc5b108d6d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  joint: 0
+  debugDrawTo: {fileID: 0}
 --- !u!114 &114340339638816564
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4194,6 +4195,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51b65678ccdd949e9a58874d2880c0ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  laserColor: {r: 1, g: 1, b: 1, a: 0.25}
+  maxLaserDistance: 0.75
+  maxReticleDistance: 2.5
+  reticle: {fileID: 0}
+  reticleSortingOrder: 32767
 --- !u!114 &114588810410727430
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4256,6 +4262,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddd25f1308577456cbaa207901961126, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  controllerMain: {fileID: 0}
+  controllerPointer: {fileID: 0}
+  reticlePointer: {fileID: 0}
+  messageCanvas: {fileID: 0}
+  messageText: {fileID: 0}
+  gvrEmulatedPlatformType: 0
 --- !u!114 &114631875396502638
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4463,6 +4475,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c173f7c6a736fe469d4acc5b108d6d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  joint: 0
+  debugDrawTo: {fileID: 0}
 --- !u!114 &114678679463970816
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4646,6 +4660,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa952cbcc0eb13d4ca558b6da550ff55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maximumAlpha: 1
+  material_idle: {fileID: 0}
+  material_app: {fileID: 0}
+  material_system: {fileID: 0}
+  material_touchpad: {fileID: 0}
 --- !u!114 &114720022291257306
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5249,6 +5268,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c52851ea0de74a228fa29a84de008ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  location: 0
+  text: {fileID: 0}
+  alwaysVisible: 0
 --- !u!114 &114828708383653734
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5426,6 +5448,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c52851ea0de74a228fa29a84de008ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  location: 0
+  text: {fileID: 0}
+  alwaysVisible: 0
 --- !u!114 &114903026571194496
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5757,6 +5782,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c52851ea0de74a228fa29a84de008ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  location: 0
+  text: {fileID: 0}
+  alwaysVisible: 0
 --- !u!114 &114979895685625682
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7048,7 +7076,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 30}
+  m_AnchoredPosition: {x: 0, y: 110}
   m_SizeDelta: {x: 250, y: 50}
   m_Pivot: {x: -0.5, y: 0.5}
 --- !u!224 &224857261750268756
@@ -7163,7 +7191,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 30}
+  m_AnchoredPosition: {x: 0, y: 110}
   m_SizeDelta: {x: 250, y: 50}
   m_Pivot: {x: -0.5, y: 0.5}
 --- !u!224 &224949918117415626

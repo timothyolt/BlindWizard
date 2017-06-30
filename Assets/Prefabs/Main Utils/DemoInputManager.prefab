@@ -255,10 +255,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controllerMain: {fileID: 0}
-  controllerPointer: {fileID: 1644050343720358, guid: 9e5ecb9ea99fffd468c37b3e1016ebc7,
-    type: 2}
-  reticlePointer: {fileID: 1821278316745996, guid: 9e5ecb9ea99fffd468c37b3e1016ebc7,
-    type: 2}
+  controllerPointer: {fileID: 0}
+  reticlePointer: {fileID: 0}
   messageCanvas: {fileID: 0}
   messageText: {fileID: 0}
   gvrEmulatedPlatformType: 0
