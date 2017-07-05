@@ -689,8 +689,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c52851ea0de74a228fa29a84de008ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  location: 3
-  text: {fileID: 114533563250656998}
+  location: 0
+  text: {fileID: 0}
   alwaysVisible: 0
 --- !u!114 &114033279607985344
 MonoBehaviour:
@@ -716,7 +716,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   location: 0
-  text: {fileID: 114955423895233740}
+  text: {fileID: 0}
   alwaysVisible: 0
 --- !u!114 &114038229053398486
 MonoBehaviour:
@@ -957,10 +957,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maximumAlpha: 1
-  material_idle: {fileID: 2100000, guid: 3b4f6031d569a624ba87b631c93a788a, type: 2}
-  material_app: {fileID: 2100000, guid: 3fe59d3fe0697b84196c28c184197906, type: 2}
-  material_system: {fileID: 2100000, guid: 6c9fcd230d4724c40af9e27326dc25f1, type: 2}
-  material_touchpad: {fileID: 2100000, guid: a89bc9f2db5f60743a95275d0336b6c2, type: 2}
+  material_idle: {fileID: 0}
+  material_app: {fileID: 0}
+  material_system: {fileID: 0}
+  material_touchpad: {fileID: 0}
 --- !u!114 &114305377566276220
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1063,7 +1063,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c173f7c6a736fe469d4acc5b108d6d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  joint: 1
+  joint: 0
   debugDrawTo: {fileID: 0}
 --- !u!114 &114455073616722400
 MonoBehaviour:
@@ -1141,10 +1141,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51b65678ccdd949e9a58874d2880c0ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  laserColor: {r: 1, g: 1, b: 1, a: 0.2509804}
+  laserColor: {r: 1, g: 1, b: 1, a: 0.25}
   maxLaserDistance: 0.75
   maxReticleDistance: 2.5
-  reticle: {fileID: 1056257151748518}
+  reticle: {fileID: 0}
   reticleSortingOrder: 32767
 --- !u!114 &114499480977239508
 MonoBehaviour:
@@ -1324,8 +1324,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c52851ea0de74a228fa29a84de008ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  location: 2
-  text: {fileID: 114970544862511916}
+  location: 0
+  text: {fileID: 0}
   alwaysVisible: 0
 --- !u!114 &114680448759351650
 MonoBehaviour:
@@ -1539,8 +1539,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c52851ea0de74a228fa29a84de008ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  location: 1
-  text: {fileID: 114631056243485910}
+  location: 0
+  text: {fileID: 0}
   alwaysVisible: 0
 --- !u!114 &114955423895233740
 MonoBehaviour:
@@ -1993,7 +1993,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 30}
+  m_AnchoredPosition: {x: 0, y: 110}
   m_SizeDelta: {x: 250, y: 50}
   m_Pivot: {x: -0.5, y: 0.5}
 --- !u!224 &224503010777178232
@@ -2013,7 +2013,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 29.999992}
+  m_AnchoredPosition: {x: 0, y: 110}
   m_SizeDelta: {x: 250, y: 50}
   m_Pivot: {x: -0.5, y: 0.5}
 --- !u!224 &224518967058477368

@@ -99,7 +99,7 @@ BoxCollider:
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &114265086675627398
 MonoBehaviour:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 11
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1584410203505430}
@@ -122,7 +122,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
 --- !u!114 &114489187987194132
 MonoBehaviour:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 11
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1584410203505430}

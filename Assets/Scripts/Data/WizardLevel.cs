@@ -160,10 +160,10 @@ namespace BlindWizard.Data
 
 #if DEVELOPMENT_BUILD || UNITY_EDITOR
         public IEnumerator Instantiate(GameObject floorPrefab, GameObject pitPrefab, GameObject shimmerPrefab,
-            GameObject enemyPrefab, GameObject wallPrefab, GameObject pathPrefab, GameObject devTextPrefab)
+            GameObject enemyPrefab, GameObject wallPrefab, GameObject pathPrefab, DrawableSurfaceSet set, GameObject devTextPrefab)
 #else
         public IEnumerator Instantiate(GameObject floorPrefab, GameObject pitPrefab, GameObject shimmerPrefab,
-            GameObject enemyPrefab, GameObject wallPrefab, GameObject pathPrefab)
+            GameObject enemyPrefab, GameObject wallPrefab, DrawableSurfaceSet set, GameObject pathPrefab)
 #endif
         {
             //Debug.Log(Level + nameof(Instantiate));
@@ -174,9 +174,12 @@ namespace BlindWizard.Data
                 void InstantiateWall(Wall wall, GameObject container, Vector3 offset, Quaternion rotation, string name)
                 {
                     if (wall.Gen && wall.GameObject == null)
+                    {
                         (wall.GameObject = Object.Instantiate(wallPrefab,
                             wallPrefab.transform.position + container.transform.position + offset,
                             wallPrefab.transform.rotation * rotation, container.transform)).name = name;
+                        wall.GameObject.GetComponent<DrawableSurface>().Set = set;
+                    }
                 }
                 if (x < Width && z < Width)
                 {

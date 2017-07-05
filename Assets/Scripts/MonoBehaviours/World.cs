@@ -12,6 +12,8 @@ namespace BlindWizard.MonoBehaviours
         //Prefabs
         [SerializeField]
         private GameObject _floorPrefab, _pitPrefab, _wallPrefab, _shimmerPrefab, _enemyPrefab, _pathPrefab;
+
+        [SerializeField] private DrawableSurfaceSet _set;
         
         #if UNITY_EDITOR || DEVELOPMENT_BUILD
         [SerializeField] private GameObject _devTextPrefab;
@@ -38,9 +40,9 @@ namespace BlindWizard.MonoBehaviours
         {
             _pendingLevels.Remove(level);
 #if  DEVELOPMENT_BUILD || UNITY_EDITOR
-            yield return StartCoroutine(level.Instantiate(_floorPrefab, _pitPrefab, _shimmerPrefab, _enemyPrefab, _wallPrefab, _pathPrefab, _devTextPrefab));
+            yield return StartCoroutine(level.Instantiate(_floorPrefab, _pitPrefab, _shimmerPrefab, _enemyPrefab, _wallPrefab, _pathPrefab, _set, _devTextPrefab));
 #else
-            yield return StartCoroutine(level.Instantiate(_floorPrefab, _pitPrefab, _shimmerPrefab, _enemyPrefab, _wallPrefab, _pathPrefab));
+            yield return StartCoroutine(level.Instantiate(_floorPrefab, _pitPrefab, _shimmerPrefab, _enemyPrefab, _wallPrefab, _set, _pathPrefab));
 #endif
             Levels[level.Level] = level;
             _player.UpdatePosition();
