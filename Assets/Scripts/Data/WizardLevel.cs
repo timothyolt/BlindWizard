@@ -71,7 +71,7 @@ namespace BlindWizard.Data
             } while (outer(count++));
         }
         
-        private void GenerateRooms()
+        protected virtual void GenerateRooms()
         {
             //Debug.Log(Level + nameof(GenerateRooms));
             for (var x = 0; x < Width; x++)
@@ -89,7 +89,7 @@ namespace BlindWizard.Data
                 (x, z) => Rooms[x, z].FloorGen = false);
         }
        
-        private void GenerateWalls()
+        protected virtual void GenerateWalls()
         {
             //Debug.Log(Level + nameof(GenerateWalls));
             for (var x = 0; x < Width + 1; x++)
@@ -113,7 +113,88 @@ namespace BlindWizard.Data
                 }
             }
         }
-        
+        protected virtual void GenerateWallsLevel0()
+        {
+            //Debug.Log(Level + nameof(GenerateWalls));
+            for (var x = 0; x < Width + 1; x++)
+                for (var z = 0; z < Width + 1; z++)
+                {
+                    if (x < Width && z < Width)
+                    {
+                        Rooms[x, z].Walls[Direction.South] = new Wall { Gen = true };
+                        Rooms[x, z].Walls[Direction.West] = new Wall { Gen = true };
+                        if (z > 0 && x < Width)
+                            Rooms[x, z - 1].Walls[Direction.North] = Rooms[x, z].Walls[Direction.South];
+                        if (x > 0 && z < Width)
+                            Rooms[x - 1, z].Walls[Direction.East] = Rooms[x, z].Walls[Direction.West];
+                    }
+                    else
+                    {
+                        if (x > 0 && z < Width)
+                            Rooms[x - 1, z].Walls[Direction.East] = new Wall { Gen = true };
+                        if (z > 0 && x < Width)
+                            Rooms[x, z - 1].Walls[Direction.North] = new Wall { Gen = true };
+                    }
+                }
+            //disabling individual walls because that's the ONLY THING THAT WORKS
+            //Room 0,0
+            Rooms[0, 0].Walls[Direction.North] = new Wall { Gen = false };
+            Rooms[0, 0].Walls[Direction.East] = new Wall { Gen = false };
+            // Room 0,1
+            Rooms[0, 1].Walls[Direction.South] = new Wall { Gen = false };
+            Rooms[0, 1].Walls[Direction.North] = new Wall { Gen = false };
+            Rooms[0, 1].Walls[Direction.East] = new Wall { Gen = false };
+            //Room 0,2
+            Rooms[0, 2].Walls[Direction.North] = new Wall { Gen = false };
+            Rooms[0, 2].Walls[Direction.South] = new Wall { Gen = false };
+            //Room 0,3
+            Rooms[0, 3].Walls[Direction.South] = new Wall { Gen = false };
+            Rooms[0, 3].Walls[Direction.East] = new Wall { Gen = false };
+            //Room 1,0
+            Rooms[1, 0].Walls[Direction.West] = new Wall { Gen = false };
+            Rooms[1, 0].Walls[Direction.North] = new Wall { Gen = false };
+            Rooms[1, 0].Walls[Direction.East] = new Wall { Gen = false };
+            //Room 1,1
+            Rooms[1, 1].Walls[Direction.North] = new Wall { Gen = false };
+            Rooms[1, 1].Walls[Direction.South] = new Wall { Gen = false };
+            Rooms[1, 1].Walls[Direction.East] = new Wall { Gen = false };
+            Rooms[1, 1].Walls[Direction.West] = new Wall { Gen = false };
+            //Room 1,2
+            Rooms[1, 2].Walls[Direction.South] = new Wall { Gen = false };
+            Rooms[1, 2].Walls[Direction.East] = new Wall { Gen = false };
+            //Room 1,3
+            Rooms[1, 3].Walls[Direction.West] = new Wall { Gen = false };
+            Rooms[1, 3].Walls[Direction.East] = new Wall { Gen = false };
+            //Room 2,0
+            Rooms[2, 0].Walls[Direction.West] = new Wall { Gen = false };
+            Rooms[2, 0].Walls[Direction.East] = new Wall { Gen = false };
+            //Room 2,1
+            Rooms[2, 1].Walls[Direction.North] = new Wall { Gen = false };
+            Rooms[2, 1].Walls[Direction.West] = new Wall { Gen = false };
+            //Room 2,2
+            Rooms[2, 2].Walls[Direction.South] = new Wall { Gen = false };
+            Rooms[2, 2].Walls[Direction.North] = new Wall { Gen = false };
+            Rooms[2, 2].Walls[Direction.West] = new Wall { Gen = false };
+            Rooms[2, 2].Walls[Direction.East] = new Wall { Gen = false };
+            //Room 2,3
+            Rooms[2, 3].Walls[Direction.South] = new Wall { Gen = false };
+            Rooms[2, 3].Walls[Direction.East] = new Wall { Gen = false };
+            Rooms[2, 3].Walls[Direction.West] = new Wall { Gen = false };
+            //Room 3,0
+            Rooms[3, 0].Walls[Direction.North] = new Wall { Gen = false };
+            Rooms[3, 0].Walls[Direction.West] = new Wall { Gen = false };
+            //Room 3,1
+            Rooms[3, 1].Walls[Direction.South] = new Wall { Gen = false };
+            Rooms[3, 1].Walls[Direction.North] = new Wall { Gen = false };
+            //Room 3,2
+            Rooms[3, 2].Walls[Direction.North] = new Wall { Gen = false };
+            Rooms[3, 2].Walls[Direction.South] = new Wall { Gen = false };
+            Rooms[3, 2].Walls[Direction.West] = new Wall { Gen = false };
+            //Room 3,3
+            Rooms[3, 3].Walls[Direction.West] = new Wall { Gen = false };
+            Rooms[3, 3].Walls[Direction.South] = new Wall { Gen = false };
+        }
+
 
         private void GenerateShimmers(int max, double at, double desired, double spread)
         {
@@ -135,7 +216,7 @@ namespace BlindWizard.Data
                 (x, z) => Rooms[x, z].EnemyGen = true);
         }
 
-        private void GenerateMaze()
+        protected virtual void GenerateMaze()
         {
             //Debug.Log(Level + nameof(GenerateMaze));
             _mazeTask = new Thread(() =>
@@ -148,7 +229,7 @@ namespace BlindWizard.Data
             //Debug.Log(Level + nameof(GenerateMaze) + " Started");
         }
 
-        public void Generate() {
+        public virtual void Generate() {
             GenerateRooms();
             GeneratePits(Area / 16, Area / 32d, 0.25);
             GenerateWalls();
@@ -156,32 +237,8 @@ namespace BlindWizard.Data
             // GenerateEnemies(Width / 2, Width / 4d, 0.5f, 1, enemyPrefab);
             GenerateMaze();
         }
-        public void GenerateLevel1()
-        {
-            GenerateRooms();
-            // oposite corner has hole
-            Rooms[3, 3].FloorGen = false;
-
-            // other 2 corners have shimmers
-            Rooms[0, 3].ShimmerGen = true;
-            Rooms[3, 0].ShimmerGen = true;
-
-            // L shaped walls leading towards pit
-            GenerateWalls();
-
-            //GenerateMaze(); as follows
-            //Debug.Log(Level + nameof(GenerateMaze));
-            _mazeTask = new Thread(() =>
-            {
-                //Debug.Log("Maze creating");
-                _maze = new Maze(Rooms);
-                //Debug.Log("Maze finished");
-            })
-            { Name = $"WizardLevel-{Level}", IsBackground = true };
-            _mazeTask.Start();
-            //Debug.Log(Level + nameof(GenerateMaze) + " Started");
-        }
-        public bool IsDone => _maze != null;
+        
+        public virtual bool IsDone => _maze != null;
 
 #if DEVELOPMENT_BUILD || UNITY_EDITOR
         public IEnumerator Instantiate(GameObject floorPrefab, GameObject pitPrefab, GameObject shimmerPrefab,
