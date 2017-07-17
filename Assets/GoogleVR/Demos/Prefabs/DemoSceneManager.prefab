@@ -20,8 +20,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1509313747}
   - component: {fileID: 1980163928}
-  - component: {fileID: 114663877464532176}
-  - component: {fileID: 114019187268974328}
+  - component: {fileID: 114711788542304428}
+  - component: {fileID: 114881889122647984}
   m_Layer: 0
   m_Name: DemoSceneManager
   m_TagString: Untagged
@@ -53,19 +53,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bec9ea3efe7849ffae666549aca3cad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114019187268974328
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 632161999}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 112998890, guid: 325c5b2a7434372429c2ca9d61dba58e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _guid: f2921fb2-9347-44d1-9fdf-ed26d39981d3
---- !u!114 &114663877464532176
+--- !u!114 &114711788542304428
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -82,3 +70,15 @@ MonoBehaviour:
     _collection:
     - {fileID: 632161999}
   _assetGuid: 87c35d808850c410ca0e398a8da84e68
+--- !u!114 &114881889122647984
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 632161999}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 112998890, guid: 325c5b2a7434372429c2ca9d61dba58e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _guid: ae63ed32-5ef5-4271-a370-96234c576093

@@ -226,7 +226,7 @@ GameObject:
   - component: {fileID: 1255186678}
   - component: {fileID: 1063622329}
   - component: {fileID: 1131593892}
-  - component: {fileID: 114162133120980826}
+  - component: {fileID: 114971540018861576}
   m_Layer: 5
   m_Name: Background
   m_TagString: Untagged
@@ -247,8 +247,8 @@ GameObject:
   - component: {fileID: 1704454756}
   - component: {fileID: 1014590142}
   - component: {fileID: 890278573}
-  - component: {fileID: 114862472823019952}
-  - component: {fileID: 114180900140890870}
+  - component: {fileID: 114205680919296382}
+  - component: {fileID: 114763627054255150}
   m_Layer: 5
   m_Name: GvrKeyboardCanvas
   m_TagString: Untagged
@@ -266,7 +266,7 @@ GameObject:
   - component: {fileID: 1279492093}
   - component: {fileID: 2023487032}
   - component: {fileID: 150179061}
-  - component: {fileID: 114716497969938792}
+  - component: {fileID: 114968218135781530}
   m_Layer: 5
   m_Name: KeyboardText
   m_TagString: Untagged
@@ -297,43 +297,7 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1627538840}
---- !u!114 &114162133120980826
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1547164621}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 112998890, guid: 325c5b2a7434372429c2ca9d61dba58e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _guid: e9119e56-895e-4af5-9a15-2cd947add740
---- !u!114 &114180900140890870
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1594779858}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 112998890, guid: 325c5b2a7434372429c2ca9d61dba58e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _guid: ac9f464d-e57d-40f7-a3cb-7b3c4130a9c8
---- !u!114 &114716497969938792
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1627538840}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 112998890, guid: 325c5b2a7434372429c2ca9d61dba58e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _guid: 1889cccf-95ae-48a3-b277-721b908bf935
---- !u!114 &114862472823019952
+--- !u!114 &114205680919296382
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -352,3 +316,39 @@ MonoBehaviour:
     - {fileID: 1547164621}
     - {fileID: 1627538840}
   _assetGuid: f4cf01cab04054926935acc7cb25b7f5
+--- !u!114 &114763627054255150
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1594779858}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 112998890, guid: 325c5b2a7434372429c2ca9d61dba58e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _guid: fbe0a13c-77b0-4633-aba5-89c76fd9f9a8
+--- !u!114 &114968218135781530
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1627538840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 112998890, guid: 325c5b2a7434372429c2ca9d61dba58e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _guid: 7a11d9dd-7fc6-4b53-a866-804e7f6f2ede
+--- !u!114 &114971540018861576
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1547164621}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 112998890, guid: 325c5b2a7434372429c2ca9d61dba58e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _guid: e278c401-c51a-4295-ab81-74ab522cfb9e

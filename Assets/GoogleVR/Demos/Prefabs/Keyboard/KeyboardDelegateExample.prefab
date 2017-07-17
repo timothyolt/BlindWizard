@@ -20,8 +20,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1788732883}
   - component: {fileID: 2044164019}
-  - component: {fileID: 114867375811985608}
-  - component: {fileID: 114462684687533382}
+  - component: {fileID: 114346071357554748}
+  - component: {fileID: 114858683750915410}
   m_Layer: 0
   m_Name: KeyboardDelegateExample
   m_TagString: Untagged
@@ -55,19 +55,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   KeyboardText: {fileID: 0}
   UpdateCanvas: {fileID: 0}
---- !u!114 &114462684687533382
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 909512790}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 112998890, guid: 325c5b2a7434372429c2ca9d61dba58e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _guid: 5ed04d7b-0729-4bc8-a78b-eac84961860f
---- !u!114 &114867375811985608
+--- !u!114 &114346071357554748
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -84,3 +72,15 @@ MonoBehaviour:
     _collection:
     - {fileID: 909512790}
   _assetGuid: 3b7eeb268f8424f809fc34c33b2a6820
+--- !u!114 &114858683750915410
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 909512790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 112998890, guid: 325c5b2a7434372429c2ca9d61dba58e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _guid: 57e62d3c-5146-4814-a73b-14d82b59a649
