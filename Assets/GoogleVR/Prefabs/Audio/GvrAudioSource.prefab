@@ -9,10 +9,8 @@ GameObject:
   m_Component:
   - component: {fileID: 434824}
   - component: {fileID: 11461060}
-  - component: {fileID: 114293475917326338}
-  - component: {fileID: 114924261855038060}
-  - component: {fileID: 114288305342817782}
-  - component: {fileID: 114000993959246018}
+  - component: {fileID: 114208929237684876}
+  - component: {fileID: 114238716461269614}
   m_Layer: 0
   m_Name: GvrAudioSource
   m_TagString: Untagged
@@ -77,36 +75,7 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 106086}
   m_IsPrefabParent: 1
---- !u!114 &114000993959246018
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 106086}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 112998890, guid: 2508b139adb0da94496f61d5b3ddc401, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _guid: 5f21343c-68ba-42fd-a63f-b654694a7826
---- !u!114 &114288305342817782
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 106086}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -605777808, guid: 2508b139adb0da94496f61d5b3ddc401, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _isConnected: 1
-  _guid: 
-  _referenceCollection:
-    _collection:
-    - {fileID: 106086}
-  _assetGuid: 82b70a42d67ea49d4a2e3bd826e9a512
---- !u!114 &114293475917326338
+--- !u!114 &114208929237684876
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -123,7 +92,7 @@ MonoBehaviour:
     _collection:
     - {fileID: 106086}
   _assetGuid: 82b70a42d67ea49d4a2e3bd826e9a512
---- !u!114 &114924261855038060
+--- !u!114 &114238716461269614
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -134,4 +103,4 @@ MonoBehaviour:
   m_Script: {fileID: 112998890, guid: 325c5b2a7434372429c2ca9d61dba58e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _guid: cebdb8cd-4cfc-47de-b83d-7bf85ecde495
+  _guid: 63cdc448-33a2-4d76-b05b-00204a82a97a

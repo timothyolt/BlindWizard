@@ -39,9 +39,18 @@ namespace BlindWizard.MonoBehaviours
 
         public void MoveTo()
         {
+            if (_player.Level != Level) return;
+            // remove last because it is the players current position
+            if (_world.Path.Count > 0)
+                _world.Path.RemoveAt(_world.Path.Count - 1);
+            while (_world.Path.Count > 0)
+            {
+                var index = _world.Path.Count - 1;
+                if (_player.TryMove(_world.Path[index]))
+                    _world.Path.RemoveAt(index);
+                else break;
+            }
             _world.Path = null;
-            if (_player.Level == Level)
-                _player.Position = Position;
         }
     }
 }

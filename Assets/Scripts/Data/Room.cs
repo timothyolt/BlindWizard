@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
 
 namespace BlindWizard.Data
 {
@@ -26,6 +28,32 @@ namespace BlindWizard.Data
             {
                 get => _walls[(int) direction];
                 set => _walls[(int) direction] = value;
+            }
+
+            /// <summary>
+            /// A set of directions that obstructed by walls
+            /// </summary>
+            public IEnumerable<Direction> Closed
+            {
+                get
+                {
+                    for (Direction d = 0; d < (Direction) DirectionUtils.Count; d++)
+                        if (this[d].Gen)
+                            yield return d;
+                }
+            }
+
+            /// <summary>
+            /// A set of directions that are unobstructed by walls
+            /// </summary>
+            public IEnumerable<Direction> Open
+            {
+                get
+                {
+                    for (Direction d = 0; d < (Direction) DirectionUtils.Count; d++)
+                        if (!this[d].Gen)
+                            yield return d;
+                }
             }
         }
         public WallCollection Walls { get; } = new WallCollection();

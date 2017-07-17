@@ -34,19 +34,27 @@ namespace BlindWizard.MonoBehaviours
                     _world.Levels[Level - 1].Destroy();
                     _world.AddLevel();
                 }
+                _world.OnTurn(this);
                 UpdatePosition();
             }
+        }
+
+        public bool TryMove(RoomId position)
+        {
+            Position = position;
+            return true;
         }
 
         public void UpdatePosition()
         {
             _loadingBox.SetActive(false);
             // 1.6f is a GoogleVR constant.
+            // 1d is half the floor height
             if (_world.Levels.Count > Level && _world.Levels[Level] != null)
             {
                 transform.position = _world.Levels[Level]
                                          .Rooms[_position.X, _position.Z]
-                                         .Container.transform.position + Vector3.up * 1.6f;
+                                         .Container.transform.position + Vector3.up * (1.6f + 0.75f);
             }
             else _loadingBox.SetActive(true);
         }
