@@ -6,7 +6,7 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Floor Tiles
+  m_Name: wall.tex.2d
   m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: _GLOSSYREFLECTIONS_OFF _NORMALMAP _PARALLAXMAP _SPECULARHIGHLIGHTS_OFF
   m_LightmapFlags: 4
@@ -18,7 +18,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BumpMap:
-        m_Texture: {fileID: 2800000, guid: f41b23683827ad545b8fc8049ddc7adc, type: 3}
+        m_Texture: {fileID: 2800000, guid: 41728fee616b47743a34363866615d88, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DetailAlbedoMap:
@@ -38,7 +38,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 85cf04b8f8c1d0747afa5d724c8c3334, type: 3}
+        m_Texture: {fileID: 2800000, guid: 4907d09d3ef745148bff0ffd873115e3, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -46,11 +46,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
-        m_Texture: {fileID: 2800000, guid: 0cdbab24c2f6acc4f969bdabf4e8fb95, type: 3}
+        m_Texture: {fileID: 2800000, guid: 7ce2dcc7975269f4e8164572b50c8aef, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ParallaxMap:
-        m_Texture: {fileID: 2800000, guid: 0cdbab24c2f6acc4f969bdabf4e8fb95, type: 3}
+        m_Texture: {fileID: 2800000, guid: 7ce2dcc7975269f4e8164572b50c8aef, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
@@ -64,7 +64,7 @@ Material:
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 0.15
-    - _Parallax: 0.08
+    - _Parallax: 0.04
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 0
     - _SrcBlend: 1

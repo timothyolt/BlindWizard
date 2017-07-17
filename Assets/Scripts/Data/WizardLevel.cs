@@ -10,9 +10,9 @@ namespace BlindWizard.Data
 {
     public class WizardLevel
     {
-        public const float RoomScale = 1.5f;
-        public const float FloorHeight = 1f;
-        public const float WallHeight = 2.5f;
+        public const float RoomScale = 2f;
+        public const float FloorHeight = 2f;
+        public const float WallHeight = 4f;
         public const float WallVerticalOffset = (WallHeight - FloorHeight) / 2;
         private static readonly Vector3 WallNorthOffset = new Vector3(0, WallVerticalOffset, RoomScale / 2);
         private static readonly Vector3 WallSouthOffset = new Vector3(0, WallVerticalOffset, -RoomScale / 2);
@@ -45,7 +45,7 @@ namespace BlindWizard.Data
             Level = level;
             Width = (level + 1) * 2 + 2;
             Area = Width * Width;
-            _wOffset = Width / 2f - 0.5f;
+            _wOffset = Width * RoomScale / 2f;
             _y = Width * 2 + 1;
             Rooms = new Room[Width, Width];
             Pathfinder = new Pathfinder(this);
@@ -152,7 +152,7 @@ namespace BlindWizard.Data
             GeneratePits(Area / 16, Area / 32d, 0.25);
             GenerateWalls();
             GenerateShimmers(Width / 2, Width / 4d, 0.5f, 1);
-            // GenerateEnemies(Width / 2, Width / 4d, 0.5f, 1, enemyPrefab);
+            GenerateEnemies(Width / 2, Width / 4d, 0.5f, 1);
             GenerateMaze();
         }
 
@@ -215,9 +215,16 @@ namespace BlindWizard.Data
                             Object.Instantiate(shimmerPrefab, room.Container.transform.position + Vector3.up,
                                 shimmerPrefab.transform.rotation, room.Container.transform)).name = $"Shimmer {x}, {z}";
                     if (room.EnemyGen)
+                    {
                         (room.Enemy =
-                            Object.Instantiate(enemyPrefab, room.Container.transform.position + Vector3.up,
-                                shimmerPrefab.transform.rotation, room.Container.transform)).name = $"Enemy {x}, {z}";
+                            Object.Instantiate(enemyPrefab)).name = $"Enemy [{Level}], {x}, {z}";
+                        var enemyMovement = room.Enemy.GetComponent<EnemyMovement>();
+                        if (enemyMovement != null)
+                        {
+                            enemyMovement.Level = Level;
+                            enemyMovement.Position = new RoomId(x, z);
+                        }
+                    }
                     InstantiateWall(room.Walls[Direction.South], room.Container, WallSouthOffset, WallNsRotation,
                         $"Wall North {x}, {z}");
                     InstantiateWall(room.Walls[Direction.West], room.Container, WallWestOffset, WallEwRotation,

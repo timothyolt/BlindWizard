@@ -51,6 +51,29 @@ namespace BlindWizard.Data
                 return Direction.South;
         }
 
+        /// <summary>
+        /// Calculates distances between rooms, unobstructed, in turns
+        /// Forms a diamond-like search perimeter
+        /// </summary>
+        /// <returns>Number of turns</returns>
+        public int DistanceTurns(RoomId room) => Math.Abs(X - room.X) + Math.Abs(Z - room.Z);
+
+        /// <summary>
+        /// Calculated distance between rooms (squared), unobstructed, in euclidian distance
+        /// Forms a circle-like search perimiter
+        /// </summary>
+        /// <param name="room">Number of rooms squared</param>
+        /// <returns></returns>
+        public int DistanceSquared(RoomId room) => (X - room.X) * (X - room.X) + (Z - room.Z) * (Z - room.Z);
+
+        /// <summary>
+        /// Calculated distance between rooms (linear), unobstructed, in euclidian distance
+        /// Forms a circle-like search perimiter
+        /// </summary>
+        /// <param name="room">Fractional number of rooms</param>
+        /// <returns></returns>
+        public double Distance(RoomId room) => Math.Sqrt(DistanceSquared(room));
+
         public bool Bounds(int width) => X >= 0 && X < width && Z >= 0 && Z < width;
 
         public override string ToString() => $"X:{X}, Z:{Z}";

@@ -28,6 +28,9 @@ namespace BlindWizard.MonoBehaviours
         private List<WizardLevel> _pendingLevels;
         public List<WizardLevel> Levels { get; } = new List<WizardLevel>();
 
+        public event EventHandler Turn; 
+        public virtual void OnTurn(object sender) => Turn?.Invoke(sender, EventArgs.Empty);
+
         private void Start()
         {
             Score.Clear();
@@ -104,7 +107,7 @@ namespace BlindWizard.MonoBehaviours
                             Quaternion.AngleAxis(
                                 value[Math.Max(0, value.Count - 2)].Orient(value[value.Count - 1]).Rotation(),
                                 Vector3.up);
-                        beginPath.transform.localScale = Vector3.one;
+                        beginPath.transform.localScale = Vector3.one * (2f / 1.5f);
                     }
                     for (var i = 1; i < value.Count - 1; i++)
                     {
@@ -124,7 +127,7 @@ namespace BlindWizard.MonoBehaviours
                             path.transform.rotation =
                                 Quaternion.AngleAxis((next + 90) % 360 == last ? next : last, Vector3.up);
                         }
-                        path.transform.localScale = Vector3.one;
+                        path.transform.localScale = Vector3.one * (2f / 1.5f);
                     }
                     if (value.Count > 1)
                     {
@@ -133,11 +136,12 @@ namespace BlindWizard.MonoBehaviours
                             Levels[_player.Level][value[0]].FloorGen ? _pathEnd : _pathPit;
                         endPath.transform.rotation =
                             Quaternion.AngleAxis(value[1].Orient(value[0]).Rotation(), Vector3.up);
-                        endPath.transform.localScale = Vector3.one;
+                        endPath.transform.localScale = Vector3.one * (2f / 1.5f);
                     }
                 }
                 _path = value;
             }
         }
+
     }
 }

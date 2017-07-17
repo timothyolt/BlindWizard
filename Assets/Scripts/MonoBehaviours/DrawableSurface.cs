@@ -48,7 +48,6 @@ namespace BlindWizard.MonoBehaviours
             for (var y = 1024; y < 1024 + 32; y++)
                 Texture.SetPixel(x, y, Color.green);
             Texture.Apply();
-            Texture
             
             Set.Drawing = true;
             Set.Surface = this;

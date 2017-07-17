@@ -276,7 +276,7 @@ Prefab:
     - target: {fileID: 114603935145304474, guid: 9e5ecb9ea99fffd468c37b3e1016ebc7,
         type: 2}
       propertyPath: gvrEmulatedPlatformType
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114603935145304474, guid: 9e5ecb9ea99fffd468c37b3e1016ebc7,
         type: 2}
@@ -288,6 +288,10 @@ Prefab:
       propertyPath: reticlePointer
       value: 
       objectReference: {fileID: 1302147425}
+    - target: {fileID: 4763516114334394, guid: 9e5ecb9ea99fffd468c37b3e1016ebc7, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -1.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9e5ecb9ea99fffd468c37b3e1016ebc7, type: 2}
   m_IsPrefabParent: 0
@@ -340,6 +344,12 @@ Prefab:
       propertyPath: _set
       value: 
       objectReference: {fileID: 767739956}
+    - target: {fileID: 114803144798696092, guid: bc0f77bc1e2ef4e4bb4f91c3231f5949,
+        type: 2}
+      propertyPath: _wallPrefab
+      value: 
+      objectReference: {fileID: 1064942881047642, guid: 94e0fc4808e25a04d8557af36f0c227e,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bc0f77bc1e2ef4e4bb4f91c3231f5949, type: 2}
   m_IsPrefabParent: 0
