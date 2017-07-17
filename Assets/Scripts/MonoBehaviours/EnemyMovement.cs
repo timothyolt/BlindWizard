@@ -62,9 +62,11 @@ namespace BlindWizard.MonoBehaviours
                 SearchDistance = 4;
         }
 
-        private void Update() => 
+        private void Update()
+        {
             transform.position = World?.Levels[Level]?[Position]?
                                      .Container?.transform.position + Vector3.up * 0.75f ?? Vector3.zero;
+        }
 
         private void WorldOnTurn(object sender, EventArgs eventArgs)
         {
