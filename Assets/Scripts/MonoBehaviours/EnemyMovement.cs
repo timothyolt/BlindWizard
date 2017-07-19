@@ -65,13 +65,23 @@ namespace BlindWizard.MonoBehaviours
         private void Update()
         {
             transform.position = World?.Levels[Level]?[Position]?
-                                     .Container?.transform.position + Vector3.up * 0.75f ?? Vector3.zero;
+                                     .Container?.transform.position + Vector3.up * 2f ?? Vector3.zero;
         }
 
         private void WorldOnTurn(object sender, EventArgs eventArgs)
         {
-            // Move to a random available diretion
-            Position = Position[World.Levels[Level][Position].Walls.Open.Random()];
+            if (Player.Level != Level)
+                return;
+            if (Player.Position.DistanceTurns(Position) > SearchDistance)
+                // Move to a random available diretion
+                Position = Position[World.Levels[Level][Position].Walls.Open.Random()];
+            else
+            {
+                // Move to the highest priority open direction, considering the player's position
+                var priorities = Position.OrientPriority(Player.Position);
+                var open = World.Levels[Level][Position].Walls.Open.ToList();
+                Position = Position[priorities.First(priority => open.Any(direction => priority == direction))];
+            }
         }
     }
 }

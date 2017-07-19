@@ -41,14 +41,39 @@ namespace BlindWizard.Data
 
         public Direction Orient(RoomId to)
         {
-            if (to.X > X)
-                return Direction.East;
-            if (to.X < X)
-                return Direction.West;
-            if (to.Z > Z)
-                return Direction.North;
+            var xDif = to.X - X;
+            var zDif = to.Z - Z;
+            if (Math.Abs(xDif) > Math.Abs(zDif))
+                return xDif < 0 ? Direction.West : Direction.East;
+            return zDif < 0 ? Direction.South : Direction.North;
+        }
+
+        public Direction[] OrientPriority(RoomId to)
+        {
+            var xDif = to.X - X;
+            var zDif = to.Z - Z;
+            Direction[] dirs;
+            if (Math.Abs(xDif) > Math.Abs(zDif))
+            {
+                dirs = new []
+                {
+                    xDif < 0 ? Direction.West : Direction.East,
+                    zDif < 0 ? Direction.South : Direction.North,
+                    zDif < 0 ? Direction.North : Direction.South,
+                    xDif < 0 ? Direction.East : Direction.West
+                };
+            }
             else
-                return Direction.South;
+            {
+                dirs = new []
+                {
+                    zDif < 0 ? Direction.South : Direction.North,
+                    xDif < 0 ? Direction.West : Direction.East,
+                    xDif < 0 ? Direction.East : Direction.West,
+                    zDif < 0 ? Direction.North : Direction.South
+                };
+            }
+            return dirs;
         }
 
         /// <summary>
