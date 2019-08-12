@@ -1,13 +1,16 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using BlindWizard.Data;
+using BlindWizard.Interfaces;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Action = BlindWizard.Interfaces.Action;
 
 namespace BlindWizard.MonoBehaviours
 {
-    public class World : MonoBehaviour
+    public class World : MonoBehaviour, IActorWorld
     {
         //Prefabs
         [SerializeField]
@@ -37,6 +40,7 @@ namespace BlindWizard.MonoBehaviours
             _pendingLevels = new List<WizardLevel>();
             for (var i = 0; i < 4; i++)
                 AddLevel();
+            UpdateTurn();
         }
 
         private IEnumerator InstantiateLevel(WizardLevel level)
@@ -142,6 +146,44 @@ namespace BlindWizard.MonoBehaviours
                 _path = value;
             }
         }
+        
+        private readonly List<IActor> _actorsAdd = new List<IActor>();
+        private readonly List<IActor> _actorsRemove = new List<IActor>();
+        private readonly Dictionary<IActor, Action?> _actors = new Dictionary<IActor, Action?>();
 
+        private void UpdateTurn()
+        {
+            foreach (var actor in _actorsAdd)
+                _actors.Add(actor, null);
+            foreach (var actor in _actorsRemove)
+                _actors.Remove(actor);
+            foreach (var actor in _actors.Keys)
+            {
+                _actors[actor] = null;
+                actor.GetAction(readyAction =>
+                {
+                    _actors[actor] = readyAction;
+                    if (_actors.Values.All(action => action != null))
+                        UpdateTurn();
+                });
+            }
+        }
+
+        public IEnumerable<IActor> Actors => _actors.Keys;
+
+        public WizardLevel this[int level] => Levels[level];
+
+        public int Count => Levels.Count;
+
+        public void AddActor(IActor actor) => _actorsAdd.Add(actor);
+
+        public void RemoveActor(IActor actor) => _actorsRemove.Add(actor);
+
+        private void OnDestroy()
+        {
+            _actorsAdd.Clear();
+            _actorsRemove.Clear();
+            _actors.Clear();
+        }
     }
 }
